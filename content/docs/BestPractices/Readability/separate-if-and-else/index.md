@@ -1,9 +1,10 @@
-+++
-title = "Separate if and else"
-weight = 1050
-+++
+---
+title: "Seperate if and else"
+tags: ["Readability"]
+categories: ["Best Practice"]
+---
 
-<_Created by Microsoft, Described by waldo_\>
+_Created by Microsoft, Described by waldo_
 
 ## Description
 `if` and `else` statements should be on separate lines. 

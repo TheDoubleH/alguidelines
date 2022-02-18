@@ -1,9 +1,10 @@
-+++
-title = "Variable Naming"
-weight = 1420
-+++
+---
+title: "Variable Naming"
+tags: ["Readability"]
+categories: ["Best Practice"]
+---
 
-<_Created by Microsoft, Described by waldo_\>
+_Created by Microsoft, Described by waldo_
 
 ## Description
 Variables that refer to a AL object must contain the objects name, abbreviated where necessary.

@@ -1,9 +1,10 @@
-+++
-title = "Variables Declarations Order"
-weight = 1430
-+++
+---
+title: "Variables Declarations Order"
+tags: ["Readability"]
+categories: ["Best Practice"]
+---
 
-<_Created by Microsoft, Described by waldo_\>
+_Created by Microsoft, Described by waldo_
 
 ## Description
 Variables declarations should be ordered by type. In general, object and complex variable types are listed first followed by simple variables. The order should be:

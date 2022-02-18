@@ -1,9 +1,10 @@
-+++
-title = "CASE Action on next line"
-weight = 310
-+++
+---
+title: "CASE Action on next line"
+tags: ["Readability"]
+categories: ["Best Practice"]
+---
 
-<_Created by Microsoft, Described by waldo_\>
+_Created by Microsoft, Described by waldo_
 
 ## Description
 

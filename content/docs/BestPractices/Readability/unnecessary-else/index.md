@@ -1,9 +1,10 @@
-+++
-title = "Unnecessary 'else'"
-weight = 1270
-+++
+---
+title: "Unnecessary else"
+tags: ["Readability"]
+categories: ["Best Practice"]
+---
 
-<_Created by Microsoft, Described by waldo_\>
+_Created by Microsoft, Described by waldo_
 
 ## Description
 `else` should not be used when the last action in the `then` part is an `exit`, `break`, `skip`, `quit`, `error`. 

@@ -1,9 +1,10 @@
-+++
-title = "Suggested Abbreviations"
-weight = 1170
-+++
+---
+title: "Suggested Abbreviations"
+tags: ["Readability"]
+categories: ["Best Practice"]
+---
 
-<_Created by Microsoft, Described by waldo_\>
+_Created by Microsoft, Described by waldo_
 
 ## Description
 

@@ -1,9 +1,10 @@
-+++
-title = "Spacing Binary Operators"
-weight = 1120
-+++
+---
+title: "Spacing Binary Operators"
+tags: ["Readability"]
+categories: ["Best Practice"]
+---
 
-<_Created by Microsoft, Described by waldo_\>
+_Created by Microsoft, Described by waldo_
 
 ## Description
 There must be exactly one space character on each side of a binary operator such as = + - AND OR =. The parameter comma operator however, should have a space after the comma.

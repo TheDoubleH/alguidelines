@@ -1,9 +1,10 @@
-+++
-title = "Comment Spacing"
-weight = 360
-+++
+---
+title: "Comment Spacing"
+tags: ["Readability"]
+categories: ["Best Practice"]
+---
 
-<_Created by Microsoft, Described by waldo_\>
+_Created by Microsoft, Described by waldo_
 
 ## Description
 Always start comments with // followed by one space character.

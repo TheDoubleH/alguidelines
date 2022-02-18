@@ -1,9 +1,10 @@
-+++
-title = "One Statement Per Line"
-weight = 910
-+++
+---
+title: "One Statement per Line"
+tags: ["Readability"]
+categories: ["Best Practice"]
+---
 
-<_Created by Microsoft, Described by waldo_\>
+_Created by Microsoft, Described by waldo_
 
 ## Description
 A line of code should not have more than one statement.

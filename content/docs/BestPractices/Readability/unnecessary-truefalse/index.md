@@ -1,9 +1,10 @@
-+++
-title = "Unnecessary true/false"
-weight = 1300
-+++
+---
+title: "Unnecessary true/false"
+tags: ["Readability"]
+categories: ["Best Practice"]
+---
 
-<_Created by Microsoft, Described by waldo_\>
+_Created by Microsoft, Described by waldo_
 
 ## Description
 Do not use `true` or `false` keywords unnecessarily if the expression is already an logical expression.

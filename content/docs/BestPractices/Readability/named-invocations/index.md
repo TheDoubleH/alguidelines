@@ -1,9 +1,10 @@
-+++
-title = "Named Invocations"
-weight = 830
-+++
+---
+title: "Named Invocations"
+tags: ["Readability"]
+categories: ["Best Practice"]
+---
 
-<_Created by Microsoft, Described by waldo_\>
+_Created by Microsoft, Described by waldo_
 
 ## Description
 When calling an object statically use the Object Name, not the Object Id.

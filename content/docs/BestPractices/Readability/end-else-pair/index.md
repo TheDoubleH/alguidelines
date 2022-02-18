@@ -1,9 +1,10 @@
-+++
-title = "end else pair"
-weight = 540
-+++
+---
+title: "end else pair"
+tags: ["Readability"]
+categories: ["Best Practice"]
+---
 
-<_Created by Microsoft, Described by waldo_\>
+_Created by Microsoft, Described by waldo_
 
 ## Description
 

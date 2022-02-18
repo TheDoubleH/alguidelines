@@ -1,9 +1,10 @@
-+++
-title = "begin as an 'After Word'"
-weight = 230
-+++
+---
+title: "begin as an afterword"
+tags: ["Readability"]
+categories: ["Best Practice"]
+---
 
-<_Created by Microsoft, Described by waldo_\>
+_Created by Microsoft, Described by waldo_
 
 ## Description
 

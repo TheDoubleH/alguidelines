@@ -1,9 +1,10 @@
-+++
-title = "Binary Operator to Start Line"
-weight = 250
-+++
+---
+title: "Binary Operator to Start Line"
+tags: ["Readability"]
+categories: ["Best Practice"]
+---
 
-<_Created by Microsoft, Described by waldo_\>
+_Created by Microsoft, Described by waldo_
 
 ## Description
 
