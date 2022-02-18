@@ -1,7 +1,7 @@
 ---
-title: "Fission"
-linkTitle: "Fission"
-description: "Fast Opensource Kubernetes Serverless Framework"
+title: "ALGuidelines.dev"
+linkTitle: "ALGuidelines.dev"
+description: "Design Patterns and Guidelines for AL development for Microsoft Dynamics 365 Business Central"
 images: ["images/og-image-fission.png"]
 ---
 

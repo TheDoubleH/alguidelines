@@ -95,11 +95,11 @@ release_branch = "master"
 # the main version. Never is rc.
 release_version = "v1.15.1"
 
-slackurl = "/slack"
+slackurl = ""
 
-installurl = '/docs/installation/'
-learnmoreurl = '/docs/installation/'
-#twitterurl = 'https://twitter.com/fissionio'
+installurl = ''
+learnmoreurl = ''
+#twitterurl = ''
 
 notoc = true
 
@@ -107,9 +107,9 @@ notoc = true
 images = ["images/og-image-fission.png"]
 
 [params.social]
-#github = 'fission'
-#slackurl = "/slack"
-#twitter = 'fissionio'
+#github = ''
+#slackurl = ""
+#twitter = ''
 
 [[params.whatsnew]]
 badge = 'FISSION DZONE REFCARD'
@@ -158,10 +158,10 @@ sidebar_search_disable = true
 # If you want this feature, but occasionally need to remove the "Feedback" section from a single page,
 # add "hide_feedback: true" to the page's front matter.
 [params.ui.feedback]
-enable = false
+enable = true
 # The responses that the user sees after clicking "yes" (the page was helpful) or "no" (the page was not helpful).
-no = 'Sorry to hear that. Please <a href="https://github.com/fission/fission/issues/new">tell us how we can improve</a>.'
-yes = 'Glad to hear it! Please <a href="https://github.com/fission/fission/issues/new">tell us how we can improve</a>.'
+no = 'Sorry to hear that. Please <a href="https://github.com/microsoft/alguidelines/issues/new">tell us how we can improve</a>.'
+yes = 'Glad to hear it! Please <a href="https://github.com/microsoft/alhuidelines/issues/new">tell us how we can improve</a>.'
 
 # Adds a reading time to the top of each doc.
 # If you want this feature, but occasionally need to remove the Reading time from a single page, 
@@ -169,23 +169,24 @@ yes = 'Glad to hear it! Please <a href="https://github.com/fission/fission/issue
 [params.ui.readingtime]
 enable = false
 
-[params.links]
-# End user relevant links. These will show up on left side of footer and in the community page if you have one.
-[[params.links.user]]
-desc = "Follow us on Twitter to get the latest news!"
-icon = "fab fa-twitter"
-name = "Twitter"
-url = "https://twitter.com/fissionio"
-[[params.links.user]]
-desc = "Chat with other project users in #users"
-icon = "fab fa-slack"
-name = "Slack"
-url = "/slack"
 [[params.links.user]]
 desc = "Development takes place here!"
 icon = "fab fa-github"
 name = "GitHub"
-url = "https://github.com/fission/fission"
+url = "https://github.com/microsoft/alguidelines"
+[params.links]
+[[params.links.user]]
+desc = "Follow us on Twitter to get the latest news!"
+icon = "fab fa-twitter"
+name = "Twitter"
+url = "https://twitter.com/search?q=%23bcalhelp"
+[[params.links.user]]
+desc = "Chat with other project users in #users"
+icon = "fab fa-discord"
+name = "Discord"
+url = "https://discord.gg/4wbfNv3"
+# End user relevant links. These will show up on left side of footer and in the community page if you have one.
+
 
 [sitemap]
 changefreq = "monthly"
@@ -204,48 +205,12 @@ url = "/blog/"
 pre = "<i class='fas fa-blog'></i>"
 weight = 11
 [[menu.main]]
-name = "Environments"
-pre = "<i class='fas fa-store'></i>"
-url = "https://environments.fission.io/"
-weight = 12
-[[menu.main]]
 name = "GitHub"
 pre = "<i class='fab fa-github'></i>"
-url = "https://github.com/fission"
+url = "https://github.com/microsoft/alguidelines"
 weight = 13
 [[menu.main]]
-name = "Slack"
-pre = "<i class='fab fa-slack'></i>"
-url = "/slack"
+name = "Discord"
+pre = "<i class='fab fa-discord'></i>"
+url = "https://discord.gg/4wbfNv3"
 weight = 14
-
-
-## For search functionality
-#[outputs]
-#home = [ "HTML", "RSS", "JSON"]
-#
-#[params]
-#  # Change default color scheme with a variant one. Can be empty, "red", "blue", "green".
-#  themeVariant = "blue"
-#  # If set to false, a Home button will appear below the search bar on the menu.
-#  # It is redirecting to the landing page of the current language if specified. (Default is "/")
-#  disableLandingPageButton = true
-#  # Enable GitHub editing
-#  editURL = "https://github.com/microsoft/alguidelines/edit/main/content/"
-#  # This controls whether submenus will be expanded (true), or collapsed (false) in the
-#  # menu; if no setting is given, the first menu level is set to false, all others to true;
-#  # this can be overridden in the pages frontmatter
-#  alwaysopen = false
-#
-## Additional menu (left sidebar) area links
-#[[menu.shortcuts]]
-#name = "<i class='fab fa-github'></i> GitHub repo"
-#identifier = "gh"
-#url = "https://github.com/microsoft/alguidelines"
-#weight = 10
-#
-#[[menu.shortcuts]]
-#name = "<i class='fab fa-discord'></i> BC Discord"
-#identifier = "ds"
-#url = "https://discord.gg/4wbfNv3"
-#weight = 10
