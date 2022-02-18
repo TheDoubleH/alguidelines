@@ -1,9 +1,10 @@
-+++
-title = "Subscriber Codeunits"
-weight = 1180
-+++
+---
+title: "Subscriber Codeunits"
+tags: ["Performance"]
+categories: ["Best Practice"]
+---
 
-<_Created by waldo, Described by waldo_\>
+_Created by waldo, Described by waldo_
 
 ## Description
 

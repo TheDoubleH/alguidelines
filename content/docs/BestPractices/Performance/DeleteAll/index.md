@@ -1,7 +1,8 @@
-+++
-title = "DeleteAll"
-weight = 1180
-+++
+---
+title: "DeleteAll"
+tags: ["Performance"]
+categories: ["Best Practice"]
+---
 
 <_Created by waldo, Described by waldo_\>
 
