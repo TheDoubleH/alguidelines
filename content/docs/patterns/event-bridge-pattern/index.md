@@ -4,7 +4,7 @@ tags: [""]
 categories: ["Pattern"]
 ---
 
-_Created by waldo & Arend-Jan Kauffmann, Described by waldo_\
+_Created by waldo & Arend-Jan Kauffmann, Described by waldo_
 
 ## Abstract
 

@@ -1,9 +1,9 @@
-+++
-chapter = true
-pre = "<b><i class='fas fa-medal'></i> </b>"
-title = "BC Dev. Best Practices"
-weight = 15
-+++
+---
+title: "Best Practices"
+weight: 3
+description: >
+  AL Code Best Practices
+---
 
 # Business Central Best Practices
 
