@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>alguidelines.dev – Notifications</title>
-    <link>.%5Cpublic/docs/navpatterns/patterns/notifications/</link>
+    <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/notifications/</link>
     <description>Recent content in Notifications on alguidelines.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	  <atom:link href=".%5Cpublic/docs/navpatterns/patterns/notifications/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="c:\\Hugo\\Sites\\alguidelines-html/docs/navpatterns/patterns/notifications/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -16,10 +16,10 @@
     
     <item>
       <title>Docs: In-context Notifications</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/notifications/in-context-notifications/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/notifications/in-context-notifications/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/notifications/in-context-notifications/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/notifications/in-context-notifications/</guid>
       <description>
         
         
@@ -160,10 +160,10 @@
     
     <item>
       <title>Docs: Notification Lifecycle Management Pattern</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/notifications/notification-lifecycle-management-pattern/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/notifications/notification-lifecycle-management-pattern/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/notifications/notification-lifecycle-management-pattern/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/notifications/notification-lifecycle-management-pattern/</guid>
       <description>
         
         
@@ -175,7 +175,7 @@
 &lt;p&gt; &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Notifications are easy to use in a wide range of cases. Instead of using notifications in a fire-and-forget way, we need to track them so that we can recall them if we need to.&lt;/p&gt;
-&lt;p&gt;If we can have only one notification on a given page, an easy and efficient solution is to use a predefined Notification ID, as suggested in the &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/notifications/in-context-notifications/&#34;&gt;&amp;ldquo;Using In-context Notifications&amp;rdquo;&lt;/a&gt; pattern.&lt;/p&gt;
+&lt;p&gt;If we can have only one notification on a given page, an easy and efficient solution is to use a predefined Notification ID, as suggested in the &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/notifications/in-context-notifications/&#34;&gt;&amp;ldquo;Using In-context Notifications&amp;rdquo;&lt;/a&gt; pattern.&lt;/p&gt;
 &lt;p&gt;However, some cases can be more complicated. For example, when you are adding lines to a table, what if several lines raise individual notifications? Using the same notification ID for each notification will no longer work because the latest notification overwrites the previous ones. Only one notification for a given notification ID can exist, and only the notification message would be updated. This is illustrated in Figure 1.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;4807.1st-notification.PNG&#34;&gt;&lt;img src=&#34;4807.1st-notification.PNG&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Figure 1: Notification that an item that is not in stock. The notification ID is a predefined GUID, 2712AD06-C48B-4C20-820E-347A60C9AD00, for example.&lt;/em&gt;&lt;/p&gt;
@@ -312,8 +312,8 @@
 &lt;p&gt;COD312 (Cust-Check Cr. Limit)&lt;/p&gt;
 &lt;p&gt;COD1508 (Notification Lifecycle Handler)&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Related Patterns:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/notifications/in-context-notifications/&#34;&gt;In-context notifications&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/singleton/singleton-codeunit/&#34;&gt;Singleton codeunit&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/notifications/in-context-notifications/&#34;&gt;In-context notifications&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/singleton/singleton-codeunit/&#34;&gt;Singleton codeunit&lt;/a&gt;&lt;/p&gt;
 
       </description>
     </item>

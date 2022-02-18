@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>alguidelines.dev – Blocked Entity</title>
-    <link>.%5Cpublic/docs/navpatterns/patterns/blocked-entity/</link>
+    <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/blocked-entity/</link>
     <description>Recent content in Blocked Entity on alguidelines.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	  <atom:link href=".%5Cpublic/docs/navpatterns/patterns/blocked-entity/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="c:\\Hugo\\Sites\\alguidelines-html/docs/navpatterns/patterns/blocked-entity/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -16,10 +16,10 @@
     
     <item>
       <title>Docs: Data Driven Blocked Entity</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/blocked-entity/data-driven-blocked-entity/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/blocked-entity/data-driven-blocked-entity/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/blocked-entity/data-driven-blocked-entity/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/blocked-entity/data-driven-blocked-entity/</guid>
       <description>
         
         
@@ -29,7 +29,7 @@
 &lt;h2 id=&#34;problem&#34;&gt;Problem&lt;/h2&gt;
 &lt;p&gt;A NAV record can be used in a number of functionalities across the app. There are situations, however, when the administrator wants to restrict the consumption of such a record, as well as lift the restriction when it is no longer relevant.&lt;/p&gt;
 &lt;p&gt;For example, a new customer record should not be used for posting documents until it is approved by the relevant approver.&lt;/p&gt;
-&lt;p&gt;We could solve this by using the &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/blocked-entity/&#34;&gt;Blocked Entity pattern&lt;/a&gt;, but it requires database schema changes, which have an upgrade impact.&lt;/p&gt;
+&lt;p&gt;We could solve this by using the &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/blocked-entity/&#34;&gt;Blocked Entity pattern&lt;/a&gt;, but it requires database schema changes, which have an upgrade impact.&lt;/p&gt;
 &lt;p&gt;The blocked entity pattern involves:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Adding a &amp;ldquo;blocked&amp;rdquo; status field on the record (either a Boolean or in the more advanced cases, an option field refining the usage).&lt;/li&gt;

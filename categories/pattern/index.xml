@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>alguidelines.dev – Pattern</title>
-    <link>.%5Cpublic/categories/pattern/</link>
+    <link>c:\Hugo\Sites\alguidelines-html/categories/pattern/</link>
     <description>Recent content in Pattern on alguidelines.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	  <atom:link href=".%5Cpublic/categories/pattern/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="c:\\Hugo\\Sites\\alguidelines-html/categories/pattern/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -16,10 +16,10 @@
     
     <item>
       <title>Docs: Event Bridge</title>
-      <link>.%5Cpublic/docs/patterns/event-bridge-pattern/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/patterns/event-bridge-pattern/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/patterns/event-bridge-pattern/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/patterns/event-bridge-pattern/</guid>
       <description>
         
         
@@ -108,10 +108,10 @@ When a new implementation is created, we need to make sure that these events are
     
     <item>
       <title>Docs: Façade</title>
-      <link>.%5Cpublic/docs/patterns/facade-pattern/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/patterns/facade-pattern/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/patterns/facade-pattern/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/patterns/facade-pattern/</guid>
       <description>
         
         
@@ -254,10 +254,10 @@ In Business Central, all modules in the System Application are subsystems. Examp
     
     <item>
       <title>Docs: Generic Method</title>
-      <link>.%5Cpublic/docs/patterns/generic-method-pattern/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/patterns/generic-method-pattern/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/patterns/generic-method-pattern/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/patterns/generic-method-pattern/</guid>
       <description>
         
         

@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>alguidelines.dev – Performance</title>
-    <link>.%5Cpublic/docs/bcbestpractices/performance/</link>
+    <link>c:\Hugo\Sites\alguidelines-html/docs/bcbestpractices/performance/</link>
     <description>Recent content in Performance on alguidelines.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	  <atom:link href=".%5Cpublic/docs/bcbestpractices/performance/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="c:\\Hugo\\Sites\\alguidelines-html/docs/bcbestpractices/performance/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -16,10 +16,10 @@
     
     <item>
       <title>Docs: DeleteAll</title>
-      <link>.%5Cpublic/docs/bcbestpractices/performance/deleteall/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/bcbestpractices/performance/deleteall/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/bcbestpractices/performance/deleteall/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/bcbestpractices/performance/deleteall/</guid>
       <description>
         
         
@@ -44,10 +44,10 @@ Therefore it&amp;rsquo;s good practice to always check if the table is empty whe
     
     <item>
       <title>Docs: Subscriber Codeunits</title>
-      <link>.%5Cpublic/docs/bcbestpractices/performance/subscribercodeunits/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/bcbestpractices/performance/subscribercodeunits/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/bcbestpractices/performance/subscribercodeunits/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/bcbestpractices/performance/subscribercodeunits/</guid>
       <description>
         
         

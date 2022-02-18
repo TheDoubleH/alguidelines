@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>alguidelines.dev – Singleton Table</title>
-    <link>.%5Cpublic/docs/navpatterns/patterns/singleton/singleton-table/</link>
+    <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/singleton/singleton-table/</link>
     <description>Recent content in Singleton Table on alguidelines.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	  <atom:link href=".%5Cpublic/docs/navpatterns/patterns/singleton/singleton-table/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="c:\\Hugo\\Sites\\alguidelines-html/docs/navpatterns/patterns/singleton/singleton-table/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -16,16 +16,16 @@
     
     <item>
       <title>Docs: Cue Table</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/singleton/singleton-table/cue-table/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/singleton/singleton-table/cue-table/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/singleton/singleton-table/cue-table/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/singleton/singleton-table/cue-table/</guid>
       <description>
         
         
         &lt;p&gt;&lt;em&gt;By Bogdana Botez at Microsoft Development Center Copenhagen&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;Cue-Table.png&#34;&gt;&lt;img src=&#34;Cue-Table.png&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Cues are the second usual application of the &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/singleton/singleton-table/&#34;&gt;&lt;strong&gt;Singleton Table&lt;/strong&gt;&lt;/a&gt; pattern in Dynamics NAV, after &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/singleton/singleton-table/setup-table/&#34;&gt;&lt;strong&gt;Setup Tables&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Cues are the second usual application of the &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/singleton/singleton-table/&#34;&gt;&lt;strong&gt;Singleton Table&lt;/strong&gt;&lt;/a&gt; pattern in Dynamics NAV, after &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/singleton/singleton-table/setup-table/&#34;&gt;&lt;strong&gt;Setup Tables&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Context&lt;/strong&gt;: The user gets overview information about the business on the Dynamics NAV Role Center page.&lt;/p&gt;
 &lt;p&gt;Figure 1 - Cue information in Dynamics NAV shows cue information seen by the user on the &lt;strong&gt;Sales Order Processor&lt;/strong&gt; role center.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;Cue-Table-Figure-1.JPG&#34;&gt;&lt;img src=&#34;Cue-Table-Figure-1.JPG&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -137,10 +137,10 @@
     
     <item>
       <title>Docs: Setup Table</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/singleton/singleton-table/setup-table/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/singleton/singleton-table/setup-table/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/singleton/singleton-table/setup-table/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/singleton/singleton-table/setup-table/</guid>
       <description>
         
         

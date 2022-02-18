@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>alguidelines.dev – Tags</title>
-    <link>.%5Cpublic/tags/</link>
+    <link>c:\Hugo\Sites\alguidelines-html/tags/</link>
     <description>Recent content in Tags on alguidelines.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	  <atom:link href=".%5Cpublic/tags/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="c:\\Hugo\\Sites\\alguidelines-html/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
       

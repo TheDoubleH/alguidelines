@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>alguidelines.dev – Queries</title>
-    <link>.%5Cpublic/docs/navpatterns/patterns/queries/</link>
+    <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/queries/</link>
     <description>Recent content in Queries on alguidelines.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	  <atom:link href=".%5Cpublic/docs/navpatterns/patterns/queries/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="c:\\Hugo\\Sites\\alguidelines-html/docs/navpatterns/patterns/queries/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -16,10 +16,10 @@
     
     <item>
       <title>Docs: SELECT DISTINCT with Queries</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/queries/select-distinct-with-queries/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/queries/select-distinct-with-queries/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/queries/select-distinct-with-queries/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/queries/select-distinct-with-queries/</guid>
       <description>
         
         
@@ -63,10 +63,10 @@
     
     <item>
       <title>Docs: Use Queries to Detect Duplicate Records</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/queries/use-queries-to-detect-duplicate-records/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/queries/use-queries-to-detect-duplicate-records/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/queries/use-queries-to-detect-duplicate-records/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/queries/use-queries-to-detect-duplicate-records/</guid>
       <description>
         
         
@@ -139,10 +139,10 @@ methods CheckDuplicateAnalysisLineDescription and CheckDuplicateAnalysisColumnHe
     
     <item>
       <title>Docs: Use Queries to Replace Nested Loops</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/queries/use-queries-to-replace-nested-loops/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/queries/use-queries-to-replace-nested-loops/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/queries/use-queries-to-replace-nested-loops/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/queries/use-queries-to-replace-nested-loops/</guid>
       <description>
         
         

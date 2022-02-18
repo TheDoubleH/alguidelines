@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>alguidelines.dev – Security</title>
-    <link>.%5Cpublic/docs/navpatterns/patterns/security/</link>
+    <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/security/</link>
     <description>Recent content in Security on alguidelines.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	  <atom:link href=".%5Cpublic/docs/navpatterns/patterns/security/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="c:\\Hugo\\Sites\\alguidelines-html/docs/navpatterns/patterns/security/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -16,10 +16,10 @@
     
     <item>
       <title>Docs: Sensitive Data Encapsulation</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/security/1-sensitive-data-encapsulation/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/security/1-sensitive-data-encapsulation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/security/1-sensitive-data-encapsulation/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/security/1-sensitive-data-encapsulation/</guid>
       <description>
         
         
@@ -37,11 +37,11 @@
 &lt;li&gt;&lt;strong&gt;Low&lt;/strong&gt; &lt;strong&gt;Performance&lt;/strong&gt;: protecting all data can slow down the system.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Solution:&lt;/strong&gt; Extract and separate sensitive data into a single known repository.&lt;/p&gt;
-&lt;p&gt;To apply this pattern in Dynamics NAV, a table structure similar to Table 1261 Service Password can be used. The Service Password table also contains additional functionality which will help to further apply related patterns like &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/3-single-point-of-access/&#34;&gt;&lt;strong&gt;Access Control&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;&lt;strong&gt;Encryption&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To apply this pattern in Dynamics NAV, a table structure similar to Table 1261 Service Password can be used. The Service Password table also contains additional functionality which will help to further apply related patterns like &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/security/3-single-point-of-access/&#34;&gt;&lt;strong&gt;Access Control&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;&lt;strong&gt;Encryption&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Figure 1 describes the definition of a table which is already available in Dynamics NAV. This table can be used for storing sensitive data. As a minimum, the table only needs two fields:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;The key is of type GUID (Globally Unique Identifier), which is a 128-bit value consisting of multiple groups of hexadecimal digits [2]. Each key needs to be unique and will be used for storing and retrieving the protected information.&lt;/li&gt;
-&lt;li&gt;The value (the actual data to be encapsulated) is of type BLOB (Binary Large OBject) [3], which contains the encrypted or un-encrypted data (for encryption, see the related &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;&lt;strong&gt;Encryption&lt;/strong&gt;&lt;/a&gt; pattern).&lt;/li&gt;
+&lt;li&gt;The value (the actual data to be encapsulated) is of type BLOB (Binary Large OBject) [3], which contains the encrypted or un-encrypted data (for encryption, see the related &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;&lt;strong&gt;Encryption&lt;/strong&gt;&lt;/a&gt; pattern).&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;a href=&#34;Data-Encapsulation-_2D00_-figure-1.png&#34;&gt;&lt;img src=&#34;Data-Encapsulation-_2D00_-figure-1.png&#34; alt=&#34;Figure 1- Example definition, table used for Data Encapsulation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Figure 1- Example definition, table used for &lt;strong&gt;Sensitive&lt;/strong&gt; &lt;strong&gt;Data&lt;/strong&gt; &lt;strong&gt;Encapsulation&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
@@ -72,7 +72,7 @@
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Drawbacks:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Single point of failure:&lt;/strong&gt; a maliciously intended actor has no longer a need to reverse engineer the places where important data is stored. In the unwanted situation when this actor would have already obtained access to the system, they can more easily locate the sensitive information. This is a step towards information disclosure, but mechanisms like &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;&lt;strong&gt;Encryption&lt;/strong&gt;&lt;/a&gt; and logging can provide further protection.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Single point of failure:&lt;/strong&gt; a maliciously intended actor has no longer a need to reverse engineer the places where important data is stored. In the unwanted situation when this actor would have already obtained access to the system, they can more easily locate the sensitive information. This is a step towards information disclosure, but mechanisms like &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;&lt;strong&gt;Encryption&lt;/strong&gt;&lt;/a&gt; and logging can provide further protection.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Limited Text Length&lt;/strong&gt;: there is a limit on how long the encrypted text can be. This limit is imposed by the OS encryption service and it depends on the composition of the text as well as on the system specifics. In NAV, we had implemented the Encrypted Text for text values of max 250 chars, which is enough to cover passwords, person ID numbers, credit card info, but it might turn insufficient in other future scenarios.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Nomenclature&lt;/strong&gt;: the name of the table &lt;strong&gt;Service Password&lt;/strong&gt; is too specific, since it started by being used for passwords, but it has the capability and it now contains other sensitive data like API Keys, credit card numbers etc.&lt;/li&gt;
 &lt;/ul&gt;
@@ -95,25 +95,25 @@
     
     <item>
       <title>Docs: Data Encryption</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/security/2-data-encryption/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/security/2-data-encryption/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/security/2-data-encryption/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/security/2-data-encryption/</guid>
       <description>
         
         
         &lt;p&gt;&lt;em&gt;By Bogdana Botez at Microsoft Development Center Copenhagen&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;Logo-_2D00_-Encryption.png&#34;&gt;&lt;img src=&#34;Logo-_2D00_-Encryption.png&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Context&lt;/strong&gt;: After applying &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/1-sensitive-data-encapsulation/&#34;&gt;&lt;strong&gt;Sensitive Data Encapsulation&lt;/strong&gt;&lt;/a&gt;, all sensitive data is gathered in a known place in the database. This makes it possible to apply further protection best practices.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Context&lt;/strong&gt;: After applying &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/security/1-sensitive-data-encapsulation/&#34;&gt;&lt;strong&gt;Sensitive Data Encapsulation&lt;/strong&gt;&lt;/a&gt;, all sensitive data is gathered in a known place in the database. This makes it possible to apply further protection best practices.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Problem&lt;/strong&gt;: If any non-authorized actor manages to get access to a copy of the database, the sensitive data is immediately available in clear-text.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Forces:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Accessibility:&lt;/strong&gt; anyone who managed to steal a copy of the database can at once read the sensitive information.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Solution:&lt;/strong&gt; Encrypt sensitive data. Dynamics NAV offers a simple mechanism for data encryption, to be used by NAV developers.&lt;/p&gt;
-&lt;p&gt;Figure 1 adds one more step (in continuation of the figure in pattern &lt;strong&gt;&lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/1-sensitive-data-encapsulation/&#34;&gt;Sensitive Data Encapsulation&lt;/a&gt;&lt;/strong&gt;), in which the first two panels describe how sensitive data has all been gathered in one known place. This makes the current pattern, &lt;strong&gt;Encryption&lt;/strong&gt;, much easier &amp;ndash; since now data needs to be encrypted in only one place. The last panel of Figure 1 shows the system after the next step, &lt;strong&gt;Encryption&lt;/strong&gt;, has been implemented. This shows the iterative process of applying patterns and making the code better step by step.&lt;/p&gt;
+&lt;p&gt;Figure 1 adds one more step (in continuation of the figure in pattern &lt;strong&gt;&lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/security/1-sensitive-data-encapsulation/&#34;&gt;Sensitive Data Encapsulation&lt;/a&gt;&lt;/strong&gt;), in which the first two panels describe how sensitive data has all been gathered in one known place. This makes the current pattern, &lt;strong&gt;Encryption&lt;/strong&gt;, much easier &amp;ndash; since now data needs to be encrypted in only one place. The last panel of Figure 1 shows the system after the next step, &lt;strong&gt;Encryption&lt;/strong&gt;, has been implemented. This shows the iterative process of applying patterns and making the code better step by step.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;Multi-_2D00_-1-2-3.JPG&#34;&gt;&lt;img src=&#34;Multi-_2D00_-1-2-3.JPG&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Figure 1- &lt;strong&gt;Encryption&lt;/strong&gt; becomes easier after first applying &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/1-sensitive-data-encapsulation/&#34;&gt;&lt;strong&gt;Sensitive Data Encapsulation&lt;/strong&gt;&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Figure 1- &lt;strong&gt;Encryption&lt;/strong&gt; becomes easier after first applying &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/security/1-sensitive-data-encapsulation/&#34;&gt;&lt;strong&gt;Sensitive Data Encapsulation&lt;/strong&gt;&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Usage&lt;/strong&gt;: in Dynamics NAV, codeunit 1266 Encryption Management offers an API for encryption of data. The available functionality is described in Table 1.&lt;/p&gt;
 &lt;p&gt;Table 1- Encryption functionality in Dynamics NAV (found in codeunit 1266 Encryption Management)&lt;/p&gt;
 &lt;table&gt;
@@ -212,7 +212,7 @@
 &lt;p&gt;&lt;strong&gt;Anti-patterns:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Performance:&lt;/strong&gt; Do not encrypt everything, because it will have a performance impact on the system. Only important information should be encrypted.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;System calls and &amp;ldquo;Do It Yourself&amp;rdquo; solutions&lt;/strong&gt;: Although system calls for encryptions are available in NAV (ENCRYPT, DECRYPT and &amp;lt;action&amp;gt;ENCRYPTIONKEY), unless there is no other way, refrain from using them directly. Use instead he API in codeunit 1266 Encryption Management, which is safer to use, because it protects against common mistakes (like attempting to encrypt an already encrypted string, enabling encryption in only one company which makes data not usable in another on the same tenant etc.). Use the &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/3-single-point-of-access/&#34;&gt;&lt;strong&gt;Single Point of Access&lt;/strong&gt;&lt;/a&gt; pattern to handle sensitive data which needs to be encrypted.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;System calls and &amp;ldquo;Do It Yourself&amp;rdquo; solutions&lt;/strong&gt;: Although system calls for encryptions are available in NAV (ENCRYPT, DECRYPT and &amp;lt;action&amp;gt;ENCRYPTIONKEY), unless there is no other way, refrain from using them directly. Use instead he API in codeunit 1266 Encryption Management, which is safer to use, because it protects against common mistakes (like attempting to encrypt an already encrypted string, enabling encryption in only one company which makes data not usable in another on the same tenant etc.). Use the &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/security/3-single-point-of-access/&#34;&gt;&lt;strong&gt;Single Point of Access&lt;/strong&gt;&lt;/a&gt; pattern to handle sensitive data which needs to be encrypted.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;System-level encryption.&lt;/strong&gt; The similar codeunit API 1803 Encrypted Key/Value Management is not intended to be reused by partner NAV developers. Normal NAV users do not have permission to access this resource. This stores sensitive data to be accessed by system NAV functionality.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
@@ -234,10 +234,10 @@
     
     <item>
       <title>Docs: Single Point of Access</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/security/3-single-point-of-access/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/security/3-single-point-of-access/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/security/3-single-point-of-access/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/security/3-single-point-of-access/</guid>
       <description>
         
         
@@ -256,8 +256,8 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Solution:&lt;/strong&gt; In Dynamics NAV the same library which offers &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;&lt;strong&gt;Encryption&lt;/strong&gt;&lt;/a&gt;, is also intended to be used as a &lt;strong&gt;Single Point of Access&lt;/strong&gt;. Write code to create, read and remove sensitive data only through codeunit 1266 Encryption Management, and never directly.&lt;/p&gt;
-&lt;p&gt;In Figure 9 (figure numbering is continued from pattern &lt;strong&gt;&lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;Encryption&lt;/a&gt;&lt;/strong&gt;), the panels 1, 2 and 3 have applied the &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/1-sensitive-data-encapsulation/&#34;&gt;&lt;strong&gt;Sensitive Data Encapsulation&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;&lt;strong&gt;Encryption&lt;/strong&gt;&lt;/a&gt; patterns. Once data is encapsulated, no matter if it has been encrypted or not, the next pattern, &lt;strong&gt;Single Point of Access&lt;/strong&gt;, becomes available as seen in the panels 2 and 3 of Figure 1.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Solution:&lt;/strong&gt; In Dynamics NAV the same library which offers &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;&lt;strong&gt;Encryption&lt;/strong&gt;&lt;/a&gt;, is also intended to be used as a &lt;strong&gt;Single Point of Access&lt;/strong&gt;. Write code to create, read and remove sensitive data only through codeunit 1266 Encryption Management, and never directly.&lt;/p&gt;
+&lt;p&gt;In Figure 9 (figure numbering is continued from pattern &lt;strong&gt;&lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;Encryption&lt;/a&gt;&lt;/strong&gt;), the panels 1, 2 and 3 have applied the &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/security/1-sensitive-data-encapsulation/&#34;&gt;&lt;strong&gt;Sensitive Data Encapsulation&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;&lt;strong&gt;Encryption&lt;/strong&gt;&lt;/a&gt; patterns. Once data is encapsulated, no matter if it has been encrypted or not, the next pattern, &lt;strong&gt;Single Point of Access&lt;/strong&gt;, becomes available as seen in the panels 2 and 3 of Figure 1.&lt;/p&gt;
 &lt;p&gt;You can observe that, in panel 3, each usage needs to access separately the encrypted data. This means that each usage needs to implement again the encryption capabilities. This is resolved in panel 4, where all users access one common API which encrypts, hence the workload of encryption is moved from the usages, to the API, and needs to be implemented only once.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;Multi-_2D00_-1-2-3-4.JPG&#34;&gt;&lt;img src=&#34;Multi-_2D00_-1-2-3-4.JPG&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Figure 1- &lt;strong&gt;Single Point of Access&lt;/strong&gt; pattern applied.&lt;/em&gt;&lt;/p&gt;
@@ -297,10 +297,10 @@
     
     <item>
       <title>Docs: Masked Text</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/security/4-masked-text/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/security/4-masked-text/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/security/4-masked-text/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/security/4-masked-text/</guid>
       <description>
         
         
@@ -353,10 +353,10 @@
     
     <item>
       <title>Docs: SSL in NAV</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/security/5-ssl-in-nav/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/security/5-ssl-in-nav/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/security/5-ssl-in-nav/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/security/5-ssl-in-nav/</guid>
       <description>
         
         

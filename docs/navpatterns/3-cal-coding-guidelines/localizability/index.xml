@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>alguidelines.dev – Localizability</title>
-    <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/localizability/</link>
+    <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/localizability/</link>
     <description>Recent content in Localizability on alguidelines.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	  <atom:link href=".%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/localizability/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="c:\\Hugo\\Sites\\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/localizability/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -16,10 +16,10 @@
     
     <item>
       <title>Docs: CaptionML on System Pages</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/localizability/captionml-for-system-tables/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/localizability/captionml-for-system-tables/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/localizability/captionml-for-system-tables/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/localizability/captionml-for-system-tables/</guid>
       <description>
         
         
@@ -49,10 +49,10 @@ OBJECT Table 2000000000 User
     
     <item>
       <title>Docs: FIELDCAPTION and TABLECAPTION</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/localizability/fieldcaption-and-tablecaption/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/localizability/fieldcaption-and-tablecaption/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/localizability/fieldcaption-and-tablecaption/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/localizability/fieldcaption-and-tablecaption/</guid>
       <description>
         
         
@@ -72,10 +72,10 @@ OBJECT Table 2000000000 User
     
     <item>
       <title>Docs: Global Text Constants</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/localizability/global-text-constants/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/localizability/global-text-constants/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/localizability/global-text-constants/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/localizability/global-text-constants/</guid>
       <description>
         
         
@@ -97,10 +97,10 @@ OBJECT Table 2000000000 User
     
     <item>
       <title>Docs: Use Text Constants</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/localizability/use-text-constants/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/localizability/use-text-constants/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/localizability/use-text-constants/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/localizability/use-text-constants/</guid>
       <description>
         
         
@@ -135,10 +135,10 @@ OBJECT Table 2000000000 User
     
     <item>
       <title>Docs: Using OptionCaptionML</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/localizability/using-optioncaptionml/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/localizability/using-optioncaptionml/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/localizability/using-optioncaptionml/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/localizability/using-optioncaptionml/</guid>
       <description>
         
         

@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>alguidelines.dev – UX</title>
-    <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/ux/</link>
+    <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/ux/</link>
     <description>Recent content in UX on alguidelines.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	  <atom:link href=".%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/ux/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="c:\\Hugo\\Sites\\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/ux/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -16,10 +16,10 @@
     
     <item>
       <title>Docs: Actions - Images</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/ux/actions-images/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/ux/actions-images/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/ux/actions-images/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/ux/actions-images/</guid>
       <description>
         
         
@@ -39,10 +39,10 @@
     
     <item>
       <title>Docs: CONFIRM</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/ux/confirm/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/ux/confirm/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/ux/confirm/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/ux/confirm/</guid>
       <description>
         
         
@@ -61,10 +61,10 @@
     
     <item>
       <title>Docs: FIELDERROR</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/ux/fielderror/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/ux/fielderror/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/ux/fielderror/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/ux/fielderror/</guid>
       <description>
         
         
@@ -83,10 +83,10 @@
     
     <item>
       <title>Docs: MESSAGE and ERROR</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/ux/message-and-error/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/ux/message-and-error/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/ux/message-and-error/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/ux/message-and-error/</guid>
       <description>
         
         

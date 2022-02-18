@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>alguidelines.dev – Readability</title>
-    <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/</link>
+    <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/</link>
     <description>Recent content in Readability on alguidelines.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	  <atom:link href=".%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="c:\\Hugo\\Sites\\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -16,10 +16,10 @@
     
     <item>
       <title>Docs: Begin as an &#39;After Word&#39;</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/begin-as-an-afterword/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/begin-as-an-afterword/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/begin-as-an-afterword/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/begin-as-an-afterword/</guid>
       <description>
         
         
@@ -39,10 +39,10 @@ END;
     
     <item>
       <title>Docs: Begin-End - Compound Only</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/begin-end/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/begin-end/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/begin-end/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/begin-end/</guid>
       <description>
         
         
@@ -89,10 +89,10 @@ END;
     
     <item>
       <title>Docs: Binary Operator to Start Line</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/binary-operator-line-start/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/binary-operator-line-start/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/binary-operator-line-start/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/binary-operator-line-start/</guid>
       <description>
         
         
@@ -111,10 +111,10 @@ END;
     
     <item>
       <title>Docs: Blank Lines</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/blank-lines/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/blank-lines/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/blank-lines/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/blank-lines/</guid>
       <description>
         
         
@@ -148,10 +148,10 @@ END;
     
     <item>
       <title>Docs: CASE Action</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/case-actions/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/case-actions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/case-actions/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/case-actions/</guid>
       <description>
         
         
@@ -172,10 +172,10 @@ END;
     
     <item>
       <title>Docs: Colon usage in CASE</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/colon-usage-in-case/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/colon-usage-in-case/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/colon-usage-in-case/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/colon-usage-in-case/</guid>
       <description>
         
         
@@ -194,10 +194,10 @@ END;
     
     <item>
       <title>Docs: Comments inside Curly Brackets</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/comments-curly-brackets/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/comments-curly-brackets/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/comments-curly-brackets/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/comments-curly-brackets/</guid>
       <description>
         
         
@@ -232,10 +232,10 @@ END;
     
     <item>
       <title>Docs: Comment Spacing</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/comments-spacing/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/comments-spacing/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/comments-spacing/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/comments-spacing/</guid>
       <description>
         
         
@@ -250,10 +250,10 @@ END;
     
     <item>
       <title>Docs: END ELSE Pair</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/end-else-pair/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/end-else-pair/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/end-else-pair/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/end-else-pair/</guid>
       <description>
         
         
@@ -277,10 +277,10 @@ END;
     
     <item>
       <title>Docs: Indentation</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/indentation/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/indentation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/indentation/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/indentation/</guid>
       <description>
         
         
@@ -342,10 +342,10 @@ END;
     
     <item>
       <title>Docs: Keyword Pairs - Indentation</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/keyword-pairs-indentation/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/keyword-pairs-indentation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/keyword-pairs-indentation/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/keyword-pairs-indentation/</guid>
       <description>
         
         
@@ -363,10 +363,10 @@ END;
     
     <item>
       <title>Docs: Line Start Keywords</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/line-start-keywords/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/line-start-keywords/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/line-start-keywords/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/line-start-keywords/</guid>
       <description>
         
         
@@ -390,10 +390,10 @@ END;
     
     <item>
       <title>Docs: Lonely Repeat</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/lonely-repeat/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/lonely-repeat/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/lonely-repeat/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/lonely-repeat/</guid>
       <description>
         
         
@@ -410,10 +410,10 @@ END;
     
     <item>
       <title>Docs: Named Invocations</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/named-invocations/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/named-invocations/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/named-invocations/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/named-invocations/</guid>
       <description>
         
         
@@ -428,10 +428,10 @@ END;
     
     <item>
       <title>Docs: Nested WITHs</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/nested-withs/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/nested-withs/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/nested-withs/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/nested-withs/</guid>
       <description>
         
         
@@ -455,10 +455,10 @@ END;
     
     <item>
       <title>Docs: One Statement Per Line</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/one-statement-per-line/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/one-statement-per-line/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/one-statement-per-line/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/one-statement-per-line/</guid>
       <description>
         
         
@@ -482,10 +482,10 @@ END;
     
     <item>
       <title>Docs: Separate IF and ELSE</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/separate-if-and-else/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/separate-if-and-else/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/separate-if-and-else/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/separate-if-and-else/</guid>
       <description>
         
         
@@ -506,10 +506,10 @@ END;
     
     <item>
       <title>Docs: Spacing Binary Operators</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/spacing-binary-operators/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/spacing-binary-operators/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/spacing-binary-operators/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/spacing-binary-operators/</guid>
       <description>
         
         
@@ -532,10 +532,10 @@ END;
     
     <item>
       <title>Docs: Spacing Brackets and ::</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/spacing-brackets-and/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/spacing-brackets-and/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/spacing-brackets-and/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/spacing-brackets-and/</guid>
       <description>
         
         
@@ -558,10 +558,10 @@ END;
     
     <item>
       <title>Docs: Spacing Unary Operators</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/spacing-unary-operators/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/spacing-unary-operators/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/spacing-unary-operators/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/spacing-unary-operators/</guid>
       <description>
         
         
@@ -580,10 +580,10 @@ END;
     
     <item>
       <title>Docs: Suggested Abbreviations</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/suggested-abbreviations/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/suggested-abbreviations/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/suggested-abbreviations/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/suggested-abbreviations/</guid>
       <description>
         
         
@@ -1289,10 +1289,10 @@ END;
     
     <item>
       <title>Docs: Temporary Variable Naming</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/temporary-variable-naming/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/temporary-variable-naming/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/temporary-variable-naming/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/temporary-variable-naming/</guid>
       <description>
         
         
@@ -1311,10 +1311,10 @@ END;
     
     <item>
       <title>Docs: TextConst Suffixes</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/textconst-suffixes/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/textconst-suffixes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/textconst-suffixes/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/textconst-suffixes/</guid>
       <description>
         
         
@@ -1387,10 +1387,10 @@ END;
     
     <item>
       <title>Docs: Unary Operator Line End</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/unary-operator-line-end/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/unary-operator-line-end/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/unary-operator-line-end/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/unary-operator-line-end/</guid>
       <description>
         
         
@@ -1407,10 +1407,10 @@ END;
     
     <item>
       <title>Docs: Unnecessary Compound Parenthesis</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/unnecessary-compound-parenthesis/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/unnecessary-compound-parenthesis/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/unnecessary-compound-parenthesis/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/unnecessary-compound-parenthesis/</guid>
       <description>
         
         
@@ -1429,10 +1429,10 @@ END;
     
     <item>
       <title>Docs: Unnecessary ELSE</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/unnecessary-else/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/unnecessary-else/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/unnecessary-else/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/unnecessary-else/</guid>
       <description>
         
         
@@ -1452,10 +1452,10 @@ END;
     
     <item>
       <title>Docs: Unnecessary Function Parenthesis</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/unnecessary-function-parenthesis/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/unnecessary-function-parenthesis/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/unnecessary-function-parenthesis/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/unnecessary-function-parenthesis/</guid>
       <description>
         
         
@@ -1474,10 +1474,10 @@ END;
     
     <item>
       <title>Docs: Unnecessary Separators</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/unnecessary-separators/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/unnecessary-separators/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/unnecessary-separators/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/unnecessary-separators/</guid>
       <description>
         
         
@@ -1492,10 +1492,10 @@ END;
     
     <item>
       <title>Docs: Unnecessary TRUE/FALSE</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/unnecessary-truefalse/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/unnecessary-truefalse/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/unnecessary-truefalse/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/unnecessary-truefalse/</guid>
       <description>
         
         
@@ -1514,10 +1514,10 @@ END;
     
     <item>
       <title>Docs: Variable Already Scoped</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/variable-already-scoped/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/variable-already-scoped/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/variable-already-scoped/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/variable-already-scoped/</guid>
       <description>
         
         
@@ -1544,10 +1544,10 @@ END;
     
     <item>
       <title>Docs: Variable Naming</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/variable-naming/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/variable-naming/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/variable-naming/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/variable-naming/</guid>
       <description>
         
         
@@ -1595,10 +1595,10 @@ END;
     
     <item>
       <title>Docs: Variables Declarations Order</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/variables-declarations-order/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/variables-declarations-order/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/variables-declarations-order/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/variables-declarations-order/</guid>
       <description>
         
         

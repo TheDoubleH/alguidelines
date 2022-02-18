@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>alguidelines.dev – 3. CAL Coding Guidelines</title>
-    <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/</link>
+    <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/</link>
     <description>Recent content in 3. CAL Coding Guidelines on alguidelines.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	  <atom:link href=".%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="c:\\Hugo\\Sites\\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -16,10 +16,10 @@
     
     <item>
       <title>Docs: Design</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/design/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/design/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/design/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/design/</guid>
       <description>
         
         
@@ -32,10 +32,10 @@
     
     <item>
       <title>Docs: Internally used DotNet Types</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/internally-used-dot-net-types/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/internally-used-dot-net-types/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/internally-used-dot-net-types/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/internally-used-dot-net-types/</guid>
       <description>
         
         
@@ -146,10 +146,10 @@
     
     <item>
       <title>Docs: Internationalization</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/internationalization/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/internationalization/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/internationalization/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/internationalization/</guid>
       <description>
         
         
@@ -162,10 +162,10 @@
     
     <item>
       <title>Docs: Localizability</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/localizability/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/localizability/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/localizability/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/localizability/</guid>
       <description>
         
         
@@ -178,10 +178,10 @@
     
     <item>
       <title>Docs: Readability</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/</guid>
       <description>
         
         
@@ -195,10 +195,10 @@
     
     <item>
       <title>Docs: UX</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/ux/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/ux/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/ux/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/ux/</guid>
       <description>
         
         

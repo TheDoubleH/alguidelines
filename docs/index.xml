@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>alguidelines.dev – AL Guidelines</title>
-    <link>.%5Cpublic/docs/</link>
+    <link>c:\Hugo\Sites\alguidelines-html/docs/</link>
     <description>Recent content in AL Guidelines on alguidelines.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	  <atom:link href=".%5Cpublic/docs/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="c:\\Hugo\\Sites\\alguidelines-html/docs/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -16,10 +16,10 @@
     
     <item>
       <title>Docs: Sensitive Data Encapsulation</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/security/1-sensitive-data-encapsulation/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/security/1-sensitive-data-encapsulation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/security/1-sensitive-data-encapsulation/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/security/1-sensitive-data-encapsulation/</guid>
       <description>
         
         
@@ -37,11 +37,11 @@
 &lt;li&gt;&lt;strong&gt;Low&lt;/strong&gt; &lt;strong&gt;Performance&lt;/strong&gt;: protecting all data can slow down the system.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Solution:&lt;/strong&gt; Extract and separate sensitive data into a single known repository.&lt;/p&gt;
-&lt;p&gt;To apply this pattern in Dynamics NAV, a table structure similar to Table 1261 Service Password can be used. The Service Password table also contains additional functionality which will help to further apply related patterns like &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/3-single-point-of-access/&#34;&gt;&lt;strong&gt;Access Control&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;&lt;strong&gt;Encryption&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To apply this pattern in Dynamics NAV, a table structure similar to Table 1261 Service Password can be used. The Service Password table also contains additional functionality which will help to further apply related patterns like &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/security/3-single-point-of-access/&#34;&gt;&lt;strong&gt;Access Control&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;&lt;strong&gt;Encryption&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Figure 1 describes the definition of a table which is already available in Dynamics NAV. This table can be used for storing sensitive data. As a minimum, the table only needs two fields:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;The key is of type GUID (Globally Unique Identifier), which is a 128-bit value consisting of multiple groups of hexadecimal digits [2]. Each key needs to be unique and will be used for storing and retrieving the protected information.&lt;/li&gt;
-&lt;li&gt;The value (the actual data to be encapsulated) is of type BLOB (Binary Large OBject) [3], which contains the encrypted or un-encrypted data (for encryption, see the related &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;&lt;strong&gt;Encryption&lt;/strong&gt;&lt;/a&gt; pattern).&lt;/li&gt;
+&lt;li&gt;The value (the actual data to be encapsulated) is of type BLOB (Binary Large OBject) [3], which contains the encrypted or un-encrypted data (for encryption, see the related &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;&lt;strong&gt;Encryption&lt;/strong&gt;&lt;/a&gt; pattern).&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;a href=&#34;Data-Encapsulation-_2D00_-figure-1.png&#34;&gt;&lt;img src=&#34;Data-Encapsulation-_2D00_-figure-1.png&#34; alt=&#34;Figure 1- Example definition, table used for Data Encapsulation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Figure 1- Example definition, table used for &lt;strong&gt;Sensitive&lt;/strong&gt; &lt;strong&gt;Data&lt;/strong&gt; &lt;strong&gt;Encapsulation&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
@@ -72,7 +72,7 @@
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Drawbacks:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Single point of failure:&lt;/strong&gt; a maliciously intended actor has no longer a need to reverse engineer the places where important data is stored. In the unwanted situation when this actor would have already obtained access to the system, they can more easily locate the sensitive information. This is a step towards information disclosure, but mechanisms like &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;&lt;strong&gt;Encryption&lt;/strong&gt;&lt;/a&gt; and logging can provide further protection.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Single point of failure:&lt;/strong&gt; a maliciously intended actor has no longer a need to reverse engineer the places where important data is stored. In the unwanted situation when this actor would have already obtained access to the system, they can more easily locate the sensitive information. This is a step towards information disclosure, but mechanisms like &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;&lt;strong&gt;Encryption&lt;/strong&gt;&lt;/a&gt; and logging can provide further protection.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Limited Text Length&lt;/strong&gt;: there is a limit on how long the encrypted text can be. This limit is imposed by the OS encryption service and it depends on the composition of the text as well as on the system specifics. In NAV, we had implemented the Encrypted Text for text values of max 250 chars, which is enough to cover passwords, person ID numbers, credit card info, but it might turn insufficient in other future scenarios.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Nomenclature&lt;/strong&gt;: the name of the table &lt;strong&gt;Service Password&lt;/strong&gt; is too specific, since it started by being used for passwords, but it has the capability and it now contains other sensitive data like API Keys, credit card numbers etc.&lt;/li&gt;
 &lt;/ul&gt;
@@ -95,25 +95,25 @@
     
     <item>
       <title>Docs: Data Encryption</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/security/2-data-encryption/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/security/2-data-encryption/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/security/2-data-encryption/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/security/2-data-encryption/</guid>
       <description>
         
         
         &lt;p&gt;&lt;em&gt;By Bogdana Botez at Microsoft Development Center Copenhagen&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;Logo-_2D00_-Encryption.png&#34;&gt;&lt;img src=&#34;Logo-_2D00_-Encryption.png&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Context&lt;/strong&gt;: After applying &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/1-sensitive-data-encapsulation/&#34;&gt;&lt;strong&gt;Sensitive Data Encapsulation&lt;/strong&gt;&lt;/a&gt;, all sensitive data is gathered in a known place in the database. This makes it possible to apply further protection best practices.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Context&lt;/strong&gt;: After applying &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/security/1-sensitive-data-encapsulation/&#34;&gt;&lt;strong&gt;Sensitive Data Encapsulation&lt;/strong&gt;&lt;/a&gt;, all sensitive data is gathered in a known place in the database. This makes it possible to apply further protection best practices.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Problem&lt;/strong&gt;: If any non-authorized actor manages to get access to a copy of the database, the sensitive data is immediately available in clear-text.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Forces:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Accessibility:&lt;/strong&gt; anyone who managed to steal a copy of the database can at once read the sensitive information.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Solution:&lt;/strong&gt; Encrypt sensitive data. Dynamics NAV offers a simple mechanism for data encryption, to be used by NAV developers.&lt;/p&gt;
-&lt;p&gt;Figure 1 adds one more step (in continuation of the figure in pattern &lt;strong&gt;&lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/1-sensitive-data-encapsulation/&#34;&gt;Sensitive Data Encapsulation&lt;/a&gt;&lt;/strong&gt;), in which the first two panels describe how sensitive data has all been gathered in one known place. This makes the current pattern, &lt;strong&gt;Encryption&lt;/strong&gt;, much easier &amp;ndash; since now data needs to be encrypted in only one place. The last panel of Figure 1 shows the system after the next step, &lt;strong&gt;Encryption&lt;/strong&gt;, has been implemented. This shows the iterative process of applying patterns and making the code better step by step.&lt;/p&gt;
+&lt;p&gt;Figure 1 adds one more step (in continuation of the figure in pattern &lt;strong&gt;&lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/security/1-sensitive-data-encapsulation/&#34;&gt;Sensitive Data Encapsulation&lt;/a&gt;&lt;/strong&gt;), in which the first two panels describe how sensitive data has all been gathered in one known place. This makes the current pattern, &lt;strong&gt;Encryption&lt;/strong&gt;, much easier &amp;ndash; since now data needs to be encrypted in only one place. The last panel of Figure 1 shows the system after the next step, &lt;strong&gt;Encryption&lt;/strong&gt;, has been implemented. This shows the iterative process of applying patterns and making the code better step by step.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;Multi-_2D00_-1-2-3.JPG&#34;&gt;&lt;img src=&#34;Multi-_2D00_-1-2-3.JPG&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Figure 1- &lt;strong&gt;Encryption&lt;/strong&gt; becomes easier after first applying &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/1-sensitive-data-encapsulation/&#34;&gt;&lt;strong&gt;Sensitive Data Encapsulation&lt;/strong&gt;&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Figure 1- &lt;strong&gt;Encryption&lt;/strong&gt; becomes easier after first applying &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/security/1-sensitive-data-encapsulation/&#34;&gt;&lt;strong&gt;Sensitive Data Encapsulation&lt;/strong&gt;&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Usage&lt;/strong&gt;: in Dynamics NAV, codeunit 1266 Encryption Management offers an API for encryption of data. The available functionality is described in Table 1.&lt;/p&gt;
 &lt;p&gt;Table 1- Encryption functionality in Dynamics NAV (found in codeunit 1266 Encryption Management)&lt;/p&gt;
 &lt;table&gt;
@@ -212,7 +212,7 @@
 &lt;p&gt;&lt;strong&gt;Anti-patterns:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Performance:&lt;/strong&gt; Do not encrypt everything, because it will have a performance impact on the system. Only important information should be encrypted.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;System calls and &amp;ldquo;Do It Yourself&amp;rdquo; solutions&lt;/strong&gt;: Although system calls for encryptions are available in NAV (ENCRYPT, DECRYPT and &amp;lt;action&amp;gt;ENCRYPTIONKEY), unless there is no other way, refrain from using them directly. Use instead he API in codeunit 1266 Encryption Management, which is safer to use, because it protects against common mistakes (like attempting to encrypt an already encrypted string, enabling encryption in only one company which makes data not usable in another on the same tenant etc.). Use the &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/3-single-point-of-access/&#34;&gt;&lt;strong&gt;Single Point of Access&lt;/strong&gt;&lt;/a&gt; pattern to handle sensitive data which needs to be encrypted.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;System calls and &amp;ldquo;Do It Yourself&amp;rdquo; solutions&lt;/strong&gt;: Although system calls for encryptions are available in NAV (ENCRYPT, DECRYPT and &amp;lt;action&amp;gt;ENCRYPTIONKEY), unless there is no other way, refrain from using them directly. Use instead he API in codeunit 1266 Encryption Management, which is safer to use, because it protects against common mistakes (like attempting to encrypt an already encrypted string, enabling encryption in only one company which makes data not usable in another on the same tenant etc.). Use the &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/security/3-single-point-of-access/&#34;&gt;&lt;strong&gt;Single Point of Access&lt;/strong&gt;&lt;/a&gt; pattern to handle sensitive data which needs to be encrypted.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;System-level encryption.&lt;/strong&gt; The similar codeunit API 1803 Encrypted Key/Value Management is not intended to be reused by partner NAV developers. Normal NAV users do not have permission to access this resource. This stores sensitive data to be accessed by system NAV functionality.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
@@ -234,10 +234,10 @@
     
     <item>
       <title>Docs: Single Point of Access</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/security/3-single-point-of-access/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/security/3-single-point-of-access/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/security/3-single-point-of-access/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/security/3-single-point-of-access/</guid>
       <description>
         
         
@@ -256,8 +256,8 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Solution:&lt;/strong&gt; In Dynamics NAV the same library which offers &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;&lt;strong&gt;Encryption&lt;/strong&gt;&lt;/a&gt;, is also intended to be used as a &lt;strong&gt;Single Point of Access&lt;/strong&gt;. Write code to create, read and remove sensitive data only through codeunit 1266 Encryption Management, and never directly.&lt;/p&gt;
-&lt;p&gt;In Figure 9 (figure numbering is continued from pattern &lt;strong&gt;&lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;Encryption&lt;/a&gt;&lt;/strong&gt;), the panels 1, 2 and 3 have applied the &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/1-sensitive-data-encapsulation/&#34;&gt;&lt;strong&gt;Sensitive Data Encapsulation&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;&lt;strong&gt;Encryption&lt;/strong&gt;&lt;/a&gt; patterns. Once data is encapsulated, no matter if it has been encrypted or not, the next pattern, &lt;strong&gt;Single Point of Access&lt;/strong&gt;, becomes available as seen in the panels 2 and 3 of Figure 1.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Solution:&lt;/strong&gt; In Dynamics NAV the same library which offers &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;&lt;strong&gt;Encryption&lt;/strong&gt;&lt;/a&gt;, is also intended to be used as a &lt;strong&gt;Single Point of Access&lt;/strong&gt;. Write code to create, read and remove sensitive data only through codeunit 1266 Encryption Management, and never directly.&lt;/p&gt;
+&lt;p&gt;In Figure 9 (figure numbering is continued from pattern &lt;strong&gt;&lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;Encryption&lt;/a&gt;&lt;/strong&gt;), the panels 1, 2 and 3 have applied the &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/security/1-sensitive-data-encapsulation/&#34;&gt;&lt;strong&gt;Sensitive Data Encapsulation&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;&lt;strong&gt;Encryption&lt;/strong&gt;&lt;/a&gt; patterns. Once data is encapsulated, no matter if it has been encrypted or not, the next pattern, &lt;strong&gt;Single Point of Access&lt;/strong&gt;, becomes available as seen in the panels 2 and 3 of Figure 1.&lt;/p&gt;
 &lt;p&gt;You can observe that, in panel 3, each usage needs to access separately the encrypted data. This means that each usage needs to implement again the encryption capabilities. This is resolved in panel 4, where all users access one common API which encrypts, hence the workload of encryption is moved from the usages, to the API, and needs to be implemented only once.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;Multi-_2D00_-1-2-3-4.JPG&#34;&gt;&lt;img src=&#34;Multi-_2D00_-1-2-3-4.JPG&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Figure 1- &lt;strong&gt;Single Point of Access&lt;/strong&gt; pattern applied.&lt;/em&gt;&lt;/p&gt;
@@ -297,10 +297,10 @@
     
     <item>
       <title>Docs: Masked Text</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/security/4-masked-text/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/security/4-masked-text/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/security/4-masked-text/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/security/4-masked-text/</guid>
       <description>
         
         
@@ -353,10 +353,10 @@
     
     <item>
       <title>Docs: SSL in NAV</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/security/5-ssl-in-nav/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/security/5-ssl-in-nav/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/security/5-ssl-in-nav/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/security/5-ssl-in-nav/</guid>
       <description>
         
         
@@ -403,10 +403,10 @@
     
     <item>
       <title>Docs: Actions - Images</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/ux/actions-images/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/ux/actions-images/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/ux/actions-images/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/ux/actions-images/</guid>
       <description>
         
         
@@ -426,10 +426,10 @@
     
     <item>
       <title>Docs: Activity Logs</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/activity-log/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/activity-log/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/activity-log/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/activity-log/</guid>
       <description>
         
         
@@ -510,10 +510,10 @@
     
     <item>
       <title>Docs: Argument Table</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/argument-table/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/argument-table/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/argument-table/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/argument-table/</guid>
       <description>
         
         
@@ -587,10 +587,10 @@
     
     <item>
       <title>Docs: Begin as an &#39;After Word&#39;</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/begin-as-an-afterword/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/begin-as-an-afterword/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/begin-as-an-afterword/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/begin-as-an-afterword/</guid>
       <description>
         
         
@@ -610,10 +610,10 @@ END;
     
     <item>
       <title>Docs: begin as an &#39;After Word&#39;</title>
-      <link>.%5Cpublic/docs/bcbestpractices/readability/begin-as-an-afterword/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/bcbestpractices/readability/begin-as-an-afterword/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/bcbestpractices/readability/begin-as-an-afterword/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/bcbestpractices/readability/begin-as-an-afterword/</guid>
       <description>
         
         
@@ -638,10 +638,10 @@ END;
     
     <item>
       <title>Docs: Begin-End - Compound Only</title>
-      <link>.%5Cpublic/docs/bcbestpractices/readability/begin-end/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/bcbestpractices/readability/begin-end/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/bcbestpractices/readability/begin-end/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/bcbestpractices/readability/begin-end/</guid>
       <description>
         
         
@@ -681,10 +681,10 @@ END;
     
     <item>
       <title>Docs: Begin-End - Compound Only</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/begin-end/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/begin-end/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/begin-end/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/begin-end/</guid>
       <description>
         
         
@@ -731,10 +731,10 @@ END;
     
     <item>
       <title>Docs: Binary Operator to Start Line</title>
-      <link>.%5Cpublic/docs/bcbestpractices/readability/binary-operator-line-start/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/bcbestpractices/readability/binary-operator-line-start/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/bcbestpractices/readability/binary-operator-line-start/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/bcbestpractices/readability/binary-operator-line-start/</guid>
       <description>
         
         
@@ -758,10 +758,10 @@ END;
     
     <item>
       <title>Docs: Binary Operator to Start Line</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/binary-operator-line-start/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/binary-operator-line-start/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/binary-operator-line-start/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/binary-operator-line-start/</guid>
       <description>
         
         
@@ -780,10 +780,10 @@ END;
     
     <item>
       <title>Docs: Blank Lines</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/blank-lines/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/blank-lines/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/blank-lines/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/blank-lines/</guid>
       <description>
         
         
@@ -817,10 +817,10 @@ END;
     
     <item>
       <title>Docs: By Reference Parameters</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/design/by-reference-parameters/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/design/by-reference-parameters/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/design/by-reference-parameters/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/design/by-reference-parameters/</guid>
       <description>
         
         
@@ -848,10 +848,10 @@ END;
     
     <item>
       <title>Docs: Cached Web Server Calls</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/cached-web-service-calls/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/cached-web-service-calls/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/cached-web-service-calls/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/cached-web-service-calls/</guid>
       <description>
         
         
@@ -956,10 +956,10 @@ END;
     
     <item>
       <title>Docs: CaptionML on System Pages</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/localizability/captionml-for-system-tables/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/localizability/captionml-for-system-tables/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/localizability/captionml-for-system-tables/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/localizability/captionml-for-system-tables/</guid>
       <description>
         
         
@@ -989,10 +989,10 @@ OBJECT Table 2000000000 User
     
     <item>
       <title>Docs: CASE Action</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/case-actions/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/case-actions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/case-actions/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/case-actions/</guid>
       <description>
         
         
@@ -1013,10 +1013,10 @@ OBJECT Table 2000000000 User
     
     <item>
       <title>Docs: CASE Action on next line</title>
-      <link>.%5Cpublic/docs/bcbestpractices/readability/case-actions/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/bcbestpractices/readability/case-actions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/bcbestpractices/readability/case-actions/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/bcbestpractices/readability/case-actions/</guid>
       <description>
         
         
@@ -1044,10 +1044,10 @@ OBJECT Table 2000000000 User
     
     <item>
       <title>Docs: Class Coupling</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/design/class-coupling/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/design/class-coupling/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/design/class-coupling/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/design/class-coupling/</guid>
       <description>
         
         
@@ -1067,10 +1067,10 @@ Class coupling is computed by summing the unique instances of the following in a
     
     <item>
       <title>Docs: Code of Conduct</title>
-      <link>.%5Cpublic/docs/navpatterns/4-get-involved/code-of-conduct/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/4-get-involved/code-of-conduct/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/4-get-involved/code-of-conduct/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/4-get-involved/code-of-conduct/</guid>
       <description>
         
         
@@ -1089,10 +1089,10 @@ Class coupling is computed by summing the unique instances of the following in a
     
     <item>
       <title>Docs: Colon usage in CASE</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/colon-usage-in-case/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/colon-usage-in-case/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/colon-usage-in-case/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/colon-usage-in-case/</guid>
       <description>
         
         
@@ -1111,10 +1111,10 @@ Class coupling is computed by summing the unique instances of the following in a
     
     <item>
       <title>Docs: Comments inside Curly Brackets</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/comments-curly-brackets/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/comments-curly-brackets/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/comments-curly-brackets/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/comments-curly-brackets/</guid>
       <description>
         
         
@@ -1149,10 +1149,10 @@ Class coupling is computed by summing the unique instances of the following in a
     
     <item>
       <title>Docs: Comment Spacing</title>
-      <link>.%5Cpublic/docs/bcbestpractices/readability/comments-spacing/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/bcbestpractices/readability/comments-spacing/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/bcbestpractices/readability/comments-spacing/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/bcbestpractices/readability/comments-spacing/</guid>
       <description>
         
         
@@ -1172,10 +1172,10 @@ Class coupling is computed by summing the unique instances of the following in a
     
     <item>
       <title>Docs: Comment Spacing</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/comments-spacing/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/comments-spacing/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/comments-spacing/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/comments-spacing/</guid>
       <description>
         
         
@@ -1190,10 +1190,10 @@ Class coupling is computed by summing the unique instances of the following in a
     
     <item>
       <title>Docs: Conditional Cascading Update</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/conditional-cascading-update/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/conditional-cascading-update/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/conditional-cascading-update/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/conditional-cascading-update/</guid>
       <description>
         
         
@@ -1217,10 +1217,10 @@ Class coupling is computed by summing the unique instances of the following in a
     
     <item>
       <title>Docs: CONFIRM</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/ux/confirm/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/ux/confirm/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/ux/confirm/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/ux/confirm/</guid>
       <description>
         
         
@@ -1239,10 +1239,10 @@ Class coupling is computed by summing the unique instances of the following in a
     
     <item>
       <title>Docs: Copy Document</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/copy-document/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/copy-document/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/copy-document/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/copy-document/</guid>
       <description>
         
         
@@ -1338,10 +1338,10 @@ Class coupling is computed by summing the unique instances of the following in a
     
     <item>
       <title>Docs: Create Data from Templates</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/create-data-from-templates/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/create-data-from-templates/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/create-data-from-templates/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/create-data-from-templates/</guid>
       <description>
         
         
@@ -1512,10 +1512,10 @@ Class coupling is computed by summing the unique instances of the following in a
     
     <item>
       <title>Docs: Create URLs to NAV Clients</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/create-urls-to-nav-clients/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/create-urls-to-nav-clients/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/create-urls-to-nav-clients/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/create-urls-to-nav-clients/</guid>
       <description>
         
         
@@ -1798,10 +1798,10 @@ Class coupling is computed by summing the unique instances of the following in a
     
     <item>
       <title>Docs: Creating Custom Charts</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/creating-custom-charts/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/creating-custom-charts/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/creating-custom-charts/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/creating-custom-charts/</guid>
       <description>
         
         
@@ -1937,10 +1937,10 @@ Class coupling is computed by summing the unique instances of the following in a
     
     <item>
       <title>Docs: Cross Session Events</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/cross-session-events/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/cross-session-events/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/cross-session-events/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/cross-session-events/</guid>
       <description>
         
         
@@ -1961,7 +1961,7 @@ Class coupling is computed by summing the unique instances of the following in a
 &lt;li&gt;&lt;strong&gt;Message Queue&lt;/strong&gt;: To hold the messages for each Subscriber. Generally once these messages are read, they are deleted.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
-&lt;p&gt;An example of this would be when we have multiple users looking at the same set of data and we want their screens to update in &amp;ldquo;real time&amp;rdquo; whenever one of them makes a change, without doing a full refresh. We will use the &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/observer/&#34;&gt;Observer pattern&lt;/a&gt; to capture the change (act as the Publisher) and then create a Table to hold Subscribers and Filters (Change Observer), a Table to be the Message Queue (Change Notification), and a Codeunit to be the Message Broker and help with the polling (ObserverMgt).&lt;/p&gt;
+&lt;p&gt;An example of this would be when we have multiple users looking at the same set of data and we want their screens to update in &amp;ldquo;real time&amp;rdquo; whenever one of them makes a change, without doing a full refresh. We will use the &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/observer/&#34;&gt;Observer pattern&lt;/a&gt; to capture the change (act as the Publisher) and then create a Table to hold Subscribers and Filters (Change Observer), a Table to be the Message Queue (Change Notification), and a Codeunit to be the Message Broker and help with the polling (ObserverMgt).&lt;/p&gt;
 &lt;p&gt;Below are the table definitions:&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -2131,16 +2131,16 @@ Class coupling is computed by summing the unique instances of the following in a
     
     <item>
       <title>Docs: Cue Table</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/singleton/singleton-table/cue-table/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/singleton/singleton-table/cue-table/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/singleton/singleton-table/cue-table/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/singleton/singleton-table/cue-table/</guid>
       <description>
         
         
         &lt;p&gt;&lt;em&gt;By Bogdana Botez at Microsoft Development Center Copenhagen&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;Cue-Table.png&#34;&gt;&lt;img src=&#34;Cue-Table.png&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Cues are the second usual application of the &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/singleton/singleton-table/&#34;&gt;&lt;strong&gt;Singleton Table&lt;/strong&gt;&lt;/a&gt; pattern in Dynamics NAV, after &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/singleton/singleton-table/setup-table/&#34;&gt;&lt;strong&gt;Setup Tables&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Cues are the second usual application of the &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/singleton/singleton-table/&#34;&gt;&lt;strong&gt;Singleton Table&lt;/strong&gt;&lt;/a&gt; pattern in Dynamics NAV, after &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/singleton/singleton-table/setup-table/&#34;&gt;&lt;strong&gt;Setup Tables&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Context&lt;/strong&gt;: The user gets overview information about the business on the Dynamics NAV Role Center page.&lt;/p&gt;
 &lt;p&gt;Figure 1 - Cue information in Dynamics NAV shows cue information seen by the user on the &lt;strong&gt;Sales Order Processor&lt;/strong&gt; role center.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;Cue-Table-Figure-1.JPG&#34;&gt;&lt;img src=&#34;Cue-Table-Figure-1.JPG&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -2252,10 +2252,10 @@ Class coupling is computed by summing the unique instances of the following in a
     
     <item>
       <title>Docs: Currently Active Record</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/currently-active-record/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/currently-active-record/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/currently-active-record/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/currently-active-record/</guid>
       <description>
         
         
@@ -2367,10 +2367,10 @@ The Pattern makes a scalable solution with a predictable performance. The perfor
     
     <item>
       <title>Docs: Cyclomatic Complexity</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/design/cyclomatic-complexity/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/design/cyclomatic-complexity/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/design/cyclomatic-complexity/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/design/cyclomatic-complexity/</guid>
       <description>
         
         
@@ -2390,10 +2390,10 @@ The CC3 version is computed by summing the following in a code block:
     
     <item>
       <title>Docs: Data Driven Blocked Entity</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/blocked-entity/data-driven-blocked-entity/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/blocked-entity/data-driven-blocked-entity/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/blocked-entity/data-driven-blocked-entity/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/blocked-entity/data-driven-blocked-entity/</guid>
       <description>
         
         
@@ -2403,7 +2403,7 @@ The CC3 version is computed by summing the following in a code block:
 &lt;h2 id=&#34;problem&#34;&gt;Problem&lt;/h2&gt;
 &lt;p&gt;A NAV record can be used in a number of functionalities across the app. There are situations, however, when the administrator wants to restrict the consumption of such a record, as well as lift the restriction when it is no longer relevant.&lt;/p&gt;
 &lt;p&gt;For example, a new customer record should not be used for posting documents until it is approved by the relevant approver.&lt;/p&gt;
-&lt;p&gt;We could solve this by using the &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/blocked-entity/&#34;&gt;Blocked Entity pattern&lt;/a&gt;, but it requires database schema changes, which have an upgrade impact.&lt;/p&gt;
+&lt;p&gt;We could solve this by using the &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/blocked-entity/&#34;&gt;Blocked Entity pattern&lt;/a&gt;, but it requires database schema changes, which have an upgrade impact.&lt;/p&gt;
 &lt;p&gt;The blocked entity pattern involves:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Adding a &amp;ldquo;blocked&amp;rdquo; status field on the record (either a Boolean or in the more advanced cases, an option field refining the usage).&lt;/li&gt;
@@ -2469,10 +2469,10 @@ The CC3 version is computed by summing the following in a code block:
     
     <item>
       <title>Docs: Data Migration Façade</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/data-migration-facade/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/data-migration-facade/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/data-migration-facade/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/data-migration-facade/</guid>
       <description>
         
         
@@ -2745,10 +2745,10 @@ This starts the migration. False means this is not a retry. A re-try is when you
     
     <item>
       <title>Docs: Discovery Event</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/discovery-event/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/discovery-event/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/discovery-event/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/discovery-event/</guid>
       <description>
         
         
@@ -2800,10 +2800,10 @@ You see I can use the &amp;ldquo;sender&amp;rdquo; as a normal Record-variable. 
     
     <item>
       <title>Docs: Document</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/document/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/document/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/document/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/document/</guid>
       <description>
         
         
@@ -2884,10 +2884,10 @@ You see I can use the &amp;ldquo;sender&amp;rdquo; as a normal Record-variable. 
     
     <item>
       <title>Docs: Easy Update Of Setup Or Supplementary Information</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/easy-update-of-setup-or-supplementary-information/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/easy-update-of-setup-or-supplementary-information/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/easy-update-of-setup-or-supplementary-information/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/easy-update-of-setup-or-supplementary-information/</guid>
       <description>
         
         
@@ -2953,10 +2953,10 @@ SetupTable.VerifyAndSetX
     
     <item>
       <title>Docs: Encapsulate Local Functionality</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/design/encapsulate-local-functionality/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/design/encapsulate-local-functionality/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/design/encapsulate-local-functionality/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/design/encapsulate-local-functionality/</guid>
       <description>
         
         
@@ -2967,10 +2967,10 @@ SetupTable.VerifyAndSetX
     
     <item>
       <title>Docs: END ELSE Pair</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/end-else-pair/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/end-else-pair/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/end-else-pair/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/readability/end-else-pair/</guid>
       <description>
         
         
@@ -2994,10 +2994,10 @@ SetupTable.VerifyAndSetX
     
     <item>
       <title>Docs: end else pair</title>
-      <link>.%5Cpublic/docs/bcbestpractices/readability/end-else-pair/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/bcbestpractices/readability/end-else-pair/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/bcbestpractices/readability/end-else-pair/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/bcbestpractices/readability/end-else-pair/</guid>
       <description>
         
         
@@ -3029,15 +3029,15 @@ SetupTable.VerifyAndSetX
     
     <item>
       <title>Docs: Error Message Processing</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/error-message-processing/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/error-message-processing/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/error-message-processing/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/error-message-processing/</guid>
       <description>
         
         
         &lt;p&gt;&lt;em&gt;By Jesper Schulz at Microsoft Development Center Copenhagen&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Note: This pattern describes new functionality which makes it possible to generalize the &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/journal-error-processing/&#34;&gt;Journal Error Processing&lt;/a&gt; pattern.&lt;/p&gt;
+&lt;p&gt;Note: This pattern describes new functionality which makes it possible to generalize the &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/journal-error-processing/&#34;&gt;Journal Error Processing&lt;/a&gt; pattern.&lt;/p&gt;
 &lt;h2 id=&#34;abstract&#34;&gt;Abstract&lt;/h2&gt;
 &lt;p&gt;Missing, invalid or incomplete data is a common issue during data processing in NAV. This article describes how to collect all error messages during processing using the error message component and present them to the user in a unified way, which enables the user to correct the errors efficiently. By leveraging the integrated error message logging functions, you can log a message with a single line of code and present it to the user with another one-liner.&lt;/p&gt;
 &lt;h2 id=&#34;description&#34;&gt;Description&lt;/h2&gt;
@@ -3049,7 +3049,7 @@ SetupTable.VerifyAndSetX
 &lt;p&gt;Validating data is a common task during data processing in NAV. Unfortunately, validation is often done using NAV&amp;rsquo;s integrated ERROR and TESTFIELD functions, which halt execution of the process. The user will then have to locate the invalid / missing data, correct it and reinitiate the process, possibly running into the next error, making the cycle repeat itself. This can be a very tedious, time-consuming and frustrating process. The error message component aims at improving this experience by providing a lightweight framework for error message logging and this article will explain how to leverage this functionality in your code. By doing so, all error messages are gathered during (pre-)processing and are finally presented to the user. The user then has the possibility to click on the error message, which will open the record where the invalid / missing data is located, thereby enabling the user to correct all mistakes efficiently, from one central place and in one go.&lt;/p&gt;
 &lt;p&gt;The example below comes from a Mexican localization, where the user has to export financial balances and transactions into an XML file for government audit purposes. In order to generate valid files, some mandatory data needs to be entered in the system. By leveraging the error message component, the user will be presented with the following page, if missing or invalid data was discovered:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;image001.png&#34;&gt;&lt;img src=&#34;image001.png&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;By clicking on the error message, the user will be presented with the entity, where the invalid / missing data should be corrected / added. This is done by applying the related pattern &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/easy-update-of-setup-or-supplementary-information/&#34;&gt;Easy Update of Setup or Supplementary Information&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;By clicking on the error message, the user will be presented with the entity, where the invalid / missing data should be corrected / added. This is done by applying the related pattern &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/easy-update-of-setup-or-supplementary-information/&#34;&gt;Easy Update of Setup or Supplementary Information&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;image003.png&#34;&gt;&lt;img src=&#34;image003.png&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;usage&#34;&gt;Usage&lt;/h2&gt;
 &lt;p&gt;In the processing function, define a temporary record of type &amp;ldquo;Error Message&amp;rdquo;. Use the functions on that record to populate the record with error message, a few of them being:&lt;/p&gt;
@@ -3114,10 +3114,10 @@ SetupTable.VerifyAndSetX
     
     <item>
       <title>Docs: Extending the Role Center Headlines</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/extending-the-role-center-headlines/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/extending-the-role-center-headlines/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/extending-the-role-center-headlines/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/extending-the-role-center-headlines/</guid>
       <description>
         
         
@@ -3240,10 +3240,10 @@ If no headline is added on these pages, fallback headlines will be displayed.&lt
     
     <item>
       <title>Docs: Feature Localization For Data Structures</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/feature-localization-for-data-structures/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/feature-localization-for-data-structures/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/feature-localization-for-data-structures/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/feature-localization-for-data-structures/</guid>
       <description>
         
         
@@ -3474,10 +3474,10 @@ If no headline is added on these pages, fallback headlines will be displayed.&lt
     
     <item>
       <title>Docs: FIELDCAPTION and TABLECAPTION</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/localizability/fieldcaption-and-tablecaption/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/localizability/fieldcaption-and-tablecaption/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/localizability/fieldcaption-and-tablecaption/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/localizability/fieldcaption-and-tablecaption/</guid>
       <description>
         
         
@@ -3497,10 +3497,10 @@ If no headline is added on these pages, fallback headlines will be displayed.&lt
     
     <item>
       <title>Docs: FIELDERROR</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/ux/fielderror/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/ux/fielderror/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/ux/fielderror/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/ux/fielderror/</guid>
       <description>
         
         
@@ -3519,10 +3519,10 @@ If no headline is added on these pages, fallback headlines will be displayed.&lt
     
     <item>
       <title>Docs: FINDSET FINDFIRST FINDLAST</title>
-      <link>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/design/findset-findfirst-findlast/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/design/findset-findfirst-findlast/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/3-cal-coding-guidelines/design/findset-findfirst-findlast/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/3-cal-coding-guidelines/design/findset-findfirst-findlast/</guid>
       <description>
         
         

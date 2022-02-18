@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>alguidelines.dev – Singleton</title>
-    <link>.%5Cpublic/docs/navpatterns/patterns/singleton/</link>
+    <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/singleton/</link>
     <description>Recent content in Singleton on alguidelines.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	  <atom:link href=".%5Cpublic/docs/navpatterns/patterns/singleton/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="c:\\Hugo\\Sites\\alguidelines-html/docs/navpatterns/patterns/singleton/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -16,10 +16,10 @@
     
     <item>
       <title>Docs: Singleton Codeunit</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/singleton/singleton-codeunit/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/singleton/singleton-codeunit/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/singleton/singleton-codeunit/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/singleton/singleton-codeunit/</guid>
       <description>
         
         
@@ -91,10 +91,10 @@
     
     <item>
       <title>Docs: Singleton Table</title>
-      <link>.%5Cpublic/docs/navpatterns/patterns/singleton/singleton-table/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/singleton/singleton-table/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/patterns/singleton/singleton-table/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/singleton/singleton-table/</guid>
       <description>
         
         
@@ -147,7 +147,7 @@
 &lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Singleton_pattern&#34;&gt;Singleton design pattern&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The &lt;strong&gt;Singleton Table&lt;/strong&gt; has two established applications in Dynamics NAV:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/singleton/singleton-table/setup-table/&#34;&gt;&lt;strong&gt;Setup Tables&lt;/strong&gt;&lt;/a&gt; &amp;ndash; which are commonly storing user setup data in NAV,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/singleton/singleton-table/setup-table/&#34;&gt;&lt;strong&gt;Setup Tables&lt;/strong&gt;&lt;/a&gt; &amp;ndash; which are commonly storing user setup data in NAV,&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Cue Tables&lt;/strong&gt; &amp;ndash; used to calculate values for the visual representation of Cues on the NAV role center pages.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;YouTube Video of NAV Singleton:&lt;/p&gt;

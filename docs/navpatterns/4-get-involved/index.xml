@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>alguidelines.dev – (OLD) Get Involved</title>
-    <link>.%5Cpublic/docs/navpatterns/4-get-involved/</link>
+    <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/4-get-involved/</link>
     <description>Recent content in (OLD) Get Involved on alguidelines.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	  <atom:link href=".%5Cpublic/docs/navpatterns/4-get-involved/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="c:\\Hugo\\Sites\\alguidelines-html/docs/navpatterns/4-get-involved/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -16,10 +16,10 @@
     
     <item>
       <title>Docs: Code of Conduct</title>
-      <link>.%5Cpublic/docs/navpatterns/4-get-involved/code-of-conduct/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/4-get-involved/code-of-conduct/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/4-get-involved/code-of-conduct/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/4-get-involved/code-of-conduct/</guid>
       <description>
         
         
@@ -38,15 +38,15 @@
     
     <item>
       <title>Docs: Patterns Authors</title>
-      <link>.%5Cpublic/docs/navpatterns/4-get-involved/patterns-authors/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/4-get-involved/patterns-authors/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/4-get-involved/patterns-authors/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/4-get-involved/patterns-authors/</guid>
       <description>
         
         
-        &lt;p&gt;This is the list of people that have been part of the NAV Design Patterns team. If you would like to join the project follow the instructions provided on &lt;a href=&#34;.%5Cpublic/navpatterns/4-get-involved/&#34;&gt;Be a NAV Pattern Author&lt;/a&gt; page.&lt;/p&gt;
-&lt;p&gt;Project administrator: &lt;a href=&#34;.%5Cpublic/members/bogdana-botez/default.aspx&#34; title=&#34;NAV Design Patterns project administrator&#34;&gt;Bogdana Botez&lt;/a&gt;.&lt;/p&gt;
+        &lt;p&gt;This is the list of people that have been part of the NAV Design Patterns team. If you would like to join the project follow the instructions provided on &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/4-get-involved/&#34;&gt;Be a NAV Pattern Author&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;Project administrator: &lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/members/bogdana-botez/default.aspx&#34; title=&#34;NAV Design Patterns project administrator&#34;&gt;Bogdana Botez&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Authors (in alphabetical order):&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -345,10 +345,10 @@ _ (2 patterns)&lt;/p&gt;
     
     <item>
       <title>Docs: Template for writing Nav Design Patterns</title>
-      <link>.%5Cpublic/docs/navpatterns/4-get-involved/template-for-writing-nav-design-patterns/</link>
+      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/4-get-involved/template-for-writing-nav-design-patterns/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>.%5Cpublic/docs/navpatterns/4-get-involved/template-for-writing-nav-design-patterns/</guid>
+      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/4-get-involved/template-for-writing-nav-design-patterns/</guid>
       <description>
         
         
