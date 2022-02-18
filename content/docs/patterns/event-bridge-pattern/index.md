@@ -1,9 +1,10 @@
-+++
-title = "Event Bridge Pattern"
-weight = 1180
-+++
+---
+title: "Event Bridge"
+tags: [""]
+categories: ["Pattern"]
+---
 
-<_Created by waldo & Arend-Jan Kauffmann, Described by waldo_\>
+_Created by waldo & Arend-Jan Kauffmann, Described by waldo_\
 
 ## Abstract
 

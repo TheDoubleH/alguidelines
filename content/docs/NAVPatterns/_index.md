@@ -1,11 +1,7 @@
 +++
-chapter = true
-pre = "<b><i class='fas fa-save'></i> </b>"
 title = "NAV Patterns Archive"
 weight = 20
 +++
-
-# NAV Patterns Archive
 
 ## About the archive
 

@@ -1,7 +1,8 @@
-+++
-title = "Facade Pattern"
-weight = 1180
-+++
+---
+title: "Façade"
+tags: [""]
+categories: ["Pattern"]
+---
 
 _Created by Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides (Gang of Four), Described by Jesper Schulz-Wedde (Microsoft)_
 

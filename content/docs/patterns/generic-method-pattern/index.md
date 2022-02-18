@@ -1,7 +1,8 @@
-+++
-title = "Generic Method Pattern"
-weight = 1180
-+++
+---
+title: "Generic Method"
+tags: [""]
+categories: ["Pattern"]
+---
 
 _Created by Gary Winter (Cloud Ready Software), Described by waldo (iFacto Business Solutions | Dynex)_
 
