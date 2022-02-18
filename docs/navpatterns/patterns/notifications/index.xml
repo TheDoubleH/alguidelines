@@ -1,0 +1,322 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>alguidelines.dev – Notifications</title>
+    <link>.%5Cpublic/docs/navpatterns/patterns/notifications/</link>
+    <description>Recent content in Notifications on alguidelines.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	  <atom:link href=".%5Cpublic/docs/navpatterns/patterns/notifications/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: In-context Notifications</title>
+      <link>.%5Cpublic/docs/navpatterns/patterns/notifications/in-context-notifications/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>.%5Cpublic/docs/navpatterns/patterns/notifications/in-context-notifications/</guid>
+      <description>
+        
+        
+        &lt;p&gt;&lt;em&gt;By Soumya Dutta at Microsoft Development Center Copenhagen&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;context&#34;&gt;Context&lt;/h2&gt;
+&lt;p&gt;Application developers need to raise a notification on events that are not blocking but do require attention from users. Notifications alert users to issues or information, and let them decide whether to react immediately or finish what they&amp;rsquo;re doing first.&lt;/p&gt;
+&lt;h2 id=&#34;problem&#34;&gt;Problem&lt;/h2&gt;
+&lt;p&gt;Application developers have started to use system calls like CONFIRM or MESSAGE to alert or inform users about a condition. These calls interrupt users by displaying a window in the middle of the screen and forcing an immediate response.&lt;/p&gt;
+&lt;h2 id=&#34;solution&#34;&gt;Solution&lt;/h2&gt;
+&lt;p&gt;Notifications display a message in a blue bar at the top of the workspace, as shown in Figure 1.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;7701.Fig1.png&#34;&gt;&lt;img src=&#34;7701.Fig1.png&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Figure 1 - Example of a notification&lt;/p&gt;
+&lt;p&gt;Notifications alert users to something they probably should act on, but can choose to ignore. For example, a notification might alert someone who is about to invoice a customer for inventory that isn&amp;rsquo;t available, as shown in Figure 1, but allow them to post the invoice anyway. This is different from an error that prevents someone from posting an invoice without specifying a required field.&lt;/p&gt;
+&lt;p&gt;In this example, if you choose &lt;strong&gt;Details&lt;/strong&gt; a page opens to show the status of the inventory, as shown in Figure 2.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;6724.Fig2.png&#34;&gt;&lt;img src=&#34;6724.Fig2.png&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Figure 2 - Clicking an action in a notification&lt;/p&gt;
+&lt;h2 id=&#34;raising-a-notification&#34;&gt;Raising a notification&lt;/h2&gt;
+&lt;p&gt;The code in Figure 3 raises the notification in Figure 1.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;COD 311: Item-Check Avail.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;CreateAndSendNotification&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;AvailabilityCheckNotification.ID(GetItemAvailabilityNotificationId);&lt;/p&gt;
+&lt;p&gt;AvailabilityCheckNotification.MESSAGE(STRSUBSTNO(NotificationMsg,ItemNo));&lt;/p&gt;
+&lt;p&gt;AvailabilityCheckNotification.SCOPE(NOTIFICATIONSCOPE::LocalScope);&lt;/p&gt;
+&lt;p&gt;AvailabilityCheckNotification.ADDACTION(DetailsTxt,CODEUNIT::&amp;ldquo;Item-Check Avail.&amp;rdquo;,&amp;lsquo;ShowNotificationDetails&amp;rsquo;);&lt;/p&gt;
+&lt;p&gt;ItemAvailabilityCheck.PopulateDataOnNotification(AvailabilityCheckNotification,ItemNo,UnitOfMeasureCode&lt;/p&gt;
+&lt;p&gt;,InventoryQty,GrossReq,ReservedReq,SchedRcpt,ReservedRcpt,CurrentQuantity,CurrentReservedQty,&lt;/p&gt;
+&lt;p&gt;TotalQuantity,EarliestAvailDate);&lt;/p&gt;
+&lt;p&gt;AvailabilityCheckNotification.SEND;&lt;/p&gt;
+&lt;p&gt;&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Figure 3 - Raising a notification&lt;/p&gt;
+&lt;p&gt;The first thing to note is that a new Notification DataType object has been introduced to C/SIDE.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;2514.Fig4.png&#34;&gt;&lt;img src=&#34;2514.Fig4.png&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Figure 4. Notification is a new data type&lt;/p&gt;
+&lt;p&gt;In the code sample in Figure 3, the first line defines the scope. Currently , only the LocalScope is supported.&lt;/p&gt;
+&lt;h3 id=&#34;identifying-a-notification&#34;&gt;Identifying a notification&lt;/h3&gt;
+&lt;p&gt;The ID is an optional parameter for the notification object that tracks the object in communications between the client and the server. Notifications have unique IDs that can be hard coded as GUIDs, as shown in Figure 5. A GUID can be generated using &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/dd339033.aspx&#34;&gt;the CREATEGUID system function&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;COD 311: Item-Check Avail.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;GetItemAvailabilityNotificationId&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;EXIT(&amp;lsquo;2712AD06-C48B-4C20-820E-347A60C9AD00&amp;rsquo;);&lt;/p&gt;
+&lt;p&gt;Figure 5. Uniquely identifying a notification&lt;/p&gt;
+&lt;p&gt;If the call to set ID is skipped, sending the notification creates a new notification with an ID that is generated at run-time instead of updating a notification that is already displayed (if present) with the ID.&lt;/p&gt;
+&lt;h3 id=&#34;including-messages-notifications&#34;&gt;Including messages notifications&lt;/h3&gt;
+&lt;p&gt;Notifications should display a message. This message is set by an assignment call to the &lt;strong&gt;MESSAGE&lt;/strong&gt; parameter of the notification object.&lt;/p&gt;
+&lt;h3 id=&#34;invoking-actions-on-notifications&#34;&gt;Invoking actions on notifications&lt;/h3&gt;
+&lt;p&gt;Notifications can display action buttons, as shown in Figure 2 where a button named &lt;strong&gt;Details&lt;/strong&gt; opens the inventory status for the item. To do that, when the button is clicked the &lt;strong&gt;ADDACTION&lt;/strong&gt; method is invoked on the notification object using the following parameters:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The text for the button.&lt;/li&gt;
+&lt;li&gt;The code unit number that hosts the method to call.&lt;/li&gt;
+&lt;li&gt;The name of the invoked method in the above code unit to call.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Figure shows the method that is called when the action is invoked- ShowNotificationDetails.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;COD 311: Item-Check Avail.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ShowNotificationDetails&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;ItemAvailabilityCheck.InitializeFromNotification(AvailabilityCheckNotification);&lt;/p&gt;
+&lt;p&gt;ItemAvailabilityCheck.SetHeading(AvailabilityCheckNotification.MESSAGE);&lt;/p&gt;
+&lt;p&gt;ItemAvailabilityCheck.RUNMODAL;****&lt;/p&gt;
+&lt;p&gt;Figure 6 - Invoking an action&lt;/p&gt;
+&lt;p&gt;To show the inventory status using the Availability check page, certain parameters must be initialized. For example, the item number, the unit of measure code, and so on. This is done in the call to InitializeFromNotification method on the page. Figure 7 shows the code for this call.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Page 1872: Item Availability Check&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;InitializeFromNotification&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;GET(AvailabilityCheckNotification.GETDATA(&amp;lsquo;ItemNo&amp;rsquo;));&lt;/p&gt;
+&lt;p&gt;SETRANGE(&amp;ldquo;No.&amp;quot;,AvailabilityCheckNotification.GETDATA(&amp;lsquo;ItemNo&amp;rsquo;));&lt;/p&gt;
+&lt;p&gt;EVALUATE(TotalQuantity,AvailabilityCheckNotification.GETDATA(&amp;lsquo;TotalQuantity&amp;rsquo;));&lt;/p&gt;
+&lt;p&gt;EVALUATE(InventoryQty,AvailabilityCheckNotification.GETDATA(&amp;lsquo;InventoryQty&amp;rsquo;));&lt;/p&gt;
+&lt;p&gt;CurrPage.AvailabilityCheckDetails.PAGE.SetUnitOfMeasureCode(&lt;/p&gt;
+&lt;p&gt;AvailabilityCheckNotification.GETDATA(&amp;lsquo;UnitOfMeasureCode&amp;rsquo;));&lt;/p&gt;
+&lt;p&gt;Figure 7 - Fetching parameters from a notification object&lt;/p&gt;
+&lt;p&gt;Note how &lt;strong&gt;GETDATA&lt;/strong&gt; uses a key to fetch values from the notification object, and how those values are used to initialize the page.&lt;/p&gt;
+&lt;p&gt;Notifications can include zero, one, or more than one action buttons. More than one action buttons result in multiple &lt;strong&gt;ADDACTION&lt;/strong&gt; calls to the notification object.&lt;/p&gt;
+&lt;h3 id=&#34;populating-parameters-on-notifications&#34;&gt;Populating parameters on notifications&lt;/h3&gt;
+&lt;p&gt;Actions use the values set on the notification objects. As shown in Figure 3 and Figure 7, the line that calls the method PopulateDataOnNotification does that. The result is shown in Figure 8.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Page 1872: Item Availability Check&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;PopulateDataOnNotification&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;AvailabilityCheckNotification.SETDATA(&amp;lsquo;ItemNo&amp;rsquo;,ItemNo);&lt;/p&gt;
+&lt;p&gt;AvailabilityCheckNotification.SETDATA(&amp;lsquo;UnitOfMeasureCode&amp;rsquo;,UnitOfMeasureCode);&lt;/p&gt;
+&lt;p&gt;AvailabilityCheckNotification.SETDATA(&amp;lsquo;GrossReq&amp;rsquo;,FORMAT(GrossReq));&lt;/p&gt;
+&lt;p&gt;&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Figure 8 - Populating parameters on notifications&lt;/p&gt;
+&lt;p&gt;The invoked method must be stateless. Therefore, the context for creating the notification should be reproducible by using data that could be a part of the notification object. In this example, the SETDATA method on the notification object passes values for the item number, unit of measure code, and so on, as key value pairs.&lt;/p&gt;
+&lt;h3 id=&#34;displaying-the-notification-to-the-user&#34;&gt;Displaying the notification to the user&lt;/h3&gt;
+&lt;p&gt;The last line in Figure 3 calls &lt;strong&gt;SEND&lt;/strong&gt; to display the notification. If you know the ID of the notification, you can also call &lt;strong&gt;RECALL&lt;/strong&gt; to hide it. However, avoid updating a displayed notification, for example by changing the message, by calling both &lt;strong&gt;RECALL&lt;/strong&gt; and &lt;strong&gt;SEND&lt;/strong&gt;. This makes two server&amp;ndash;client calls. Instead, call only &lt;strong&gt;SEND&lt;/strong&gt;. Calling &lt;strong&gt;SEND&lt;/strong&gt; for a notification that is already displayed updates the notification.&lt;/p&gt;
+&lt;h2 id=&#34;turning-notifications-on-or-off-and-controlling-when-they-are-sent&#34;&gt;Turning notifications on or off, and controlling when they are sent&lt;/h2&gt;
+&lt;p&gt;By default, all notifications are turned on. However, you can specify the notifications you want to receive, and turn on or turn off some or all of them. For example, if you don&amp;rsquo;t want to be disturbed or are willing to accept the consequences of ignoring the message. This is unique to notifications.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;6646.Fig9.png&#34;&gt;&lt;img src=&#34;6646.Fig9.png&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Figure 9 - The My Notifications page&lt;/p&gt;
+&lt;p&gt;Additionally, some notifications let you specify the conditions under which they are sent. For example, if you want to be notified when inventory is running low, but only for items you buy from a certain vendor.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;In the top right corner, choose the Search for Page or Report icon, enter my notifications, and then choose the related link.&lt;/li&gt;
+&lt;li&gt;To turn on or turn off a notification, select or clear the Enabled check box.&lt;/li&gt;
+&lt;li&gt;To specify conditions that trigger a notification, choose View filter details, and then fill in the fields.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The &lt;strong&gt;MyNotifications&lt;/strong&gt; object determines whether notifications are turned on or off. Notifications are isolated from each other by the hard-coded GUID, as discussed in the section titled Identifying a notification. A fixed ID is essential to turning off a notification. The following are ways to achieve this.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;OnInitializingNotificationWithDefaultState&lt;/strong&gt; is a published method on the &lt;strong&gt;MyNotifications&lt;/strong&gt; page that is called when the enabled state of all the notifications is initialized.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Codeunit 311: Item-Check Avail.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;OnInitializingNotificationWithDefaultState&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;MyNotifications.InsertDefaultWithTableNum(GetItemAvailabilityNotificationId,&lt;/p&gt;
+&lt;p&gt;ItemAvailabilityNotificationTxt,&lt;/p&gt;
+&lt;p&gt;ItemAvailabilityNotificationDescriptionTxt,&lt;/p&gt;
+&lt;p&gt;DATABASE::Item);&lt;/p&gt;
+&lt;p&gt;Figure 10 - Adding a notification to the My Notifications page&lt;/p&gt;
+&lt;p&gt;You must subscribe to this method and call either &lt;strong&gt;InsertDefault&lt;/strong&gt; or &lt;strong&gt;InsertDefaultWithTableNum&lt;/strong&gt; on the &lt;strong&gt;MyNotifications&lt;/strong&gt; table. Both of these take the ID of the notification, a short description of the notification, and text that provides details about the conditions for the notification. The difference is that the &lt;strong&gt;InsertDefaultWithTableNum&lt;/strong&gt; method takes an additional argument representing the table number if there is specific criteria for when to turn on a notification for a certain table. In this case, the notification can be enabled only for items that the criteria specified in the FilterPage. The FIlterPage is opened from the &lt;strong&gt;MyNotifications&lt;/strong&gt; page.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;2526.Fig11.png&#34;&gt;&lt;img src=&#34;2526.Fig11.png&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Figure 11 - Defining filter criteria to turn on a notification&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;IsEnabled&lt;/strong&gt; or &lt;strong&gt;IsEnabledForRecord&lt;/strong&gt; are used to query if the notification is turned on. It may make sense to call this as early as possible in the condition checks, so you don&amp;rsquo;t make calculations that will not yield much if the notification is turned off. The second method takes the additional parameter that represents the record for which the enabled state is to be determined. In Figure 12, the check is for an item.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Codeunit 311: Item-Check Avail.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;IsItemAvailabilityNotificationEnabled&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;EXIT&lt;/strong&gt;(MyNotifications.IsEnabledForRecord(GetItemAvailabilityNotificationId,Item));&lt;/p&gt;
+&lt;p&gt;Figure 12 - Checking whether notifications are turned on&lt;/p&gt;
+&lt;p&gt;You may check that the call to this function is made almost as the first step in checking for availability.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;OnStateChanged&lt;/strong&gt; event should be subscribed to if the developer needs to do something additional when changing the state of a notification, such as turn on another notification.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The ability to turn notifications on or off is not required. If skipped, the notification is always shown when the condition that triggers it is met, and a user cannot turn it off.&lt;/p&gt;
+&lt;h2 id=&#34;nav-specific-usages&#34;&gt;NAV specific usages&lt;/h2&gt;
+&lt;p&gt;For examples of how these objects are used in Dynamics NAV, look at the code for the following objects:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Codeunit 1802 Data Migration Notifier&lt;/li&gt;
+&lt;li&gt;Codeunit 311 Item-Check Avail.&lt;/li&gt;
+&lt;li&gt;Codeunit 312 Cust-Check Cr. Limit&lt;/li&gt;
+&lt;li&gt;Codeunit 1854 Item Sales Forecast Notifier (in SalesAndInventoryForecast extension)&lt;/li&gt;
+&lt;li&gt;Codeunit 1852 Item Sales Forecast Scheduler (in SalesAndInventoryForecast extension)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;best-practices&#34;&gt;Best practices&lt;/h2&gt;
+&lt;p&gt;The following list summarizes best practices for creating notifications:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Do not set data on the notification that you will not use in the method invoked from the action button.&lt;/li&gt;
+&lt;li&gt;Ensure that the &lt;strong&gt;MyNotifications&lt;/strong&gt; table is accessed only as described above, and that the correct pairs of calls are made. For example, &lt;strong&gt;InsertDefault&lt;/strong&gt;&amp;hellip;&lt;strong&gt;IsEnabled&lt;/strong&gt; and &lt;strong&gt;InsertDefaultWithTableNum&lt;/strong&gt; &amp;hellip;&lt;strong&gt;IsEnabledForRecord&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Do not call &lt;strong&gt;RECALL&lt;/strong&gt; before &lt;strong&gt;SEND&lt;/strong&gt; in a server call-back if you need to update a notification that is already displayed. Instead, call only &lt;strong&gt;SEND&lt;/strong&gt; to update the notification. This reduces traffic on the network.&lt;/li&gt;
+&lt;li&gt;Ensure that the method specified on the &lt;strong&gt;ADDACTION&lt;/strong&gt; method for the notification is (a) exists, (b) is global and (c) follows the signature described above.&lt;/li&gt;
+&lt;/ol&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Notification Lifecycle Management Pattern</title>
+      <link>.%5Cpublic/docs/navpatterns/patterns/notifications/notification-lifecycle-management-pattern/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>.%5Cpublic/docs/navpatterns/patterns/notifications/notification-lifecycle-management-pattern/</guid>
+      <description>
+        
+        
+        &lt;p&gt;&lt;em&gt;By David Bastide at Microsoft Development Center Copenhagen&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;6138.logo.png&#34;&gt;&lt;img src=&#34;6138.logo.png&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Context&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This pattern is about sending notifications in Dynamics NAV, starting with version 2018, tracking them in the Notification Lifecycle Management framework, and recalling them when needed.&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Notifications are easy to use in a wide range of cases. Instead of using notifications in a fire-and-forget way, we need to track them so that we can recall them if we need to.&lt;/p&gt;
+&lt;p&gt;If we can have only one notification on a given page, an easy and efficient solution is to use a predefined Notification ID, as suggested in the &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/notifications/in-context-notifications/&#34;&gt;&amp;ldquo;Using In-context Notifications&amp;rdquo;&lt;/a&gt; pattern.&lt;/p&gt;
+&lt;p&gt;However, some cases can be more complicated. For example, when you are adding lines to a table, what if several lines raise individual notifications? Using the same notification ID for each notification will no longer work because the latest notification overwrites the previous ones. Only one notification for a given notification ID can exist, and only the notification message would be updated. This is illustrated in Figure 1.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;4807.1st-notification.PNG&#34;&gt;&lt;img src=&#34;4807.1st-notification.PNG&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Figure 1: Notification that an item that is not in stock. The notification ID is a predefined GUID, 2712AD06-C48B-4C20-820E-347A60C9AD00, for example.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;8512.2nd-notification.PNG&#34;&gt;&lt;img src=&#34;8512.2nd-notification.PNG&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Figure 2: You add a second item that is not in stock. the notification is fired with the same GUID, 2712AD06-C48B-4C20-820E-347A60C9AD00, for example. The previous notification is overwritten.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Here is the code for this behavior:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-al&#34; data-lang=&#34;al&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;LOCAL&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;PROCEDURE&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;CreateAndSendNotification@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;23&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;UnitOfMeasureCode@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1010&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Code&lt;/span&gt;[&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;20&lt;/span&gt;]&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;InventoryQty@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1009&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Decimal&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;GrossReq@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1008&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Decimal&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;ReservedReq@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1007&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Decimal&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;SchedRcpt@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1006&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Decimal&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;ReservedRcpt@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1005&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Decimal&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;CurrentQuantity@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1004&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Decimal&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;CurrentReservedQty@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1003&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Decimal&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;TotalQuantity@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1002&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Decimal&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;EarliestAvailDate@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1001&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Date&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;) &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Boolean&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;VAR&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;ItemAvailabilityCheck@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1011&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Page&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1872&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;AvailabilityCheckNotification@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1000&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Notification&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;BEGIN&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;AvailabilityCheckNotification&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;ID&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;GetItemAvailabilityNotificationId&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;AvailabilityCheckNotification&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;MESSAGE&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;STRSUBSTNO&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;NotificationMsg&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;ItemNo&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;))&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;AvailabilityCheckNotification&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;SCOPE&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;NOTIFICATIONSCOPE&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;::&lt;/span&gt;LocalScope&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;AvailabilityCheckNotification&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;ADDACTION&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;DetailsTxt&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;CODEUNIT&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;::&lt;/span&gt;&amp;#34;Item-Check Avail.&amp;#34;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;ShowNotificationDetails&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;ItemAvailabilityCheck&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;PopulateDataOnNotification&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;AvailabilityCheckNotification&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;ItemNo&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;UnitOfMeasureCode&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;InventoryQty&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;GrossReq&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;ReservedReq&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;SchedRcpt&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;ReservedRcpt&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;CurrentQuantity&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;CurrentReservedQty&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;TotalQuantity&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;EarliestAvailDate&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;AvailabilityCheckNotification&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;SEND&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;EXIT&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;FALSE&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;END&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;LOCAL&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;PROCEDURE&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;**GetItemAvailabilityNotificationId**@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;27&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;() &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;GUID&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;BEGIN&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;EXIT&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;2712AD06-C48B-4C20-820E-347A60C9AD00&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;END&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;An easy fix would be to dynamically generate the notification ID. However, what if you fix the issue that triggered the notification?&lt;/p&gt;
+&lt;p&gt;Here is the code for this possible fix:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-al&#34; data-lang=&#34;al&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;LOCAL&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;PROCEDURE&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;CreateAndSendNotification@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;23&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;UnitOfMeasureCode@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1010&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Code&lt;/span&gt;[&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;20&lt;/span&gt;]&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;InventoryQty@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1009&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Decimal&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;GrossReq@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1008&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Decimal&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;ReservedReq@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1007&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Decimal&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;SchedRcpt@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1006&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Decimal&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;ReservedRcpt@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1005&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Decimal&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;CurrentQuantity@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1004&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Decimal&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;CurrentReservedQty@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1003&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Decimal&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;TotalQuantity@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1002&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Decimal&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;EarliestAvailDate@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1001&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Date&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;) &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Boolean&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;VAR&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;ItemAvailabilityCheck@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1011&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Page&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1872&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;AvailabilityCheckNotification@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1000&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Notification&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;BEGIN&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;AvailabilityCheckNotification&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;ID&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;CREATEGUID&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;AvailabilityCheckNotification&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;MESSAGE&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;STRSUBSTNO&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;NotificationMsg&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;ItemNo&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;))&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;AvailabilityCheckNotification&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;SCOPE&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;NOTIFICATIONSCOPE&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;::&lt;/span&gt;LocalScope&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;AvailabilityCheckNotification&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;ADDACTION&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;DetailsTxt&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;CODEUNIT&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;::&lt;/span&gt;&amp;#34;Item-Check Avail.&amp;#34;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;ShowNotificationDetails&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;ItemAvailabilityCheck&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;PopulateDataOnNotification&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;AvailabilityCheckNotification&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;ItemNo&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;UnitOfMeasureCode&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;InventoryQty&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;GrossReq&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;ReservedReq&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;SchedRcpt&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;ReservedRcpt&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;CurrentQuantity&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;CurrentReservedQty&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;TotalQuantity&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;EarliestAvailDate&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;AvailabilityCheckNotification&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;SEND&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;EXIT&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;FALSE&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;END&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now, notifications do not replace each other, but we cannot recall them because we do not track each notification ID.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;0677.3-notifications-smaller.PNG&#34;&gt;&lt;img src=&#34;0677.3-notifications-smaller.PNG&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Figure 3: Three sales lines with a notification for each one&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Imagine that you&amp;rsquo;re adding several items to a sales order, and inventory is low for some of the items. Each sales line will send a notification for its item if the quantity to sell is higher than the available inventory. By using dynamically generated notification IDs (&lt;strong&gt;CREATEGUID&lt;/strong&gt;), each notification will not be overwritten, which is what we want. This is shown in Figure 3. But after you see the notification, you may decide to decrease the quantity in the sales line. At that point, the notification should be recalled. To do that, we need a way to track the notifications and their IDs.&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Solution&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The solution is to use the Notification Lifecycle Management framework.&lt;/p&gt;
+&lt;p&gt;The framework allows you to keep track of notifications by saving notification IDs and with other useful information (record ID and optional additional context) that will allow you to easily find the notification IDs to recall. This can be seen as an internal dictionary to put and get notification IDs.&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;This framework has three main components:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;A temporary, in-memory table: &lt;strong&gt;Notification Context&lt;/strong&gt; (1519). This table stores each notification GUID, the record ID of the record that caused each notification (on what object), and optionally, an additional GUID that represents an additional context: the cause of the notification (why). This lets you track and recall each notification. You can fire-and-forget the notification, but if you need to recall it you can find it by using the record ID of the cause and the optional additional context ID.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A singleton codeunit: &lt;strong&gt;Notification Lifecycle Mgt.&lt;/strong&gt; (1511), that provides functions to create new notification context lines and recall them. This codeunit contains one instance of the temporary table &lt;strong&gt;Notification Context&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A helper codeunit:&lt;strong&gt;Notification Lifecycle Helper&lt;/strong&gt; (1508), that subscribes to various events and makes the calls to the &lt;strong&gt;Notification Lifecycle Mgt.&lt;/strong&gt; codeunit.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;The unit tests for this framework are in codeunit &lt;strong&gt;Notification Lifecycle Tests&lt;/strong&gt; (139480).&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;The main functions provided by codeunit 1511 are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;SendNotification&lt;/strong&gt;(NotificationToSend : Notification;RecId : RecordID)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sends a notification and keeps track of it in the simplest way. We have a notification to send and the record ID of the object that triggered the notification.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;SendNotificationWithAdditionalContext&lt;/strong&gt;(NotificationToSend : Notification;RecId : RecordID;AdditionalContextId : GUID)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sends a notification and keeps track of it with additional information. For example, a GUID that represents the context in which the notification was sent, and an item with insufficient inventory.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;RecallNotificationsForRecord&lt;/strong&gt;(RecId : RecordID;HandleDelayedInsert : Boolean)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Recalls all notifications that were sent by a given record ID. The HandleDelayedInsert flag should be TRUE if it is possible that the record ID provided is from a record that was not yet in the database (TRUE unless we recall notifications after deletion of a record).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;RecallNotificationsForRecordWithAdditionalContext&lt;/strong&gt;(RecId : RecordID;AdditionalContextId : GUID;HandleDelayedInsert : Boolean)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Recalls the notification that was sent by a given Record ID in a particular context. The HandleDelayedInsert flag should be TRUE if it is possible that the Record ID provided is from a record that was not yet in the database (TRUE unless we recall notifications after deleting a record).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;SetRecordID&lt;/strong&gt;(RecId : RecordID)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sets the record ID after delayed insertion of a record. This will update the initially incomplete Record ID in the &lt;strong&gt;Notification Context&lt;/strong&gt; table to a full Record ID.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;UpdateRecordID&lt;/strong&gt;(CurrentRecId : RecordID;NewRecId : RecordID)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Replace CurrentRecId with NewRecId in the &lt;strong&gt;Notification Context&lt;/strong&gt; table. This is called by &lt;strong&gt;SetRecordId&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Usage&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;The simple case is:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;We create a notification object.&lt;/li&gt;
+&lt;li&gt;We call &lt;strong&gt;SendNotification&lt;/strong&gt; or &lt;strong&gt;SendNotificationWithAdditionalContext&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;When we want to recall the notification, we call &lt;strong&gt;RecallNotificationsForRecord&lt;/strong&gt; or &lt;strong&gt;RecallNotificationsForRecordWithAdditionalContext&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a href=&#34;sequence1.png&#34;&gt;&lt;img src=&#34;sequence1.png&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Figure 4: without additional context&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;sequence2.png&#34;&gt;&lt;img src=&#34;sequence2.png&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Figure 5: with additional context&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;However, delayed insert means that the simple case seen above doesn&amp;rsquo;t happen very often. The issue is that when we call &lt;strong&gt;SendNotification&lt;/strong&gt;, we provide the cause object&amp;rsquo;s record ID. If this object has not been inserted yet, which is often the case when the user creates a new invoice, a new line, and so on, the record ID is incomplete. When the object is inserted the record ID is completed, but if we call &lt;strong&gt;RecallNotificationsForRecord&lt;/strong&gt; at a later point, the record ID will be different from the incomplete record ID we used when sending the notification. The solution is to detect that the object is not yet inserted when we send the notification, and at a later point, set the record ID when the cause object is inserted. &lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;The realistic case is:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;We have a temporary object with a partially complete ID. Something like: Sales Line, 1000, &amp;ldquo;&amp;rdquo;.&lt;/li&gt;
+&lt;li&gt;We send a notification caused by this object (item out of stock).&lt;/li&gt;
+&lt;li&gt;The temporary table receives NotificationId, empty record Id (Quote, &amp;ldquo;&amp;quot;), additional context (item out of stock).&lt;/li&gt;
+&lt;li&gt;When the user leaves the field, the line is inserted. We replace the empty record ID (Quote, &amp;ldquo;&amp;quot;) by the full record ID (Sales Line, 1000, 10000).&lt;/li&gt;
+&lt;li&gt;We recall the notification (the user put a lower quantity for example).&lt;/li&gt;
+&lt;li&gt;We search for records with the full record ID and the additional context (item out of stock).&lt;/li&gt;
+&lt;li&gt;If found, they are recalled.  &lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a href=&#34;sequence3.png&#34;&gt;&lt;img src=&#34;sequence3.png&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Figure 6: delayed insert, with additional context&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Usages in NAV:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;COD311 (Item-Check Avail.)&lt;/p&gt;
+&lt;p&gt;COD312 (Cust-Check Cr. Limit)&lt;/p&gt;
+&lt;p&gt;COD1508 (Notification Lifecycle Handler)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Related Patterns:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/notifications/in-context-notifications/&#34;&gt;In-context notifications&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/singleton/singleton-codeunit/&#34;&gt;Singleton codeunit&lt;/a&gt;&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

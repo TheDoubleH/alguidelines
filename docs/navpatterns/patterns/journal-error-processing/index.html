@@ -1,0 +1,920 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.92.1" />
+<meta name="robots" content="index, follow">
+
+
+<link rel="shortcut icon" href="/.%5cpublic/favicons/favicon.ico" >
+<link rel="apple-touch-icon" href="/.%5cpublic/favicons/apple-touch-icon-180x180.png" sizes="180x180">
+<link rel="icon" type="image/png" href="/.%5cpublic/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="/.%5cpublic/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/.%5cpublic/favicons/android-36x36.png" sizes="36x36">
+<link rel="icon" type="image/png" href="/.%5cpublic/favicons/android-48x48.png" sizes="48x48">
+<link rel="icon" type="image/png" href="/.%5cpublic/favicons/android-72x72.png" sizes="72x72">
+<link rel="icon" type="image/png" href="/.%5cpublic/favicons/android-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/.%5cpublic/favicons/android-144x144.png" sizes="144x144">
+<link rel="icon" type="image/png" href="/.%5cpublic/favicons/android-192x192.png" sizes="192x192">
+
+<title>Journal Error Processing | alguidelines.dev</title>
+<meta name="description" content="Originally by Bogdana Botez at Microsoft Development Center Copenhagen
+Abstract
+This pattern describes an optimized way to handle invalid, incomplete, …">
+<meta property="og:title" content="Journal Error Processing" />
+<meta property="og:description" content="Originally by Bogdana Botez at Microsoft Development Center Copenhagen
+Abstract This pattern describes an optimized way to handle invalid, incomplete, or inconsistent data that users enter in journals.
+Description Scenario: A user has entered data on a journal line and proceeds to invoke a processing action on it, such as posting or exporting to electronic payments. NAV validates the data before it is committed. If any validation errors are found, the user must be informed of validation errors in the most optimal way." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content=".%5Cpublic/docs/navpatterns/patterns/journal-error-processing/" /><meta property="og:image" content=".%5Cpublic/images/og-image-fission.png"/><meta property="article:section" content="docs" />
+
+<meta property="article:modified_time" content="2022-02-17T20:29:15-08:00" /><meta property="og:site_name" content="alguidelines.dev" />
+
+<meta itemprop="name" content="Journal Error Processing">
+<meta itemprop="description" content="Originally by Bogdana Botez at Microsoft Development Center Copenhagen
+Abstract This pattern describes an optimized way to handle invalid, incomplete, or inconsistent data that users enter in journals.
+Description Scenario: A user has entered data on a journal line and proceeds to invoke a processing action on it, such as posting or exporting to electronic payments. NAV validates the data before it is committed. If any validation errors are found, the user must be informed of validation errors in the most optimal way.">
+<meta itemprop="dateModified" content="2022-02-17T20:29:15-08:00" />
+<meta itemprop="wordCount" content="996"><meta itemprop="image" content=".%5Cpublic/images/og-image-fission.png"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content=".%5Cpublic/images/og-image-fission.png"/>
+
+<meta name="twitter:title" content="Journal Error Processing"/>
+<meta name="twitter:description" content="Originally by Bogdana Botez at Microsoft Development Center Copenhagen
+Abstract This pattern describes an optimized way to handle invalid, incomplete, or inconsistent data that users enter in journals.
+Description Scenario: A user has entered data on a journal line and proceeds to invoke a processing action on it, such as posting or exporting to electronic payments. NAV validates the data before it is committed. If any validation errors are found, the user must be informed of validation errors in the most optimal way."/>
+
+
+
+
+<link rel="preload" href="/./public/scss/main.min.1ba39edbdd567035af108bb6b9eb963593d1c72e3ed4cef5b46756d0548e31b6.css" as="style">
+<link href="/./public/scss/main.min.1ba39edbdd567035af108bb6b9eb963593d1c72e3ed4cef5b46756d0548e31b6.css" rel="stylesheet" integrity="">
+
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK"
+  crossorigin="anonymous"></script>
+
+  </head>
+  <body class="td-page">
+    <header>
+      
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar">
+        <a class="navbar-brand" href=".%5cpublic/">
+		<span class="navbar-logo"><svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 255 255"><defs><style>.cls-1{fill:#2ea98e}</style></defs><title>AL logo_VS_smallest version_v3</title><path class="cls-1" d="M92.71 61.16a12.38 12.38.0 00-11.56-8h-.44a12.38 12.38.0 00-11.56 8l-52.79 138H46.58l8.06-23h52.58l8.06 23h30.21zm-29.16 89 17.38-49.58L98.3 150.2z"/><path class="cls-1" d="M189.7 172.2V54.2h-28V180.92c0 12.21 11.34 18.28 18 18.28h59v-27z"/></svg></span><span class="font-weight-bold">alguidelines.dev</span>
+	</a>
+	<div class="td-navbar-nav-scroll ml-md-auto" id="main_navbar">
+		<ul class="navbar-nav mt-2 mt-lg-0">
+			
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				
+				
+				<a class="nav-link" href="/.%5cpublic/.%5cpublic/docs/" ><i class='fas fa-book'></i><span>Docs</span></a>
+			</li>
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				
+				
+				<a class="nav-link" href="/.%5cpublic/.%5cpublic/blog/" ><i class='fas fa-blog'></i><span>Blog</span></a>
+			</li>
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				
+				
+				<a class="nav-link" href="https://environments.fission.io/" target="_blank" ><i class='fas fa-store'></i><span>Environments</span></a>
+			</li>
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				
+				
+				<a class="nav-link" href="https://github.com/fission" target="_blank" ><i class='fab fa-github'></i><span>GitHub</span></a>
+			</li>
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				
+				
+				<a class="nav-link" href="/.%5cpublic/.%5cpublic/slack" ><i class='fab fa-slack'></i><span>Slack</span></a>
+			</li>
+			
+			
+			
+		</ul>
+	</div>
+	<div class="navbar-nav d-none d-lg-block"></div>
+</nav>
+
+    </header>
+    <div class="container-fluid td-outer">
+      <div class="td-main">
+        <div class="row flex-xl-nowrap">
+          <aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+            
+<div id="td-sidebar-menu" class="td-sidebar__inner">
+  <div id="content-mobile">
+  <form class="td-sidebar__search d-flex align-items-center">
+    
+    <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type="button" data-toggle="collapse" data-target="#td-section-nav" aria-controls="td-docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    </button>
+  </form>
+  </div>
+  <div id="content-desktop"></div>
+  <nav class="collapse td-sidebar-nav" id="td-section-nav">
+    <ul class="td-sidebar-nav__section pr-md-3 ul-0">
+      <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-publicdocs-li">
+  <a href=".%5cpublic/docs/" title="AL Guidelines" class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id="m-publicdocs"><span class="">Docs</span></a>
+  <ul class="ul-1">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-publicdocspatterns-li">
+  <a href=".%5cpublic/docs/patterns/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-publicdocspatterns"><span class="">Patterns</span></a>
+  <ul class="ul-2 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocspatternsevent-bridge-pattern-li">
+  <a href=".%5cpublic/docs/patterns/event-bridge-pattern/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocspatternsevent-bridge-pattern"><span class="">Event Bridge</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocspatternsfacade-pattern-li">
+  <a href=".%5cpublic/docs/patterns/facade-pattern/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocspatternsfacade-pattern"><span class="">Façade</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocspatternsgeneric-method-pattern-li">
+  <a href=".%5cpublic/docs/patterns/generic-method-pattern/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocspatternsgeneric-method-pattern"><span class="">Generic Method</span></a>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-publicdocsbcbestpractices-li">
+  <a href=".%5cpublic/docs/bcbestpractices/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-publicdocsbcbestpractices"><span class="">BC Dev. Best Practices</span></a>
+  <ul class="ul-2 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child collapse" id="m-publicdocsbcbestpracticesperformance-li">
+  <a href=".%5cpublic/docs/bcbestpractices/performance/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-publicdocsbcbestpracticesperformance"><span class="">Performance</span></a>
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsbcbestpracticesperformancedeleteall-li">
+  <a href=".%5cpublic/docs/bcbestpractices/performance/deleteall/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsbcbestpracticesperformancedeleteall"><span class="">DeleteAll</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsbcbestpracticesperformancesubscribercodeunits-li">
+  <a href=".%5cpublic/docs/bcbestpractices/performance/subscribercodeunits/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsbcbestpracticesperformancesubscribercodeunits"><span class="">Subscriber Codeunits</span></a>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child collapse" id="m-publicdocsbcbestpracticesreadability-li">
+  <a href=".%5cpublic/docs/bcbestpractices/readability/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-publicdocsbcbestpracticesreadability"><span class="">Readability</span></a>
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsbcbestpracticesreadabilitybegin-as-an-afterword-li">
+  <a href=".%5cpublic/docs/bcbestpractices/readability/begin-as-an-afterword/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsbcbestpracticesreadabilitybegin-as-an-afterword"><span class="">begin as an &#39;After Word&#39;</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsbcbestpracticesreadabilitybegin-end-li">
+  <a href=".%5cpublic/docs/bcbestpractices/readability/begin-end/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsbcbestpracticesreadabilitybegin-end"><span class="">Begin-End - Compound Only</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsbcbestpracticesreadabilitybinary-operator-line-start-li">
+  <a href=".%5cpublic/docs/bcbestpractices/readability/binary-operator-line-start/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsbcbestpracticesreadabilitybinary-operator-line-start"><span class="">Binary Operator to Start Line</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsbcbestpracticesreadabilitycase-actions-li">
+  <a href=".%5cpublic/docs/bcbestpractices/readability/case-actions/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsbcbestpracticesreadabilitycase-actions"><span class="">CASE Action on next line</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsbcbestpracticesreadabilitycomments-spacing-li">
+  <a href=".%5cpublic/docs/bcbestpractices/readability/comments-spacing/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsbcbestpracticesreadabilitycomments-spacing"><span class="">Comment Spacing</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsbcbestpracticesreadabilityend-else-pair-li">
+  <a href=".%5cpublic/docs/bcbestpractices/readability/end-else-pair/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsbcbestpracticesreadabilityend-else-pair"><span class="">end else pair</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsbcbestpracticesreadabilitykeyword-pairs-indentation-li">
+  <a href=".%5cpublic/docs/bcbestpractices/readability/keyword-pairs-indentation/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsbcbestpracticesreadabilitykeyword-pairs-indentation"><span class="">Keyword Pairs - Indentation</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsbcbestpracticesreadabilityline-start-keywords-li">
+  <a href=".%5cpublic/docs/bcbestpractices/readability/line-start-keywords/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsbcbestpracticesreadabilityline-start-keywords"><span class="">Line Start Keywords</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsbcbestpracticesreadabilitylonely-repeat-li">
+  <a href=".%5cpublic/docs/bcbestpractices/readability/lonely-repeat/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsbcbestpracticesreadabilitylonely-repeat"><span class="">Lonely Repeat</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsbcbestpracticesreadabilitynamed-invocations-li">
+  <a href=".%5cpublic/docs/bcbestpractices/readability/named-invocations/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsbcbestpracticesreadabilitynamed-invocations"><span class="">Named Invocations</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsbcbestpracticesreadabilityone-statement-per-line-li">
+  <a href=".%5cpublic/docs/bcbestpractices/readability/one-statement-per-line/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsbcbestpracticesreadabilityone-statement-per-line"><span class="">One Statement Per Line</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsbcbestpracticesreadabilityseparate-if-and-else-li">
+  <a href=".%5cpublic/docs/bcbestpractices/readability/separate-if-and-else/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsbcbestpracticesreadabilityseparate-if-and-else"><span class="">Separate if and else</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsbcbestpracticesreadabilityspacing-binary-operators-li">
+  <a href=".%5cpublic/docs/bcbestpractices/readability/spacing-binary-operators/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsbcbestpracticesreadabilityspacing-binary-operators"><span class="">Spacing Binary Operators</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsbcbestpracticesreadabilitysuggested-abbreviations-li">
+  <a href=".%5cpublic/docs/bcbestpractices/readability/suggested-abbreviations/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsbcbestpracticesreadabilitysuggested-abbreviations"><span class="">Suggested Abbreviations</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsbcbestpracticesreadabilityunnecessary-else-li">
+  <a href=".%5cpublic/docs/bcbestpractices/readability/unnecessary-else/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsbcbestpracticesreadabilityunnecessary-else"><span class="">Unnecessary &#39;else&#39;</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsbcbestpracticesreadabilityunnecessary-truefalse-li">
+  <a href=".%5cpublic/docs/bcbestpractices/readability/unnecessary-truefalse/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsbcbestpracticesreadabilityunnecessary-truefalse"><span class="">Unnecessary true/false</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsbcbestpracticesreadabilityvariable-naming-li">
+  <a href=".%5cpublic/docs/bcbestpractices/readability/variable-naming/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsbcbestpracticesreadabilityvariable-naming"><span class="">Variable Naming</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsbcbestpracticesreadabilityvariables-declarations-order-li">
+  <a href=".%5cpublic/docs/bcbestpractices/readability/variables-declarations-order/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsbcbestpracticesreadabilityvariables-declarations-order"><span class="">Variables Declarations Order</span></a>
+</li>
+  </ul>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-publicdocsnavpatterns-li">
+  <a href=".%5cpublic/docs/navpatterns/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-publicdocsnavpatterns"><span class="">NAV Patterns Archive</span></a>
+  <ul class="ul-2 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-publicdocsnavpatternspatterns-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-publicdocsnavpatternspatterns"><span class="">Patterns</span></a>
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternsactivity-log-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/activity-log/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsactivity-log"><span class="">Activity Logs</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternsargument-table-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/argument-table/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsargument-table"><span class="">Argument Table</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-publicdocsnavpatternspatternsblocked-entity-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/blocked-entity/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-publicdocsnavpatternspatternsblocked-entity"><span class="">Blocked Entity</span></a>
+  <ul class="ul-4 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatternspatternsblocked-entitydata-driven-blocked-entity-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/blocked-entity/data-driven-blocked-entity/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsblocked-entitydata-driven-blocked-entity"><span class="">Data Driven Blocked Entity</span></a>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternscached-web-service-calls-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/cached-web-service-calls/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternscached-web-service-calls"><span class="">Cached Web Server Calls</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternsconditional-cascading-update-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/conditional-cascading-update/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsconditional-cascading-update"><span class="">Conditional Cascading Update</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternscopy-document-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/copy-document/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternscopy-document"><span class="">Copy Document</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternscreate-data-from-templates-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/create-data-from-templates/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternscreate-data-from-templates"><span class="">Create Data from Templates</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternscreate-urls-to-nav-clients-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/create-urls-to-nav-clients/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternscreate-urls-to-nav-clients"><span class="">Create URLs to NAV Clients</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternscreating-custom-charts-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/creating-custom-charts/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternscreating-custom-charts"><span class="">Creating Custom Charts</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternscross-session-events-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/cross-session-events/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternscross-session-events"><span class="">Cross Session Events</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternscurrently-active-record-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/currently-active-record/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternscurrently-active-record"><span class="">Currently Active Record</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternsdata-migration-facade-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/data-migration-facade/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsdata-migration-facade"><span class="">Data Migration Façade</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternsdiscovery-event-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/discovery-event/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsdiscovery-event"><span class="">Discovery Event</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternsdocument-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/document/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsdocument"><span class="">Document</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternseasy-update-of-setup-or-supplementary-information-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/easy-update-of-setup-or-supplementary-information/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternseasy-update-of-setup-or-supplementary-information"><span class="">Easy Update Of Setup Or Supplementary Information</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternserror-message-processing-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/error-message-processing/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternserror-message-processing"><span class="">Error Message Processing</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternsextending-the-role-center-headlines-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/extending-the-role-center-headlines/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsextending-the-role-center-headlines"><span class="">Extending the Role Center Headlines</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternsfeature-localization-for-data-structures-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/feature-localization-for-data-structures/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsfeature-localization-for-data-structures"><span class="">Feature Localization For Data Structures</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternshooks-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/hooks/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternshooks"><span class="">Hooks</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternsimplementation-of-surrogate-keys-using-autoincrement-pattern-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/implementation-of-surrogate-keys-using-autoincrement-pattern/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsimplementation-of-surrogate-keys-using-autoincrement-pattern"><span class="">Surrogate keys using Autoincrement Pattern</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternsinstructions-in-the-ui-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/instructions-in-the-ui/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsinstructions-in-the-ui"><span class="">Instructions in the UI</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternsintegration-of-addresses-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/integration-of-addresses/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsintegration-of-addresses"><span class="">Integration of Addresses</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-publicdocsnavpatternspatternsjournal-error-processing-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/journal-error-processing/" class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsjournal-error-processing"><span class="td-sidebar-nav-active-item">Journal Error Processing</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternsjournal-template-batch-line-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/journal-template-batch-line/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsjournal-template-batch-line"><span class="">Journal Template Batch Line</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternsmaster-data-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/master-data/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsmaster-data"><span class="">Master Data</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternsmulti-file-download-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/multi-file-download/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsmulti-file-download"><span class="">Multi-file Download</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternsmulti-page-list-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/multi-page-list/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsmulti-page-list"><span class="">Multi-Page List</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternsmultilanguage-application-data-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/multilanguage-application-data/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsmultilanguage-application-data"><span class="">Multilanguage Application Data</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-publicdocsnavpatternspatternsnet-exception-handling-in-cal-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/net-exception-handling-in-cal/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-publicdocsnavpatternspatternsnet-exception-handling-in-cal"><span class="">NET Exception Handling in CAL</span></a>
+  <ul class="ul-4 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatternspatternsnet-exception-handling-in-caltryfunction-net-exception-handling-in-cal-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/net-exception-handling-in-cal/tryfunction-net-exception-handling-in-cal/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsnet-exception-handling-in-caltryfunction-net-exception-handling-in-cal"><span class="">TryFunction NET Exception Handling in CAL</span></a>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternsno-series-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/no-series/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsno-series"><span class="">No Series</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-publicdocsnavpatternspatternsnotifications-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/notifications/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-publicdocsnavpatternspatternsnotifications"><span class="">Notifications</span></a>
+  <ul class="ul-4 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatternspatternsnotificationsin-context-notifications-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/notifications/in-context-notifications/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsnotificationsin-context-notifications"><span class="">In-context Notifications</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatternspatternsnotificationsnotification-lifecycle-management-pattern-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/notifications/notification-lifecycle-management-pattern/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsnotificationsnotification-lifecycle-management-pattern"><span class="">Notification Lifecycle Management Pattern</span></a>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternsobserver-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/observer/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsobserver"><span class="">Observer</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternsposting-routine-select-behavior-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/posting-routine-select-behavior/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsposting-routine-select-behavior"><span class="">Posting Routine - Select Behavior</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternsproduct-name-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/product-name/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsproduct-name"><span class="">Product Name</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-publicdocsnavpatternspatternsqueries-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/queries/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-publicdocsnavpatternspatternsqueries"><span class="">Queries</span></a>
+  <ul class="ul-4 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatternspatternsqueriesselect-distinct-with-queries-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/queries/select-distinct-with-queries/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsqueriesselect-distinct-with-queries"><span class="">SELECT DISTINCT with Queries</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatternspatternsqueriesuse-queries-to-detect-duplicate-records-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/queries/use-queries-to-detect-duplicate-records/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsqueriesuse-queries-to-detect-duplicate-records"><span class="">Use Queries to Detect Duplicate Records</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatternspatternsqueriesuse-queries-to-replace-nested-loops-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/queries/use-queries-to-replace-nested-loops/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsqueriesuse-queries-to-replace-nested-loops"><span class="">Use Queries to Replace Nested Loops</span></a>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternsread-once-initialization-and-validation-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/read-once-initialization-and-validation/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsread-once-initialization-and-validation"><span class="">Read-once Initialization and Validation</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternsreleased-entity-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/released-entity/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsreleased-entity"><span class="">Released Entity</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternsreport-selection-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/report-selection/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsreport-selection"><span class="">Report Selection</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-publicdocsnavpatternspatternssecurity-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/security/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-publicdocsnavpatternspatternssecurity"><span class="">Security</span></a>
+  <ul class="ul-4 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatternspatternssecurity1-sensitive-data-encapsulation-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/security/1-sensitive-data-encapsulation/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternssecurity1-sensitive-data-encapsulation"><span class="">Sensitive Data Encapsulation</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatternspatternssecurity2-data-encryption-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/security/2-data-encryption/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternssecurity2-data-encryption"><span class="">Data Encryption</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatternspatternssecurity3-single-point-of-access-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/security/3-single-point-of-access/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternssecurity3-single-point-of-access"><span class="">Single Point of Access</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatternspatternssecurity4-masked-text-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/security/4-masked-text/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternssecurity4-masked-text"><span class="">Masked Text</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatternspatternssecurity5-ssl-in-nav-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/security/5-ssl-in-nav/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternssecurity5-ssl-in-nav"><span class="">SSL in NAV</span></a>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternssetup-specificity-fallback-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/setup-specificity-fallback/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternssetup-specificity-fallback"><span class="">Setup Specificity Fallback</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternssilent-file-upload-and-download-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/silent-file-upload-and-download/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternssilent-file-upload-and-download"><span class="">Silent File Upload and Download</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-publicdocsnavpatternspatternssingleton-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/singleton/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-publicdocsnavpatternspatternssingleton"><span class="">Singleton</span></a>
+  <ul class="ul-4 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatternspatternssingletonsingleton-codeunit-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/singleton/singleton-codeunit/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternssingletonsingleton-codeunit"><span class="">Singleton Codeunit</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child collapse" id="m-publicdocsnavpatternspatternssingletonsingleton-table-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/singleton/singleton-table/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-publicdocsnavpatternspatternssingletonsingleton-table"><span class="">Singleton Table</span></a>
+  <ul class="ul-5 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatternspatternssingletonsingleton-tablecue-table-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/singleton/singleton-table/cue-table/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternssingletonsingleton-tablecue-table"><span class="">Cue Table</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatternspatternssingletonsingleton-tablesetup-table-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/singleton/singleton-table/setup-table/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternssingletonsingleton-tablesetup-table"><span class="">Setup Table</span></a>
+</li>
+  </ul>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternsstandard-journal-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/standard-journal/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsstandard-journal"><span class="">Standard Journal</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternstemporary-dataset-report-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/temporary-dataset-report/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternstemporary-dataset-report"><span class="">Temporary Dataset Report</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternstotals-and-discounts-on-subpages-sales-and-purchases-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/totals-and-discounts-on-subpages-sales-and-purchases/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternstotals-and-discounts-on-subpages-sales-and-purchases"><span class="">Totals and Discounts on Subpages Sales and Purchases</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternstransfer-custom-fields-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/transfer-custom-fields/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternstransfer-custom-fields"><span class="">Transfer Custom Fields</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternspatternsvariant-facade-li">
+  <a href=".%5cpublic/docs/navpatterns/patterns/variant-facade/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternspatternsvariant-facade"><span class="">Variant Facade</span></a>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-publicdocsnavpatterns2-anti-patterns-li">
+  <a href=".%5cpublic/docs/navpatterns/2-anti-patterns/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-publicdocsnavpatterns2-anti-patterns"><span class="">2. Anti-Patterns</span></a>
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns2-anti-patternsnav-upgrade-li">
+  <a href=".%5cpublic/docs/navpatterns/2-anti-patterns/nav-upgrade/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns2-anti-patternsnav-upgrade"><span class="">Nav Upgrade</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns2-anti-patternsreusable-bugs-li">
+  <a href=".%5cpublic/docs/navpatterns/2-anti-patterns/reusable-bugs/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns2-anti-patternsreusable-bugs"><span class="">Reusable Bugs</span></a>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-publicdocsnavpatterns3-cal-coding-guidelines-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-publicdocsnavpatterns3-cal-coding-guidelines"><span class="">3. CAL Coding Guidelines</span></a>
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesign-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/design/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesign"><span class="">Design</span></a>
+  <ul class="ul-4 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesignby-reference-parameters-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/design/by-reference-parameters/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesignby-reference-parameters"><span class="">By Reference Parameters</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesignclass-coupling-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/design/class-coupling/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesignclass-coupling"><span class="">Class Coupling</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesigncyclomatic-complexity-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/design/cyclomatic-complexity/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesigncyclomatic-complexity"><span class="">Cyclomatic Complexity</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesignencapsulate-local-functionality-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/design/encapsulate-local-functionality/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesignencapsulate-local-functionality"><span class="">Encapsulate Local Functionality</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesignfindset-findfirst-findlast-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/design/findset-findfirst-findlast/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesignfindset-findfirst-findlast"><span class="">FINDSET FINDFIRST FINDLAST</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesigninitialized-variables-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/design/initialized-variables/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesigninitialized-variables"><span class="">Initialized Variables</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesignmaintainability-index-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/design/maintainability-index/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesignmaintainability-index"><span class="">Maintainability Index</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesignparameter-placeholders-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/design/parameter-placeholders/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesignparameter-placeholders"><span class="">Parameter Placeholders</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesignstatic-object-invocation-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/design/static-object-invocation/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesignstatic-object-invocation"><span class="">Static Object Invocation</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesignunreachable-code-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/design/unreachable-code/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesignunreachable-code"><span class="">Unreachable Code</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesignunused-initialized-variables-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/design/unused-initialized-variables/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesignunused-initialized-variables"><span class="">Unused Initialized Variables</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesignunused-variables-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/design/unused-variables/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesignunused-variables"><span class="">Unused Variables</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesignvariable-capacity-mismatch-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/design/variable-capacity-mismatch/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesignvariable-capacity-mismatch"><span class="">Variable Capacity Mismatch</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesignwith-scope-name-collision-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/design/with-scope-name-collision/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesdesignwith-scope-name-collision"><span class="">WITH Scope Name Collision</span></a>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesinternally-used-dot-net-types-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/internally-used-dot-net-types/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesinternally-used-dot-net-types"><span class="">Internally used DotNet Types</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesinternationalization-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/internationalization/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-publicdocsnavpatterns3-cal-coding-guidelinesinternationalization"><span class="">Internationalization</span></a>
+  <ul class="ul-4 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesinternationalizationusing-calcdate-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/internationalization/using-calcdate/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesinternationalizationusing-calcdate"><span class="">Using Calcdate</span></a>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelineslocalizability-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/localizability/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-publicdocsnavpatterns3-cal-coding-guidelineslocalizability"><span class="">Localizability</span></a>
+  <ul class="ul-4 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelineslocalizabilitycaptionml-for-system-tables-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/localizability/captionml-for-system-tables/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelineslocalizabilitycaptionml-for-system-tables"><span class="">CaptionML on System Pages</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelineslocalizabilityfieldcaption-and-tablecaption-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/localizability/fieldcaption-and-tablecaption/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelineslocalizabilityfieldcaption-and-tablecaption"><span class="">FIELDCAPTION and TABLECAPTION</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelineslocalizabilityglobal-text-constants-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/localizability/global-text-constants/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelineslocalizabilityglobal-text-constants"><span class="">Global Text Constants</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelineslocalizabilityuse-text-constants-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/localizability/use-text-constants/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelineslocalizabilityuse-text-constants"><span class="">Use Text Constants</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelineslocalizabilityusing-optioncaptionml-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/localizability/using-optioncaptionml/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelineslocalizabilityusing-optioncaptionml"><span class="">Using OptionCaptionML</span></a>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadability-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadability"><span class="">Readability</span></a>
+  <ul class="ul-4 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitybegin-as-an-afterword-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/begin-as-an-afterword/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitybegin-as-an-afterword"><span class="">Begin as an &#39;After Word&#39;</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitybegin-end-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/begin-end/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitybegin-end"><span class="">Begin-End - Compound Only</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitybinary-operator-line-start-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/binary-operator-line-start/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitybinary-operator-line-start"><span class="">Binary Operator to Start Line</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityblank-lines-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/blank-lines/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityblank-lines"><span class="">Blank Lines</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitycase-actions-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/case-actions/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitycase-actions"><span class="">CASE Action</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitycolon-usage-in-case-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/colon-usage-in-case/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitycolon-usage-in-case"><span class="">Colon usage in CASE</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitycomments-curly-brackets-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/comments-curly-brackets/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitycomments-curly-brackets"><span class="">Comments inside Curly Brackets</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitycomments-spacing-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/comments-spacing/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitycomments-spacing"><span class="">Comment Spacing</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityend-else-pair-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/end-else-pair/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityend-else-pair"><span class="">END ELSE Pair</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityindentation-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/indentation/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityindentation"><span class="">Indentation</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitykeyword-pairs-indentation-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/keyword-pairs-indentation/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitykeyword-pairs-indentation"><span class="">Keyword Pairs - Indentation</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityline-start-keywords-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/line-start-keywords/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityline-start-keywords"><span class="">Line Start Keywords</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitylonely-repeat-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/lonely-repeat/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitylonely-repeat"><span class="">Lonely Repeat</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitynamed-invocations-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/named-invocations/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitynamed-invocations"><span class="">Named Invocations</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitynested-withs-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/nested-withs/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitynested-withs"><span class="">Nested WITHs</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityone-statement-per-line-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/one-statement-per-line/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityone-statement-per-line"><span class="">One Statement Per Line</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityseparate-if-and-else-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/separate-if-and-else/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityseparate-if-and-else"><span class="">Separate IF and ELSE</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityspacing-binary-operators-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/spacing-binary-operators/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityspacing-binary-operators"><span class="">Spacing Binary Operators</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityspacing-brackets-and-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/spacing-brackets-and/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityspacing-brackets-and"><span class="">Spacing Brackets and ::</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityspacing-unary-operators-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/spacing-unary-operators/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityspacing-unary-operators"><span class="">Spacing Unary Operators</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitysuggested-abbreviations-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/suggested-abbreviations/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitysuggested-abbreviations"><span class="">Suggested Abbreviations</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitytemporary-variable-naming-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/temporary-variable-naming/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitytemporary-variable-naming"><span class="">Temporary Variable Naming</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitytextconst-suffixes-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/textconst-suffixes/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilitytextconst-suffixes"><span class="">TextConst Suffixes</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityunary-operator-line-end-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/unary-operator-line-end/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityunary-operator-line-end"><span class="">Unary Operator Line End</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityunnecessary-compound-parenthesis-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/unnecessary-compound-parenthesis/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityunnecessary-compound-parenthesis"><span class="">Unnecessary Compound Parenthesis</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityunnecessary-else-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/unnecessary-else/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityunnecessary-else"><span class="">Unnecessary ELSE</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityunnecessary-function-parenthesis-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/unnecessary-function-parenthesis/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityunnecessary-function-parenthesis"><span class="">Unnecessary Function Parenthesis</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityunnecessary-separators-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/unnecessary-separators/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityunnecessary-separators"><span class="">Unnecessary Separators</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityunnecessary-truefalse-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/unnecessary-truefalse/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityunnecessary-truefalse"><span class="">Unnecessary TRUE/FALSE</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityvariable-already-scoped-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/variable-already-scoped/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityvariable-already-scoped"><span class="">Variable Already Scoped</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityvariable-naming-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/variable-naming/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityvariable-naming"><span class="">Variable Naming</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityvariables-declarations-order-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/readability/variables-declarations-order/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesreadabilityvariables-declarations-order"><span class="">Variables Declarations Order</span></a>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesux-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/ux/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-publicdocsnavpatterns3-cal-coding-guidelinesux"><span class="">UX</span></a>
+  <ul class="ul-4 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesuxactions-images-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/ux/actions-images/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesuxactions-images"><span class="">Actions - Images</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesuxconfirm-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/ux/confirm/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesuxconfirm"><span class="">CONFIRM</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesuxfielderror-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/ux/fielderror/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesuxfielderror"><span class="">FIELDERROR</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns3-cal-coding-guidelinesuxmessage-and-error-li">
+  <a href=".%5cpublic/docs/navpatterns/3-cal-coding-guidelines/ux/message-and-error/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns3-cal-coding-guidelinesuxmessage-and-error"><span class="">MESSAGE and ERROR</span></a>
+</li>
+  </ul>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-publicdocsnavpatterns4-get-involved-li">
+  <a href=".%5cpublic/docs/navpatterns/4-get-involved/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-publicdocsnavpatterns4-get-involved"><span class="">(OLD) Get Involved</span></a>
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns4-get-involvedcode-of-conduct-li">
+  <a href=".%5cpublic/docs/navpatterns/4-get-involved/code-of-conduct/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns4-get-involvedcode-of-conduct"><span class="">Code of Conduct</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns4-get-involvedpatterns-authors-li">
+  <a href=".%5cpublic/docs/navpatterns/4-get-involved/patterns-authors/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns4-get-involvedpatterns-authors"><span class="">Patterns Authors</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-publicdocsnavpatterns4-get-involvedtemplate-for-writing-nav-design-patterns-li">
+  <a href=".%5cpublic/docs/navpatterns/4-get-involved/template-for-writing-nav-design-patterns/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatterns4-get-involvedtemplate-for-writing-nav-design-patterns"><span class="">Template for writing Nav Design Patterns</span></a>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-publicdocsnavpatternsrelated-links-li">
+  <a href=".%5cpublic/docs/navpatterns/related-links/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-publicdocsnavpatternsrelated-links"><span class="">Related Links</span></a>
+</li>
+  </ul>
+</li>
+  </ul>
+</li>
+    </ul>
+  </nav>
+</div>
+
+          </aside>
+          <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
+            
+<div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
+<a href="https://github.com/microsoft/alguidelines/tree/master/content/en/docs/NAVPatterns/patterns/journal-error-processing/index.md" class="td-page-meta--view" target="_blank" rel="noopener"><i class="fa fa-file-alt fa-fw"></i> View page source</a>
+  <a href="https://github.com/microsoft/alguidelines/edit/master/content/en/docs/NAVPatterns/patterns/journal-error-processing/index.md" class="td-page-meta--edit" target="_blank" rel="noopener"><i class="fa fa-edit fa-fw"></i> Edit this page</a>
+  <a href="https://github.com/microsoft/alguidelines/new/master/content/en/docs/NAVPatterns/patterns/journal-error-processing/index.md?filename=change-me.md&amp;value=---%0D%0Atitle%3A&#43;%22Long&#43;Page&#43;Title%22%0D%0AlinkTitle%3A&#43;%22Short&#43;Nav&#43;Title%22%0D%0Aweight%3A&#43;100%0D%0Adescription%3A&#43;%3E-%0D%0A&#43;&#43;&#43;&#43;&#43;Page&#43;description&#43;for&#43;heading&#43;and&#43;indexes.%0D%0A---%0D%0A%0D%0A%23%23&#43;Heading%0D%0A%0D%0AEdit&#43;this&#43;template&#43;to&#43;create&#43;your&#43;new&#43;page.%0D%0A%0D%0A%2A&#43;Give&#43;it&#43;a&#43;good&#43;name%2C&#43;ending&#43;in&#43;%60.md%60&#43;-&#43;e.g.&#43;%60getting-started.md%60%0D%0A%2A&#43;Edit&#43;the&#43;%22front&#43;matter%22&#43;section&#43;at&#43;the&#43;top&#43;of&#43;the&#43;page&#43;%28weight&#43;controls&#43;how&#43;its&#43;ordered&#43;amongst&#43;other&#43;pages&#43;in&#43;the&#43;same&#43;directory%3B&#43;lowest&#43;number&#43;first%29.%0D%0A%2A&#43;Add&#43;a&#43;good&#43;commit&#43;message&#43;at&#43;the&#43;bottom&#43;of&#43;the&#43;page&#43;%28%3C80&#43;characters%3B&#43;use&#43;the&#43;extended&#43;description&#43;field&#43;for&#43;more&#43;detail%29.%0D%0A%2A&#43;Create&#43;a&#43;new&#43;branch&#43;so&#43;you&#43;can&#43;preview&#43;your&#43;new&#43;file&#43;and&#43;request&#43;a&#43;review&#43;via&#43;Pull&#43;Request.%0D%0A" class="td-page-meta--child" target="_blank" rel="noopener"><i class="fa fa-edit fa-fw"></i> Create child page</a>
+  <a href="https://github.com/microsoft/alguidelines/issues/new?title=Journal%20Error%20Processing" class="td-page-meta--issue" target="_blank" rel="noopener"><i class="fab fa-github fa-fw"></i> Create documentation issue</a>
+  <a href="https://github.com/microsoft/alguidelines/issues/new" class="td-page-meta--project-issue" target="_blank" rel="noopener"><i class="fas fa-tasks fa-fw"></i> Create project issue</a>
+  
+</div>
+
+            
+
+
+<div class="td-toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#abstract">Abstract</a></li>
+    <li><a href="#description">Description</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#application-objects">Application Objects</a></li>
+    <li><a href="#flow">Flow</a></li>
+    <li><a href="#code">Code</a></li>
+    <li><a href="#nav-usages">NAV Usages</a></li>
+    <li><a href="#ideas-for-improvement">Ideas for Improvement</a></li>
+  </ul>
+</nav></div>
+
+
+
+            
+
+	
+		
+
+
+
+  
+  
+
+	
+		
+
+
+
+  
+  
+    <div class="taxonomy taxonomy-terms-cloud taxo-categories">
+      
+        <h5 class="taxonomy-title">Categories</h5>
+      
+      <ul class="taxonomy-terms">
+        
+          <li><a class="taxonomy-term" href=".%5Cpublic/categories/archived-pattern/" data-taxonomy-term="archived-pattern"><span class="taxonomy-label">Archived Pattern</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href=".%5Cpublic/categories/pattern/" data-taxonomy-term="pattern"><span class="taxonomy-label">Pattern</span><span class="taxonomy-count">3</span></a></li>
+        
+      </ul>
+    </div>
+  
+
+	
+		
+
+
+
+  
+  
+    <div class="taxonomy taxonomy-terms-cloud taxo-tags">
+      
+        <h5 class="taxonomy-title">Tags</h5>
+      
+      <ul class="taxonomy-terms">
+        
+          <li><a class="taxonomy-term" href=".%5Cpublic/tags/c/al/" data-taxonomy-term="c/al"><span class="taxonomy-label">C/AL</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href=".%5Cpublic/tags/nav/" data-taxonomy-term="nav"><span class="taxonomy-label">NAV</span><span class="taxonomy-count">1</span></a></li>
+        
+      </ul>
+    </div>
+  
+
+	
+
+          </aside>
+          <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
+            
+  
+
+            <nav aria-label="breadcrumb" class="td-breadcrumbs">
+  <ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href=".%5Cpublic/docs/">Docs</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href=".%5Cpublic/docs/navpatterns/">NAV Patterns Archive</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href=".%5Cpublic/docs/navpatterns/patterns/">Patterns</a>
+  </li>
+  <li class="breadcrumb-item active" aria-current="page">
+    <a href=".%5Cpublic/docs/navpatterns/patterns/journal-error-processing/">Journal Error Processing</a>
+  </li>
+  </ol>
+</nav>
+            
+<div class="td-content">
+	<h1>Journal Error Processing</h1>
+	
+	<header class="article-meta">
+		
+		
+			
+				
+
+
+			
+				
+
+
+			
+				
+
+
+			
+		
+		
+	</header>    
+	<p><em>Originally by Bogdana Botez at Microsoft Development Center Copenhagen</em></p>
+<h2 id="abstract">Abstract</h2>
+<p>This pattern describes an optimized way to handle invalid, incomplete, or inconsistent data that users enter in journals.</p>
+<h2 id="description">Description</h2>
+<p>Scenario: A user has entered data on a journal line and proceeds to invoke a processing action on it, such as posting or exporting to electronic payments. NAV validates the data before it is committed. If any validation errors are found, the user must be informed of validation errors in the most optimal way.</p>
+<p>One design is that when an error is found, stop execution and prompt the user to correct the error. After correcting the error, the user restarts processing and is stopped again at the next error, and so on. Stopping and showing each error is time-consuming and frustrating for the user.</p>
+<p>Another design is that processing does not stop when an error is found. Instead, all errors are gathered in a table and displayed all at once at the end of processing. This way, the processing is ideally invoked only once, reducing the time and effort spent by the user to expose and correct all data validation errors.</p>
+<p>In both designs, the processing is not finalized if any errors are found (for example, exporting to electronic payments is not done, until the data error is resolved).</p>
+<p>This document describes how to implement the second error-handling design: Showing all errors at the end.</p>
+<h2 id="usage">Usage</h2>
+<p>The example below comes from the implementation of SEPA Credit Transfer.</p>
+<p>After setting up SEPA-specific configurations, the user can start entering vendor payments that will later be exported to the payment file. (The setup depends on the country, but generally involves choosing number series for SEPA export files, choosing the export format, and enabling SEPA Credit Transfer.)</p>
+<p>In the W1 solution (and most of the countries), payment lines are created in the Payment Journal page, from where the user can invoke the Export Payments to File action, which will attempt to create a SEPA-compliant XML file containing the description of the journal payments that are to be made by the bank.</p>
+<p>When the Export Payments to File function is invoked, NAV validates the journal line data. If the data must be completed or updated, then no file will be created and the user sees the following message:</p>
+<p><a href="5518.Journal-Error-Processing-1.jpg"><img src="5518.Journal-Error-Processing-1.jpg" alt=" "></a></p>
+<p>To give a visual overview, the lines that need corrections are highlighted in red. The factbox is context-sensitive, meaning that it shows only the errors that relate to the currently selected line.</p>
+<p>When the first payment journal line is selected, the FactBox show errors for the first line.</p>
+<p><a href="0005.Journal-Error-Processing-2.jpg"><img src="0005.Journal-Error-Processing-2.jpg" alt=" "></a></p>
+<p>When the second payment journal line is selected, the FactBox shows errors for the second line.</p>
+<p><a href="8640.Journal-Error-Processing-3.jpg"><img src="8640.Journal-Error-Processing-3.jpg" alt=" "></a></p>
+<h2 id="application-objects">Application Objects</h2>
+<p>In the following table, the Generic Object column contains the objects that you can use as a base for your implementation.</p>
+<table>
+<thead>
+<tr>
+<th>Generic Object</th>
+<th>Description</th>
+<th>Sample W1 implementation of SEPA Credit Transfer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Journal Page</td>
+<td>This is the journal list page where the user invokes the processing action.</td>
+<td>Payment Journal</td>
+</tr>
+<tr>
+<td>Action on Page</td>
+<td>The processing action invoked by the user on the journal list page.</td>
+<td>Export Payments to File</td>
+</tr>
+<tr>
+<td>Errors Page List Part</td>
+<td>A FactBox that displays any journal line validation errors.</td>
+<td></td>
+</tr>
+<tr>
+<td>To improve user experience, the developer can highlight the lines with errors in red and conveniently sort the lines with errors at the top.</td>
+<td>Payment Journal Errors Part</td>
+<td></td>
+</tr>
+<tr>
+<td>Validation codeunit</td>
+<td>Contains code that checks that the journal line contains correct, complete, and coherent data and that the line is ready for whatever process must be done next.</td>
+<td>SEPA CT-Check Line</td>
+</tr>
+<tr>
+<td>Processing codeunit</td>
+<td>Executes the processing of the journal lines.</td>
+<td>SEPA CT-Export File</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Generic Object:</strong> Journal Error Text Table</p>
+<p><strong>Description:</strong></p>
+<p>Contains:</p>
+<ul>
+<li>The error messages</li>
+<li>Link information about where the error messages belong. For example, in table 1228, Payment Jnl. Export Error Text, the error is linked uniquely to a journal line by the following fields:</li>
+<li>Journal Template Name, with TableRelation=&ldquo;Gen. Journal Template&rdquo;</li>
+<li>Journal Batch Name, with TableRelation=&ldquo;Gen. Journal Batch&rdquo;.Name WHERE (Journal Template Name=FIELD(Journal Template Name))</li>
+<li>Journal Line No.</li>
+</ul>
+<p>Other related information can be added, such as document number of the original source document, if the current journal line originates from a document.</p>
+<p>An extra improvement would be to add a drilldown or a link to the page where the user can fix the error. This would significantly simplify the scenario by excluding manual navigation and investigation by the user to find the page where the error can be fixed.</p>
+<p><strong>Sample W1 implementation of SEPA Credit Transfer:</strong> Payment Jnl. Export Error Text</p>
+<p>* The W1 implementation of file export for SEPA Credit Transfer contains the generic SEPA functionality. However, due to differences in data models and user scenarios in various country implementations, the selected local versions contain adaptations of the generic functionality.</p>
+<h2 id="flow">Flow</h2>
+<p>Find below a diagram describing the flow between the objects involved in the journal error processing.</p>
+<p><a href="0777.Journal-Error-Processing.jpg"><img src="0777.Journal-Error-Processing.jpg" alt=" "></a></p>
+<h2 id="code">Code</h2>
+<p>Following the flow above, the code (in the SEPA Credit Transfer example) is as follows.</p>
+<p><a href="5661.Journal-Error-Processing-8.jpg"><img src="5661.Journal-Error-Processing-8.jpg" alt=" "></a></p>
+<p>The public interface of this table contains simple functionality for adding/deleting errors and for interrogation on if any errors are associated with the current journal template and batch.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-AL" data-lang="AL">CreateNew<span style="color:#ce5c00;font-weight:bold">(</span>GenJnlLine<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">Record</span><span style="color:#f8f8f8;text-decoration:underline"> </span>&#34;Gen. Journal Line&#34;<span style="color:#000;font-weight:bold">;</span>NewText<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">Text</span><span style="color:#ce5c00;font-weight:bold">)
+</span><span style="color:#ce5c00;font-weight:bold">
+</span><span style="color:#ce5c00;font-weight:bold"></span>SetLineFilters<span style="color:#ce5c00;font-weight:bold">(</span>GenJnlLine<span style="color:#ce5c00;font-weight:bold">)</span><span style="color:#000;font-weight:bold">;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">IF</span><span style="color:#f8f8f8;text-decoration:underline"> </span>FINDLAST<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">THEN</span><span style="color:#000;font-weight:bold">;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span>&#34;Journal Template Name&#34;<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#ce5c00;font-weight:bold">:=</span><span style="color:#f8f8f8;text-decoration:underline"> </span>GenJnlLine<span style="color:#ce5c00;font-weight:bold">.</span>&#34;Journal Template Name&#34;<span style="color:#000;font-weight:bold">;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span>&#34;Journal Batch Name&#34;<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#ce5c00;font-weight:bold">:=</span><span style="color:#f8f8f8;text-decoration:underline"> </span>GenJnlLine<span style="color:#ce5c00;font-weight:bold">.</span>&#34;Journal Batch Name&#34;<span style="color:#000;font-weight:bold">;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span>&#34;Document No.&#34;<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#ce5c00;font-weight:bold">:=</span><span style="color:#f8f8f8;text-decoration:underline"> </span>GenJnlLine<span style="color:#ce5c00;font-weight:bold">.</span>&#34;Document No.&#34;<span style="color:#000;font-weight:bold">;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span>&#34;Journal Line No.&#34;<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#ce5c00;font-weight:bold">:=</span><span style="color:#f8f8f8;text-decoration:underline"> </span>GenJnlLine<span style="color:#ce5c00;font-weight:bold">.</span>&#34;Line No.&#34;<span style="color:#000;font-weight:bold">;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span>&#34;Line No.&#34;<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#ce5c00;font-weight:bold">+=</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span>&#34;Error Text&#34;<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#ce5c00;font-weight:bold">:=</span><span style="color:#f8f8f8;text-decoration:underline"> </span>COPYSTR<span style="color:#ce5c00;font-weight:bold">(</span>NewText<span style="color:#000;font-weight:bold">,</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span>MAXSTRLEN<span style="color:#ce5c00;font-weight:bold">(</span>&#34;Error Text&#34;<span style="color:#ce5c00;font-weight:bold">))</span><span style="color:#000;font-weight:bold">;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span>INSERT<span style="color:#000;font-weight:bold">;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span>JnlLineHasErrors<span style="color:#ce5c00;font-weight:bold">(</span>GenJnlLine<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">Record</span><span style="color:#f8f8f8;text-decoration:underline"> </span>&#34;Gen. Journal Line&#34;<span style="color:#ce5c00;font-weight:bold">) </span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">Boolean</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span>SetLineFilters<span style="color:#ce5c00;font-weight:bold">(</span>GenJnlLine<span style="color:#ce5c00;font-weight:bold">)</span><span style="color:#000;font-weight:bold">;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">EXIT</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">NOT</span><span style="color:#f8f8f8;text-decoration:underline"> </span>ISEMPTY<span style="color:#ce5c00;font-weight:bold">)</span><span style="color:#000;font-weight:bold">;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span>JnlBatchHasErrors<span style="color:#ce5c00;font-weight:bold">(</span>GenJnlLine<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">Record</span><span style="color:#f8f8f8;text-decoration:underline"> </span>&#34;Gen. Journal Line&#34;<span style="color:#ce5c00;font-weight:bold">) </span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">Boolean</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span>SetBatchFilters<span style="color:#ce5c00;font-weight:bold">(</span>GenJnlLine<span style="color:#ce5c00;font-weight:bold">)</span><span style="color:#000;font-weight:bold">;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">EXIT</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">NOT</span><span style="color:#f8f8f8;text-decoration:underline"> </span>ISEMPTY<span style="color:#ce5c00;font-weight:bold">)</span><span style="color:#000;font-weight:bold">;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span>DeleteJnlLineErrors<span style="color:#ce5c00;font-weight:bold">(</span>GenJnlLine<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">Record</span><span style="color:#f8f8f8;text-decoration:underline"> </span>&#34;Gen. Journal Line&#34;<span style="color:#ce5c00;font-weight:bold">)
+</span><span style="color:#ce5c00;font-weight:bold">
+</span><span style="color:#ce5c00;font-weight:bold"></span><span style="color:#204a87;font-weight:bold">IF</span><span style="color:#f8f8f8;text-decoration:underline"> </span>JnlLineHasErrors<span style="color:#ce5c00;font-weight:bold">(</span>GenJnlLine<span style="color:#ce5c00;font-weight:bold">) </span><span style="color:#204a87;font-weight:bold">THEN</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span>DELETEALL<span style="color:#000;font-weight:bold">;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span>DeleteJnlBatchErrors<span style="color:#ce5c00;font-weight:bold">(</span>GenJnlLine<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">Record</span><span style="color:#f8f8f8;text-decoration:underline"> </span>&#34;Gen. Journal Line&#34;<span style="color:#ce5c00;font-weight:bold">)
+</span><span style="color:#ce5c00;font-weight:bold">
+</span><span style="color:#ce5c00;font-weight:bold"></span><span style="color:#204a87;font-weight:bold">IF</span><span style="color:#f8f8f8;text-decoration:underline"> </span>JnlBatchHasErrors<span style="color:#ce5c00;font-weight:bold">(</span>GenJnlLine<span style="color:#ce5c00;font-weight:bold">) </span><span style="color:#204a87;font-weight:bold">THEN</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span>DELETEALL<span style="color:#000;font-weight:bold">;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><h2 id="nav-usages">NAV Usages</h2>
+<ul>
+<li>
+<p>SEPA Credit Transfer feature - for export of vendor payments</p>
+</li>
+<li>
+<p>SEPA Direct Debit feature for export of customer payment instructions</p>
+</li>
+</ul>
+<p>The same concept of storing error messages (but with a different flow) is also present in:</p>
+<ul>
+<li>
+<p>Planning Error Log table (5430) - Supply Planning feature</p>
+</li>
+<li>
+<p>Costing table (5890) - Costing feature</p>
+</li>
+</ul>
+<h2 id="ideas-for-improvement">Ideas for Improvement</h2>
+<p>Older code in NAV does not use this pattern yet. It would be good for consistency reasons, and also for overall user experience, to extend this pattern to replace the error processing in more areas.</p>
+<p>We can also improve by helping users find the place where they must fix the error by providing auto-navigation to the required page.</p>
+
+	
+	
+	<div class="text-muted mt-5 pt-3 border-top">
+  Last modified February 17, 2022: <a href="https://github.com/microsoft/alguidelines/commit/34a8620aa9e0c58cc4c94f711970e51eb12f9fb5">Initial Version - New theme Docsy (34a8620)</a>
+</div>
+
+</div>
+
+
+          </main>
+        </div>
+      </div>
+      
+<footer class="bg-dark py-5 row d-print-none">
+  <div class="container-fluid mx-sm-5">
+    <div class="row">
+      <div class="col-6 col-sm-4 text-xs-center order-sm-2">
+        
+        
+        
+<ul class="list-inline mb-0">
+  
+  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="Twitter" aria-label="Twitter">
+    <a class="text-white" target="_blank" rel="noopener" href="https://twitter.com/fissionio" aria-label="Twitter">
+      <i class="fab fa-twitter"></i>
+    </a>
+  </li>
+  
+  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="Slack" aria-label="Slack">
+    <a class="text-white" target="_blank" rel="noopener" href="/slack" aria-label="Slack">
+      <i class="fab fa-slack"></i>
+    </a>
+  </li>
+  
+  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="GitHub" aria-label="GitHub">
+    <a class="text-white" target="_blank" rel="noopener" href="https://github.com/fission/fission" aria-label="GitHub">
+      <i class="fab fa-github"></i>
+    </a>
+  </li>
+  
+</ul>
+
+        
+        
+      </div>
+      <div class="col-6 col-sm-4 text-right text-xs-center order-sm-3">
+        
+        
+        
+      </div>
+      <div class="col-12 col-sm-4 text-center py-2 order-sm-2">
+        <small class="text-white">&copy; 2022 Copyright © 2020 alguidelines.dev Project All Rights Reserved</small>
+        
+	
+		
+	
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
+    integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA=="
+    crossorigin="anonymous"></script>
+
+
+
+
+
+<script src='/.%5cpublic/js/tabpane-persist.js'></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/./public/js/main.min.7369ba35f2cf00b158dac238220b67781b8f1201f8e841a6f54e811932de5ba9.js" integrity="sha256-c2m6NfLPALFY2sI4IgtneBuPEgH46EGm9U6BGTLeW6k=" crossorigin="anonymous"></script>
+
+
+
+
+  </body>
+</html>

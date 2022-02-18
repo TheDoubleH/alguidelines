@@ -1,0 +1,405 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>alguidelines.dev – Security</title>
+    <link>.%5Cpublic/docs/navpatterns/patterns/security/</link>
+    <description>Recent content in Security on alguidelines.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	  <atom:link href=".%5Cpublic/docs/navpatterns/patterns/security/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: Sensitive Data Encapsulation</title>
+      <link>.%5Cpublic/docs/navpatterns/patterns/security/1-sensitive-data-encapsulation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>.%5Cpublic/docs/navpatterns/patterns/security/1-sensitive-data-encapsulation/</guid>
+      <description>
+        
+        
+        &lt;p&gt;&lt;em&gt;By Bogdana Botez at Microsoft Development Center Copenhagen&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;Logo-_2D00_-Protected-Data-Encapsulation.png&#34;&gt;&lt;img src=&#34;Logo-_2D00_-Protected-Data-Encapsulation.png&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Aliases:&lt;/strong&gt; Encapsulation, Separation of Concerns [1]&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Context&lt;/strong&gt;: You want to store and protect sensitive data which already exists in a system, but it is not clear which data needs protection and how to store it.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Problem&lt;/strong&gt;: Sensitive data is scattered and mixed with other data in various parts of the system (passwords residing in the same table with non-sensitive data, part of the private information might be stored in files, hardcoded text constants, hardcoded info as part of the code etc.).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Forces:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Obscurity:&lt;/strong&gt; sensitive data mixed with other data and code makes it hard to have an overview of what needs to be protected.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Effort:&lt;/strong&gt; the protection mechanisms needs to be applied multiple times, once for each location of the sensitive data.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Diversity:&lt;/strong&gt; different data storage mediums can require different protection solutions.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cohesiveness:&lt;/strong&gt; code, low importance data, highly sensitive data are all monolithically mixed which might make it hard to select and protect only what is important.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Low&lt;/strong&gt; &lt;strong&gt;Performance&lt;/strong&gt;: protecting all data can slow down the system.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Solution:&lt;/strong&gt; Extract and separate sensitive data into a single known repository.&lt;/p&gt;
+&lt;p&gt;To apply this pattern in Dynamics NAV, a table structure similar to Table 1261 Service Password can be used. The Service Password table also contains additional functionality which will help to further apply related patterns like &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/3-single-point-of-access/&#34;&gt;&lt;strong&gt;Access Control&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;&lt;strong&gt;Encryption&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Figure 1 describes the definition of a table which is already available in Dynamics NAV. This table can be used for storing sensitive data. As a minimum, the table only needs two fields:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The key is of type GUID (Globally Unique Identifier), which is a 128-bit value consisting of multiple groups of hexadecimal digits [2]. Each key needs to be unique and will be used for storing and retrieving the protected information.&lt;/li&gt;
+&lt;li&gt;The value (the actual data to be encapsulated) is of type BLOB (Binary Large OBject) [3], which contains the encrypted or un-encrypted data (for encryption, see the related &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;&lt;strong&gt;Encryption&lt;/strong&gt;&lt;/a&gt; pattern).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a href=&#34;Data-Encapsulation-_2D00_-figure-1.png&#34;&gt;&lt;img src=&#34;Data-Encapsulation-_2D00_-figure-1.png&#34; alt=&#34;Figure 1- Example definition, table used for Data Encapsulation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Figure 1- Example definition, table used for &lt;strong&gt;Sensitive&lt;/strong&gt; &lt;strong&gt;Data&lt;/strong&gt; &lt;strong&gt;Encapsulation&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s use a software system (which can be a Dynamics NAV extension or customization). Chances are that the system will look similar to the one described in part 1 of Figure 2: there is data handled in various places of the system, on various storage solutions. Intertwined with normal data, there is sensitive data. For example: Dynamics CRM (Customer Relationship Management) connection information could be all stored in one table, and consists of the connection URI (normal data), enabled/disabled status (normal data), and connection password (sensitive data).&lt;/p&gt;
+&lt;p&gt;Figure 2 illustrates the system before and after applying the &lt;strong&gt;Sensitive Data Encapsulation&lt;/strong&gt; pattern.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Before: picture part 1 shows the initial system, where most likely the data is scattered across the system. Furthermore, it is stored in different mediums, like
+&lt;ul&gt;
+&lt;li&gt;In a table (possible together with low-importance data)&lt;/li&gt;
+&lt;li&gt;Hardcoded (in Dynamics NAV, it can be a text constant, or just plainly typed in the code)&lt;/li&gt;
+&lt;li&gt;In files&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Furthermore, actors which have to interact with the data, need to remember where to find each piece of information and how to retrieve it.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;After: the part 2 of Figure 2 shows the same system after application of &lt;strong&gt;Sensitive Data Encapsulation&lt;/strong&gt;. Now, all data is stored in one place, and all actors which interact with it can read it from the unique location.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;Multi-_2D00_-1-2.JPG&#34;&gt;&lt;img src=&#34;Multi-_2D00_-1-2.JPG&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Figure 2 - Data access before and after &lt;strong&gt;Sensitive&lt;/strong&gt; &lt;strong&gt;Data&lt;/strong&gt; &lt;strong&gt;Encapsulation.&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Benefits:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Clarity:&lt;/strong&gt; when all sensitive data is encapsulated in one place, it is clear which is the information that needs to be protected.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Simplicity:&lt;/strong&gt; easier to protect just a limited number of known resources when they are grouped.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Homogeneity:&lt;/strong&gt; the same protection can be applied to all data, since it is stored in the same place.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Separation of concerns:&lt;/strong&gt; treat each section of the computer program differently, by separating it and clearly addressing its own requirements and limitations. [1]&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Performance&lt;/strong&gt;: data protection techniques like &lt;strong&gt;Access Control&lt;/strong&gt; and &lt;strong&gt;Encryption&lt;/strong&gt; can now be applied only to the sensitive data (not to everything), which improves the performance of the system.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Drawbacks:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Single point of failure:&lt;/strong&gt; a maliciously intended actor has no longer a need to reverse engineer the places where important data is stored. In the unwanted situation when this actor would have already obtained access to the system, they can more easily locate the sensitive information. This is a step towards information disclosure, but mechanisms like &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;&lt;strong&gt;Encryption&lt;/strong&gt;&lt;/a&gt; and logging can provide further protection.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Limited Text Length&lt;/strong&gt;: there is a limit on how long the encrypted text can be. This limit is imposed by the OS encryption service and it depends on the composition of the text as well as on the system specifics. In NAV, we had implemented the Encrypted Text for text values of max 250 chars, which is enough to cover passwords, person ID numbers, credit card info, but it might turn insufficient in other future scenarios.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Nomenclature&lt;/strong&gt;: the name of the table &lt;strong&gt;Service Password&lt;/strong&gt; is too specific, since it started by being used for passwords, but it has the capability and it now contains other sensitive data like API Keys, credit card numbers etc.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;[1] &amp;ldquo;Wikipedia,&amp;rdquo; [Online]. Available: &lt;a href=&#34;https://en.wikipedia.org/wiki/Separation_of_concerns&#34;&gt;https://en.wikipedia.org/wiki/Separation_of_concerns&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[2] &amp;ldquo;GUID Structure,&amp;rdquo; [Online]. Available: &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/aa373931(VS.85).aspx&#34;&gt;https://msdn.microsoft.com/en-us/library/aa373931(VS.85).aspx&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[3] &amp;ldquo;Wikipedia,&amp;rdquo; [Online]. Available: &lt;a href=&#34;https://en.wikipedia.org/wiki/Binary_large_object&#34;&gt;https://en.wikipedia.org/wiki/Binary_large_object&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[4] waldo, &amp;ldquo;How Do I: Manage Companies in Microsoft Dynamics NAV 2013 R2&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;[5] Microsoft, &amp;ldquo;Multitenant Deployment Architecture,&amp;rdquo; Microsoft, [Online]. Available: &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/dn271675(v=nav.90).aspx&#34;&gt;https://msdn.microsoft.com/en-us/library/dn271675(v=nav.90).aspx&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[6] B. Botez, &amp;ldquo;Setup Table design pattern,&amp;rdquo; Microsoft, 2013. [Online]. Available: &lt;a href=&#34;https://community.dynamics.com/nav/w/designpatterns/76.setup-table&#34;&gt;https://community.dynamics.com/nav/w/designpatterns/76.setup-table&lt;/a&gt;. [Accessed 31 07 2016].&lt;/p&gt;
+&lt;p&gt;[7] &amp;ldquo;Shotgun Surgery,&amp;rdquo; [Online]. Available: &lt;a href=&#34;https://en.wikipedia.org/wiki/Shotgun_surgery&#34;&gt;https://en.wikipedia.org/wiki/Shotgun_surgery&lt;/a&gt;. [Accessed 31 07 2016].&lt;/p&gt;
+&lt;p&gt;[8] M. Fowler, Refactoring: Improving the design of existing code, Addison Wesley, 1999.&lt;/p&gt;
+&lt;p&gt;[9] &amp;ldquo;Masking out,&amp;rdquo; [Online]. Available: &lt;a href=&#34;https://en.wikipedia.org/wiki/Data_masking#Masking_out&#34;&gt;https://en.wikipedia.org/wiki/Data_masking#Masking_out&lt;/a&gt;. [Accessed 29 7 2016].&lt;/p&gt;
+&lt;p&gt;[10] &amp;ldquo;Key Vault,&amp;rdquo; Microsoft, [Online]. Available: &lt;a href=&#34;https://azure.microsoft.com/en-us/services/key-vault/&#34;&gt;https://azure.microsoft.com/en-us/services/key-vault/&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[11] &amp;ldquo;How to: Configure SSL to Secure the Connection to Microsoft Dynamics NAV Web Client,&amp;rdquo; Microsoft, [Online]. Available: &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/hh167264(v=nav.90).aspx&#34;&gt;https://msdn.microsoft.com/en-us/library/hh167264(v=nav.90).aspx&lt;/a&gt;. [Accessed 2 8 2016].&lt;/p&gt;
+&lt;p&gt;[12] &amp;ldquo;sniffer,&amp;rdquo; [Online]. Available: &lt;a href=&#34;http://compnetworking.about.com/od/networksecurityprivacy/g/bldef_sniffer.htm&#34;&gt;http://compnetworking.about.com/od/networksecurityprivacy/g/bldef_sniffer.htm&lt;/a&gt;. [Accessed 02 08 2016].&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Data Encryption</title>
+      <link>.%5Cpublic/docs/navpatterns/patterns/security/2-data-encryption/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>.%5Cpublic/docs/navpatterns/patterns/security/2-data-encryption/</guid>
+      <description>
+        
+        
+        &lt;p&gt;&lt;em&gt;By Bogdana Botez at Microsoft Development Center Copenhagen&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;Logo-_2D00_-Encryption.png&#34;&gt;&lt;img src=&#34;Logo-_2D00_-Encryption.png&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Context&lt;/strong&gt;: After applying &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/1-sensitive-data-encapsulation/&#34;&gt;&lt;strong&gt;Sensitive Data Encapsulation&lt;/strong&gt;&lt;/a&gt;, all sensitive data is gathered in a known place in the database. This makes it possible to apply further protection best practices.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Problem&lt;/strong&gt;: If any non-authorized actor manages to get access to a copy of the database, the sensitive data is immediately available in clear-text.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Forces:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Accessibility:&lt;/strong&gt; anyone who managed to steal a copy of the database can at once read the sensitive information.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Solution:&lt;/strong&gt; Encrypt sensitive data. Dynamics NAV offers a simple mechanism for data encryption, to be used by NAV developers.&lt;/p&gt;
+&lt;p&gt;Figure 1 adds one more step (in continuation of the figure in pattern &lt;strong&gt;&lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/1-sensitive-data-encapsulation/&#34;&gt;Sensitive Data Encapsulation&lt;/a&gt;&lt;/strong&gt;), in which the first two panels describe how sensitive data has all been gathered in one known place. This makes the current pattern, &lt;strong&gt;Encryption&lt;/strong&gt;, much easier &amp;ndash; since now data needs to be encrypted in only one place. The last panel of Figure 1 shows the system after the next step, &lt;strong&gt;Encryption&lt;/strong&gt;, has been implemented. This shows the iterative process of applying patterns and making the code better step by step.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;Multi-_2D00_-1-2-3.JPG&#34;&gt;&lt;img src=&#34;Multi-_2D00_-1-2-3.JPG&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Figure 1- &lt;strong&gt;Encryption&lt;/strong&gt; becomes easier after first applying &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/1-sensitive-data-encapsulation/&#34;&gt;&lt;strong&gt;Sensitive Data Encapsulation&lt;/strong&gt;&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Usage&lt;/strong&gt;: in Dynamics NAV, codeunit 1266 Encryption Management offers an API for encryption of data. The available functionality is described in Table 1.&lt;/p&gt;
+&lt;p&gt;Table 1- Encryption functionality in Dynamics NAV (found in codeunit 1266 Encryption Management)&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Procedure&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;EnableEncryption&lt;/td&gt;
+&lt;td&gt;Confirms with the user before enabling encryption in all companies of the current database.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;EnableEncryptionSilently&lt;/td&gt;
+&lt;td&gt;Enables encryption without UI interaction (to be used for web services).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;DisableEncryption&lt;/td&gt;
+&lt;td&gt;Disables encryption. Has a boolean &amp;ldquo;Silent&amp;rdquo; parameter which enables/disables UI interaction.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Encrypt&lt;/td&gt;
+&lt;td&gt;Checks that encryption is possible before encrypting the given text.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Decrypt&lt;/td&gt;
+&lt;td&gt;Checks that encryption is possible before decrypting the given text.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ExportKey&lt;/td&gt;
+&lt;td&gt;If encryption is possible, it shows a confirmation dialog to confirm the export of the encryption key, and proceeds to saving it to a location chosen by the user.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ImportKey&lt;/td&gt;
+&lt;td&gt;Imports the encryption key from a user chosen location.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ChangeKey&lt;/td&gt;
+&lt;td&gt;Changes the encryption key.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;IsEncryptionEnabled&lt;/td&gt;
+&lt;td&gt;Returns TRUE is encryption is enabled.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;IsEncryptionPossible&lt;/td&gt;
+&lt;td&gt;Check is the correct key is present, which only works if encryption is enabled.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;DeleteEncryptedDataInAllCompanies&lt;/td&gt;
+&lt;td&gt;Confirms through UI and if the user agrees, deletes all data stored in the Service Password table for all companies in the current database. At the end, it deletes the encryption key.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;User confirmation of encryption&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Ideally, encryption should be enabled by default.&lt;/p&gt;
+&lt;p&gt;However, in some versions of Dynamics NAV, there are places where any user who happens to hit a sensitive field (like a password) is asked if they want to encrypt or not. If user confirmation is needed, then let only the security administrators decide (not any random user).&lt;/p&gt;
+&lt;p&gt;To ask the security administrator if they want to enable encryption, plug the code below into the OnValidate trigger of the data field which is to be encrypted. This trigger will then get executed each time there&amp;rsquo;s a change on the password field. For example, if the user is entering a password, then add a call to this procedure to Password &amp;ndash; OnValidate() trigger:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-al&#34; data-lang=&#34;al&#34;&gt;EncryptionIsNotActivatedQst@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1001&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;TextConst&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;ENU=Data encryption is not activated. It is recommended that you encrypt data. \\Do you want to open the Data Encryption Management window?&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;LOCAL&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;PROCEDURE&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;CheckEncryption@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;6&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;()&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;BEGIN&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;IF&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;NOT&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;ENCRYPTIONENABLED&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;THEN&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;IF&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;CONFIRM&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;EncryptionIsNotActivatedQst&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;) &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;THEN&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;            &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;PAGE&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;RUN&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;PAGE&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;::&lt;/span&gt;&amp;#34;Data Encryption Management&amp;#34;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;END&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The code above will guide the user on encrypting, storing the encryption key and choosing a safe password, as follows. Consider for example that NAV is used by a small business, where Stan is the business owner. Hence, Stan has access to all NAV setup and security decisions. Stan wants to enable a connection between NAV and CRM. In NAV, he opens page CRM Connection Setup and enters the URL, user name and password for CRM (Figure 10). When Stan leaves the password field, if data encryption is not enabled, then he sees the confirmation message in Figure 2.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;Encryption-_2D00_-1.JPG&#34;&gt;&lt;img src=&#34;Encryption-_2D00_-1.JPG&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Figure 2- The administrator is advised to enable encryption.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Now Stan becomes aware that there is no encryption and has the opportunity to enable it. If he clicks on &amp;ldquo;Yes&amp;rdquo;, Stan will be taken to the Data Encryption Management page (Figure 3).&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;Encryption-_2D00_-2.png&#34;&gt;&lt;img src=&#34;Encryption-_2D00_-2.png&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Figure 3- Data Encryption Management page&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Stan can now choose &amp;ldquo;Enable Encryption&amp;rdquo; from the ribbon which informs him that an encryption key will be created (Figure 4).&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;Encryption-_2D00_-3.png&#34;&gt;&lt;img src=&#34;Encryption-_2D00_-3.png&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Figure 4- The administrator is encouraged to save a copy of the encryption key.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Stan has the option to save the encryption key in a safe location. He invokes the action Enable Encryption and is guided forward (Figure 5).&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;Encryption-_2D00_-4.png&#34;&gt;&lt;img src=&#34;Encryption-_2D00_-4.png&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Figure 5- The encryption key needs to be protected by a password.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Stan chooses a password, which in this implementation requires minimum 8 characters with at least one uppercase character, one lowercase character and one digit. If the chosen password is too weak, Stan is given information on the expected complexity (Figure 6).&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;Encryption-_2D00_-5.png&#34;&gt;&lt;img src=&#34;Encryption-_2D00_-5.png&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Figure 6- The administrator chooses a strong password.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;In the end, Stan chooses a location for the encryption key on disk, in a standard file save dialog. The layout of the file save dialog depends on the display target used (web browser, rich client etc.).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NAV Usages.&lt;/strong&gt; Encryption examples can be found in NAV in the following places:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Page 1260 Bank Data Conv. Service Setup&lt;/li&gt;
+&lt;li&gt;Page 1270 OCR Service Setup&lt;/li&gt;
+&lt;li&gt;Page 5330 CRM Connection Setup&lt;/li&gt;
+&lt;li&gt;Table 1275 Doc. Exch. Service Setup&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Benefits:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Protection&lt;/strong&gt;: even if the database has been compromised, the sensitive data is encrypted hence not immediately accessible. Combined with best user practices like setting strong passwords, encryption can prove to be a very strong protection mechanism.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Anti-patterns:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Performance:&lt;/strong&gt; Do not encrypt everything, because it will have a performance impact on the system. Only important information should be encrypted.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;System calls and &amp;ldquo;Do It Yourself&amp;rdquo; solutions&lt;/strong&gt;: Although system calls for encryptions are available in NAV (ENCRYPT, DECRYPT and &amp;lt;action&amp;gt;ENCRYPTIONKEY), unless there is no other way, refrain from using them directly. Use instead he API in codeunit 1266 Encryption Management, which is safer to use, because it protects against common mistakes (like attempting to encrypt an already encrypted string, enabling encryption in only one company which makes data not usable in another on the same tenant etc.). Use the &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/3-single-point-of-access/&#34;&gt;&lt;strong&gt;Single Point of Access&lt;/strong&gt;&lt;/a&gt; pattern to handle sensitive data which needs to be encrypted.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;System-level encryption.&lt;/strong&gt; The similar codeunit API 1803 Encrypted Key/Value Management is not intended to be reused by partner NAV developers. Normal NAV users do not have permission to access this resource. This stores sensitive data to be accessed by system NAV functionality.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;[1] &amp;ldquo;Wikipedia,&amp;rdquo; [Online]. Available: &lt;a href=&#34;https://en.wikipedia.org/wiki/Separation_of_concerns&#34;&gt;https://en.wikipedia.org/wiki/Separation_of_concerns&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[2] &amp;ldquo;GUID Structure,&amp;rdquo; [Online]. Available: &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/aa373931(VS.85).aspx&#34;&gt;https://msdn.microsoft.com/en-us/library/aa373931(VS.85).aspx&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[3] &amp;ldquo;Wikipedia,&amp;rdquo; [Online]. Available: &lt;a href=&#34;https://en.wikipedia.org/wiki/Binary_large_object&#34;&gt;https://en.wikipedia.org/wiki/Binary_large_object&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[4] waldo, &amp;ldquo;How Do I: Manage Companies in Microsoft Dynamics NAV 2013 R2&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;[5] Microsoft, &amp;ldquo;Multitenant Deployment Architecture,&amp;rdquo; Microsoft, [Online]. Available: &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/dn271675(v=nav.90).aspx&#34;&gt;https://msdn.microsoft.com/en-us/library/dn271675(v=nav.90).aspx&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[6] B. Botez, &amp;ldquo;Setup Table design pattern,&amp;rdquo; Microsoft, 2013. [Online]. Available: &lt;a href=&#34;https://community.dynamics.com/nav/w/designpatterns/76.setup-table&#34;&gt;https://community.dynamics.com/nav/w/designpatterns/76.setup-table&lt;/a&gt;. [Accessed 31 07 2016].&lt;/p&gt;
+&lt;p&gt;[7] &amp;ldquo;Shotgun Surgery,&amp;rdquo; [Online]. Available: &lt;a href=&#34;https://en.wikipedia.org/wiki/Shotgun_surgery&#34;&gt;https://en.wikipedia.org/wiki/Shotgun_surgery&lt;/a&gt;. [Accessed 31 07 2016].&lt;/p&gt;
+&lt;p&gt;[8] M. Fowler, Refactoring: Improving the design of existing code, Addison Wesley, 1999.&lt;/p&gt;
+&lt;p&gt;[9] &amp;ldquo;Masking out,&amp;rdquo; [Online]. Available: &lt;a href=&#34;https://en.wikipedia.org/wiki/Data_masking#Masking_out&#34;&gt;https://en.wikipedia.org/wiki/Data_masking#Masking_out&lt;/a&gt;. [Accessed 29 7 2016].&lt;/p&gt;
+&lt;p&gt;[10] &amp;ldquo;Key Vault,&amp;rdquo; Microsoft, [Online]. Available: &lt;a href=&#34;https://azure.microsoft.com/en-us/services/key-vault/&#34;&gt;https://azure.microsoft.com/en-us/services/key-vault/&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[11] &amp;ldquo;How to: Configure SSL to Secure the Connection to Microsoft Dynamics NAV Web Client,&amp;rdquo; Microsoft, [Online]. Available: &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/hh167264(v=nav.90).aspx&#34;&gt;https://msdn.microsoft.com/en-us/library/hh167264(v=nav.90).aspx&lt;/a&gt;. [Accessed 2 8 2016].&lt;/p&gt;
+&lt;p&gt;[12] &amp;ldquo;sniffer,&amp;rdquo; [Online]. Available: &lt;a href=&#34;http://compnetworking.about.com/od/networksecurityprivacy/g/bldef_sniffer.htm&#34;&gt;http://compnetworking.about.com/od/networksecurityprivacy/g/bldef_sniffer.htm&lt;/a&gt;. [Accessed 02 08 2016].&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Single Point of Access</title>
+      <link>.%5Cpublic/docs/navpatterns/patterns/security/3-single-point-of-access/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>.%5Cpublic/docs/navpatterns/patterns/security/3-single-point-of-access/</guid>
+      <description>
+        
+        
+        &lt;p&gt;&lt;em&gt;By Bogdana Botez at Microsoft Development Center Copenhagen&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;Logo-_2D00_-Single-Point-of-Access.png&#34;&gt;&lt;img src=&#34;Logo-_2D00_-Single-Point-of-Access.png&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Context&lt;/strong&gt;: Protected data needs to be used. There are many types of entities which might attempt to use the data.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Problem&lt;/strong&gt;: If no standard way of accessing data exists, then each entity might attempt to build its own system for handing the sensitive data. The data access layer might be implemented over and over again by each entity, without reuse of known best practices and with a lot of code duplication.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Forces:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Code duplication:&lt;/strong&gt; if each entity attempts to write its own routines for data access, invariably this will bring duplication.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No knowledge reuse:&lt;/strong&gt; if a bug is found and fixed in one of the implementations, there is no guarantee that all the other implementations will be updated. For example
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Double-Encryption&lt;/strong&gt;: lack of care or knowledge could lead a NAV developer to attempt to double-encrypt strings, which would render them unusable.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multi-company configuration [4]&lt;/strong&gt;: in NAV, it is possible to store multiple companies on the same tenant [5] database. A developer who has not investigated such a configuration and its consequences on encryption, can attempt to encrypt data in (for example) a Setup Table [6] of only one company, which would make this table unusable from any unencrypted company (since the server will observe that encryption is enabled, and try to retrieve it as it were enabled for all companies and fails).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&amp;ldquo;Shotgun surgery&amp;rdquo; [7]:&lt;/strong&gt; one change in the data access technique (like a new requirement to validate the user&amp;rsquo;s identity before viewing any protected data), calls for updates in every single implementation of data access, if multiple implementations exist. Hence, one change of requirement triggers multiple efforts to update the product.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Solution:&lt;/strong&gt; In Dynamics NAV the same library which offers &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;&lt;strong&gt;Encryption&lt;/strong&gt;&lt;/a&gt;, is also intended to be used as a &lt;strong&gt;Single Point of Access&lt;/strong&gt;. Write code to create, read and remove sensitive data only through codeunit 1266 Encryption Management, and never directly.&lt;/p&gt;
+&lt;p&gt;In Figure 9 (figure numbering is continued from pattern &lt;strong&gt;&lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;Encryption&lt;/a&gt;&lt;/strong&gt;), the panels 1, 2 and 3 have applied the &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/1-sensitive-data-encapsulation/&#34;&gt;&lt;strong&gt;Sensitive Data Encapsulation&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;.%5Cpublic/navpatterns/1-patterns/security/2-data-encryption/&#34;&gt;&lt;strong&gt;Encryption&lt;/strong&gt;&lt;/a&gt; patterns. Once data is encapsulated, no matter if it has been encrypted or not, the next pattern, &lt;strong&gt;Single Point of Access&lt;/strong&gt;, becomes available as seen in the panels 2 and 3 of Figure 1.&lt;/p&gt;
+&lt;p&gt;You can observe that, in panel 3, each usage needs to access separately the encrypted data. This means that each usage needs to implement again the encryption capabilities. This is resolved in panel 4, where all users access one common API which encrypts, hence the workload of encryption is moved from the usages, to the API, and needs to be implemented only once.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;Multi-_2D00_-1-2-3-4.JPG&#34;&gt;&lt;img src=&#34;Multi-_2D00_-1-2-3-4.JPG&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Figure 1- &lt;strong&gt;Single Point of Access&lt;/strong&gt; pattern applied.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;This shows how pattern application is an iterative process, where one step follows another. Refactoring [8] the code to apply one pattern, cleans and clarifies the code and in some cases, makes clear the possibility of further refactoring.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Usage&lt;/strong&gt;: call the procedures available in codeunit 1266 Encryption Management to store and access sensitive data.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Benefits:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Simplicity&lt;/strong&gt;: only one implementation exists.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Knowledge reuse&lt;/strong&gt;: if a bug is found and fixed, there is just one place which needs to be repaired. Therefore, there is no risk that some of the usages would still be flawed by the same bug. For example:
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Double encryption&lt;/strong&gt;: The &lt;strong&gt;Single Point of Access&lt;/strong&gt; API already implements knowledge to avoid encryption of already encrypted strings.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multi-company&lt;/strong&gt;: The &lt;strong&gt;Single Point of Access&lt;/strong&gt; API already implements knowledge for handling encryption in a multi-company setup.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Easy maintenance&lt;/strong&gt;: a change in specification needs only one code update.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Consequences:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Single point of failure:&lt;/strong&gt; A defect in the access library will affect all usages until it is found and fixed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;[1] &amp;ldquo;Wikipedia,&amp;rdquo; [Online]. Available: &lt;a href=&#34;https://en.wikipedia.org/wiki/Separation_of_concerns&#34;&gt;https://en.wikipedia.org/wiki/Separation_of_concerns&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[2] &amp;ldquo;GUID Structure,&amp;rdquo; [Online]. Available: &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/aa373931(VS.85).aspx&#34;&gt;https://msdn.microsoft.com/en-us/library/aa373931(VS.85).aspx&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[3] &amp;ldquo;Wikipedia,&amp;rdquo; [Online]. Available: &lt;a href=&#34;https://en.wikipedia.org/wiki/Binary_large_object&#34;&gt;https://en.wikipedia.org/wiki/Binary_large_object&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[4] waldo, &amp;ldquo;How Do I: Manage Companies in Microsoft Dynamics NAV 2013 R2&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;[5] Microsoft, &amp;ldquo;Multitenant Deployment Architecture,&amp;rdquo; Microsoft, [Online]. Available: &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/dn271675(v=nav.90).aspx&#34;&gt;https://msdn.microsoft.com/en-us/library/dn271675(v=nav.90).aspx&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[6] B. Botez, &amp;ldquo;Setup Table design pattern,&amp;rdquo; Microsoft, 2013. [Online]. Available: &lt;a href=&#34;https://community.dynamics.com/nav/w/designpatterns/76.setup-table&#34;&gt;https://community.dynamics.com/nav/w/designpatterns/76.setup-table&lt;/a&gt;. [Accessed 31 07 2016].&lt;/p&gt;
+&lt;p&gt;[7] &amp;ldquo;Shotgun Surgery,&amp;rdquo; [Online]. Available: &lt;a href=&#34;https://en.wikipedia.org/wiki/Shotgun_surgery&#34;&gt;https://en.wikipedia.org/wiki/Shotgun_surgery&lt;/a&gt;. [Accessed 31 07 2016].&lt;/p&gt;
+&lt;p&gt;[8] M. Fowler, Refactoring: Improving the design of existing code, Addison Wesley, 1999.&lt;/p&gt;
+&lt;p&gt;[9] &amp;ldquo;Masking out,&amp;rdquo; [Online]. Available: &lt;a href=&#34;https://en.wikipedia.org/wiki/Data_masking#Masking_out&#34;&gt;https://en.wikipedia.org/wiki/Data_masking#Masking_out&lt;/a&gt;. [Accessed 29 7 2016].&lt;/p&gt;
+&lt;p&gt;[10] &amp;ldquo;Key Vault,&amp;rdquo; Microsoft, [Online]. Available: &lt;a href=&#34;https://azure.microsoft.com/en-us/services/key-vault/&#34;&gt;https://azure.microsoft.com/en-us/services/key-vault/&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[11] &amp;ldquo;How to: Configure SSL to Secure the Connection to Microsoft Dynamics NAV Web Client,&amp;rdquo; Microsoft, [Online]. Available: &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/hh167264(v=nav.90).aspx&#34;&gt;https://msdn.microsoft.com/en-us/library/hh167264(v=nav.90).aspx&lt;/a&gt;. [Accessed 2 8 2016].&lt;/p&gt;
+&lt;p&gt;[12] &amp;ldquo;sniffer,&amp;rdquo; [Online]. Available: &lt;a href=&#34;http://compnetworking.about.com/od/networksecurityprivacy/g/bldef_sniffer.htm&#34;&gt;http://compnetworking.about.com/od/networksecurityprivacy/g/bldef_sniffer.htm&lt;/a&gt;. [Accessed 02 08 2016].&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Masked Text</title>
+      <link>.%5Cpublic/docs/navpatterns/patterns/security/4-masked-text/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>.%5Cpublic/docs/navpatterns/patterns/security/4-masked-text/</guid>
+      <description>
+        
+        
+        &lt;p&gt;&lt;em&gt;By Bogdana Botez at Microsoft Development Center Copenhagen&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;Logo-_2D00_-Masked-Text.png&#34;&gt;&lt;img src=&#34;Logo-_2D00_-Masked-Text.png&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Aliases:&lt;/strong&gt; Masking out&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Context&lt;/strong&gt;: In the user interface (UI) of a software system, the user enters protected information such as a password, an access key, a credit card number etc.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Problem&lt;/strong&gt;: The entered information is visible during data entry and whenever any user (the one who entered the data, or a foreign user) opens the UI.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Forces:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Information disclosure:&lt;/strong&gt; sensitive data is visible in the UI.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Solution:&lt;/strong&gt; Use the &amp;ldquo;Masked&amp;rdquo; field property to display dots instead of characters on the sensitive text field in the UI.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Usage:&lt;/strong&gt; Figure 1 shows how an unmasked and a masked field look in Dynamics NAV. On page Microsoft Dynamics CRM Connection Setup, the first two fields (Dynamics CRM URL and User Name) are not masked. The next field (Password) is masked. As the user types text into the Password field, the characters are one by one replaced with dots. When the user had finished typing and had left the Password field (moved focus to another page element), then a pre-defined number of dots is showed in the field, no matter what the real length of the password is. This is done so that the length of the text is not disclosed. Hence, no matter if the text had 5, 10 or 20 characters, as soon as the user leaves the masked field, 10 dots will be visible.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;Masking-_2D00_-CRM-Connection-Setup-page.PNG&#34;&gt;&lt;img src=&#34;Masking-_2D00_-CRM-Connection-Setup-page.PNG&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Figure 1 - The field &amp;ldquo;Password&amp;rdquo; is masked.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;To apply this pattern in Dynamics NAV, the developer has two choices:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Mask everywhere&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Mask the field in all pages which expose it or will expose it in the future. In this case, masking needs to be set at the table level, by opening the table in design mode and setting the field&amp;rsquo;s property ExtendedDatatype=Masked.&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;&lt;strong&gt;Mask only in selected pages&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Mask the field in only a subset of pages. Open the pages where the field should be masked in design mode, open the property page for the field in question, and set ExtendedDatatype=Masked. This option can be used for example when a field should be hidden from most users (in most usual pages), but still visible to administrators in specific pages.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Benefits:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Information protection&lt;/strong&gt;: sensitive data is stored and can be used by the system, but once entered it is not visible in the UI anymore.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Drawbacks:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&amp;ldquo;Forgotten password&amp;rdquo;:&lt;/strong&gt; the text in a masked field is hidden from all users, including users who theoretically have the right to see it. In this case, if the developer wishes to disclose the text only to certain users, they have to write extra code (like a lookup trigger) which will verify the user&amp;rsquo;s permissions and if permitted, show or send the clear-text value to the user who requested it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;[1] &amp;ldquo;Wikipedia,&amp;rdquo; [Online]. Available: &lt;a href=&#34;https://en.wikipedia.org/wiki/Separation_of_concerns&#34;&gt;https://en.wikipedia.org/wiki/Separation_of_concerns&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[2] &amp;ldquo;GUID Structure,&amp;rdquo; [Online]. Available: &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/aa373931(VS.85).aspx&#34;&gt;https://msdn.microsoft.com/en-us/library/aa373931(VS.85).aspx&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[3] &amp;ldquo;Wikipedia,&amp;rdquo; [Online]. Available: &lt;a href=&#34;https://en.wikipedia.org/wiki/Binary_large_object&#34;&gt;https://en.wikipedia.org/wiki/Binary_large_object&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[4] waldo, &amp;ldquo;How Do I: Manage Companies in Microsoft Dynamics NAV 2013 R2&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;[5] Microsoft, &amp;ldquo;Multitenant Deployment Architecture,&amp;rdquo; Microsoft, [Online]. Available: &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/dn271675(v=nav.90).aspx&#34;&gt;https://msdn.microsoft.com/en-us/library/dn271675(v=nav.90).aspx&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[6] B. Botez, &amp;ldquo;Setup Table design pattern,&amp;rdquo; Microsoft, 2013. [Online]. Available: &lt;a href=&#34;https://community.dynamics.com/nav/w/designpatterns/76.setup-table&#34;&gt;https://community.dynamics.com/nav/w/designpatterns/76.setup-table&lt;/a&gt;. [Accessed 31 07 2016].&lt;/p&gt;
+&lt;p&gt;[7] &amp;ldquo;Shotgun Surgery,&amp;rdquo; [Online]. Available: &lt;a href=&#34;https://en.wikipedia.org/wiki/Shotgun_surgery&#34;&gt;https://en.wikipedia.org/wiki/Shotgun_surgery&lt;/a&gt;. [Accessed 31 07 2016].&lt;/p&gt;
+&lt;p&gt;[8] M. Fowler, Refactoring: Improving the design of existing code, Addison Wesley, 1999.&lt;/p&gt;
+&lt;p&gt;[9] &amp;ldquo;Masking out,&amp;rdquo; [Online]. Available: &lt;a href=&#34;https://en.wikipedia.org/wiki/Data_masking&#34;&gt;https://en.wikipedia.org/wiki/Data_masking&lt;/a&gt;#Masking_out. [Accessed 29 7 2016].&lt;/p&gt;
+&lt;p&gt;[10] &amp;ldquo;Key Vault,&amp;rdquo; Microsoft, [Online]. Available: &lt;a href=&#34;https://azure.microsoft.com/en-us/services/key-vault/&#34;&gt;https://azure.microsoft.com/en-us/services/key-vault/&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[11] &amp;ldquo;How to: Configure SSL to Secure the Connection to Microsoft Dynamics NAV Web Client,&amp;rdquo; Microsoft, [Online]. Available: &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/hh167264(v=nav.90).aspx&#34;&gt;https://msdn.microsoft.com/en-us/library/hh167264(v=nav.90).aspx&lt;/a&gt;. [Accessed 2 8 2016].&lt;/p&gt;
+&lt;p&gt;[12] &amp;ldquo;sniffer,&amp;rdquo; [Online]. Available: &lt;a href=&#34;http://compnetworking.about.com/od/networksecurityprivacy/g/bldef_sniffer.htm&#34;&gt;http://compnetworking.about.com/od/networksecurityprivacy/g/bldef_sniffer.htm&lt;/a&gt;. [Accessed 02 08 2016].&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: SSL in NAV</title>
+      <link>.%5Cpublic/docs/navpatterns/patterns/security/5-ssl-in-nav/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>.%5Cpublic/docs/navpatterns/patterns/security/5-ssl-in-nav/</guid>
+      <description>
+        
+        
+        &lt;p&gt;&lt;em&gt;By Bogdana Botez at Microsoft Development Center Copenhagen&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;Logo-_2D00_-SSL.JPG&#34;&gt;&lt;img src=&#34;Logo-_2D00_-SSL.JPG&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Context&lt;/strong&gt;: The security of data transmission is just as important as the security of data storage. When data is transmitted over the web, Secure Sockets Layer (SSL) is available to be used with the web client in Dynamics NAV. Microsoft&amp;rsquo;s NAV cloud solution has SSL enabled by default. However, if a partner company chooses to deploy their own NAV, then they need to handle SSL explicitly.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Problem&lt;/strong&gt;: Although data is stored securely, before it even gets to be stored, it needs to travel the web on a client-server connection, where it is vulnerable.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Forces:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Insecure communication:&lt;/strong&gt; When the user enters a password, if unprotected, a network sniffer [12] could catch and read it. A sniffer is either a software program or hardware device which examine network traffic. Years ago, sniffers were tools used exclusively by professional network engineers, but nowadays, they are also popular with Internet hackers and people just curious about networking. A public Wi-Fi network could easily be eavesdropped by an unwanted actor.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;By using data storage patterns like &lt;strong&gt;Sensitive Data Encapsulation&lt;/strong&gt;, &lt;strong&gt;Encryption, Single Point of Access&lt;/strong&gt; or &lt;strong&gt;Azure Key Vault&lt;/strong&gt;, the sensitive data is preserved securely in the implementation of Dynamics NAV. But before it gets into a secure store, this data needs to be transmitted from the user, through a user interface, on a client-server connection and all the way to the database. Is the data safe while being transmitted?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Solution:&lt;/strong&gt; To protect the data before it reaches the server, remember to configure SSL (Secure Sockets Layer) in Dynamics NAV.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;SSL&lt;/em&gt; is a web protocol that encrypts data that is transmitted over a network to make the data and the network more secure and reliable. A website that is enabled with SSL uses Hypertext Transfer Protocol Secure (HTTPS) instead of Hypertext Transfer Protocol (HTTP) as a communication protocol.&lt;/p&gt;
+&lt;p&gt;Figure 1 shows data communication between the client (where the user enters data) and the server (which connects further to the database). Without encryption (left side), data is available in clear text over the wire. A person equipped with a network sniffer can easily intercept and read it. On the right side of the picture, SSL is used to encrypt the user&amp;rsquo;s data. Sniffing the traffic would capture the encrypted stream, but access to the real content would be impeded by encryption.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;SSL-_2D00_-before-and-after.PNG&#34;&gt;&lt;img src=&#34;SSL-_2D00_-before-and-after.PNG&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Figure 1 - Data transmission before (http://&amp;hellip;) and after SSL encryption (https://&amp;hellip;).&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Usage&lt;/strong&gt;: the latest information about how to configure SSL for the web client in Dynamics NAV is found online at on MSDN at &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/hh167264(v=nav.90).aspx&#34;&gt;https://msdn.microsoft.com/en-us/library/hh167264(v=nav.90).aspx&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Benefits:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Secure communication&lt;/strong&gt;: encryption protects the data transmitted over a network, so the data is safe all the way on its journey from the user to the database.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Consequences:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Awareness:&lt;/strong&gt; a NAV system administrator might not be aware that they need to enable SSL when using the web client.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Extra work:&lt;/strong&gt; there is extra effort to enable SSL on a self-administered NAV system. The good news is that Microsoft&amp;rsquo;s cloud NAV solution has SSL by default and no extra work is required from the developer on that aspect.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;[1] &amp;ldquo;Wikipedia,&amp;rdquo; [Online]. Available: &lt;a href=&#34;https://en.wikipedia.org/wiki/Separation_of_concerns&#34;&gt;https://en.wikipedia.org/wiki/Separation_of_concerns&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[2] &amp;ldquo;GUID Structure,&amp;rdquo; [Online]. Available: &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/aa373931(VS.85).aspx&#34;&gt;https://msdn.microsoft.com/en-us/library/aa373931(VS.85).aspx&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[3] &amp;ldquo;Wikipedia,&amp;rdquo; [Online]. Available: &lt;a href=&#34;https://en.wikipedia.org/wiki/Binary_large_object&#34;&gt;https://en.wikipedia.org/wiki/Binary_large_object&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[4] waldo, &amp;ldquo;How Do I: Manage Companies in Microsoft Dynamics NAV 2013 R2&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;[5] Microsoft, &amp;ldquo;Multitenant Deployment Architecture,&amp;rdquo; Microsoft, [Online]. Available: &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/dn271675(v=nav.90).aspx&#34;&gt;https://msdn.microsoft.com/en-us/library/dn271675(v=nav.90).aspx&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[6] B. Botez, &amp;ldquo;Setup Table design pattern,&amp;rdquo; Microsoft, 2013. [Online]. Available: &lt;a href=&#34;https://community.dynamics.com/nav/w/designpatterns/76.setup-table&#34;&gt;https://community.dynamics.com/nav/w/designpatterns/76.setup-table&lt;/a&gt;. [Accessed 31 07 2016].&lt;/p&gt;
+&lt;p&gt;[7] &amp;ldquo;Shotgun Surgery,&amp;rdquo; [Online]. Available: &lt;a href=&#34;https://en.wikipedia.org/wiki/Shotgun_surgery&#34;&gt;https://en.wikipedia.org/wiki/Shotgun_surgery&lt;/a&gt;. [Accessed 31 07 2016].&lt;/p&gt;
+&lt;p&gt;[8] M. Fowler, Refactoring: Improving the design of existing code, Addison Wesley, 1999.&lt;/p&gt;
+&lt;p&gt;[9] &amp;ldquo;Masking out,&amp;rdquo; [Online]. Available: &lt;a href=&#34;https://en.wikipedia.org/wiki/Data_masking#Masking_out&#34;&gt;https://en.wikipedia.org/wiki/Data_masking#Masking_out&lt;/a&gt;. [Accessed 29 7 2016].&lt;/p&gt;
+&lt;p&gt;[10] &amp;ldquo;Key Vault,&amp;rdquo; Microsoft, [Online]. Available: &lt;a href=&#34;https://azure.microsoft.com/en-us/services/key-vault/&#34;&gt;https://azure.microsoft.com/en-us/services/key-vault/&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[11] &amp;ldquo;How to: Configure SSL to Secure the Connection to Microsoft Dynamics NAV Web Client,&amp;rdquo; Microsoft, [Online]. Available: &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/hh167264(v=nav.90).aspx&#34;&gt;https://msdn.microsoft.com/en-us/library/hh167264(v=nav.90).aspx&lt;/a&gt;. [Accessed 2 8 2016].&lt;/p&gt;
+&lt;p&gt;[12] &amp;ldquo;sniffer,&amp;rdquo; [Online]. Available: &lt;a href=&#34;http://compnetworking.about.com/od/networksecurityprivacy/g/bldef_sniffer.htm&#34;&gt;http://compnetworking.about.com/od/networksecurityprivacy/g/bldef_sniffer.htm&lt;/a&gt;. [Accessed 02 08 2016].&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

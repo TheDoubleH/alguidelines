@@ -1,10 +1,88 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Templates on AL Guidelines</title><link>https://alguidelines.dev/contributing/templates/</link><description>Recent content in Templates on AL Guidelines</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://alguidelines.dev/contributing/templates/index.xml" rel="self" type="application/rss+xml"/><item><title>Title of the Guideline</title><link>https://alguidelines.dev/contributing/templates/guidelines/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://alguidelines.dev/contributing/templates/guidelines/</guid><description>This is a guideline, some parts are optional (if there&amp;rsquo;s no content, remove the whole paragraph).
-&amp;lt;Created by (company), Described by (company)&amp;gt;
-Abstract Short, descriptive and easy to remember description of this pattern.
-Description In depth description on what this Pattern is all about
-basic components how the interact steps to implement considerations to take Good Example PutCodeblocksHere() Bad Example PutCodeblocksHere()</description></item><item><title>Title of the pattern</title><link>https://alguidelines.dev/contributing/templates/patterns/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://alguidelines.dev/contributing/templates/patterns/</guid><description>This is a guideline, some parts are optional (if there&amp;rsquo;s no content, remove the whole paragraph).
-&amp;lt;Created by (company), Described by (company)&amp;gt;
-Abstract Short, descriptive and easy to remember description of this pattern.
-Context: Sets the stage where the pattern takes place. 1-2 sentences.
-Problem: What happens before this pattern is used? How can it go wrong? 1-5 lines.
-Description In depth description on what this Pattern is all about</description></item></channel></rss>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>alguidelines.dev – Templates</title>
+    <link>.%5Cpublic/contributing/templates/</link>
+    <description>Recent content in Templates on alguidelines.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	  <atom:link href=".%5Cpublic/contributing/templates/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Contributing: Title of the Guideline</title>
+      <link>.%5Cpublic/contributing/templates/guidelines/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>.%5Cpublic/contributing/templates/guidelines/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This is a guideline, some parts are optional (if there&amp;rsquo;s no content, remove the whole paragraph).&lt;/p&gt;
+&lt;p&gt;&amp;lt;&lt;em&gt;Created by (company), Described by (company)&lt;/em&gt;&amp;gt;&lt;/p&gt;
+&lt;h2 id=&#34;description&#34;&gt;Description&lt;/h2&gt;
+&lt;p&gt;In depth description on what this Pattern is all about&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;basic components&lt;/li&gt;
+&lt;li&gt;how the interact&lt;/li&gt;
+&lt;li&gt;steps to implement&lt;/li&gt;
+&lt;li&gt;considerations to take&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;bad-code&#34;&gt;Bad code&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-al&#34; data-lang=&#34;al&#34;&gt;PutCodeblocksHere&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;()
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;good-code&#34;&gt;Good code&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-al&#34; data-lang=&#34;al&#34;&gt;PutCodeblocksHere&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;()
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;discussionshttpsgithubcommicrosoftalguidelinesdiscussionscategoriesbc-best-practicesdiscussions_qtitleofyourguidelinegoesherecategory3a22bcbestpractices22&#34;&gt;&lt;a href=&#34;https://github.com/microsoft/alguidelines/discussions/categories/bc-best-practices?discussions_q=TITLEOFYOURGUIDELINEGOESHERE+category%3A%22BC+Best+Practices%22&#34;&gt;Discussions&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&amp;lt;Please replace the &amp;ldquo;TITLEOFYOURGUIDELINEGOESHERE&amp;rdquo; in the link above, with the Title+of+the+Guideline (indeed, with &amp;ldquo;space&amp;rdquo; replaced by a &amp;ldquo;+&amp;quot;) - and remove this line. &amp;gt;&lt;/p&gt;
+&lt;p&gt;You can find discussions on all &amp;ldquo;Best Practices&amp;rdquo; &lt;a href=&#34;https://github.com/microsoft/alguidelines/discussions/categories/bc-best-practices&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you don&amp;rsquo;t find the discussion of this guideline, please feel free to create a new one with the same title as this article.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Contributing: Title of the pattern</title>
+      <link>.%5Cpublic/contributing/templates/patterns/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>.%5Cpublic/contributing/templates/patterns/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This is a guideline, some parts are optional (if there&amp;rsquo;s no content, remove the whole paragraph).&lt;/p&gt;
+&lt;p&gt;&amp;lt;&lt;em&gt;Created by (company), Described by (company)&lt;/em&gt;&amp;gt;&lt;/p&gt;
+&lt;h2 id=&#34;abstract&#34;&gt;Abstract&lt;/h2&gt;
+&lt;p&gt;Short, descriptive and easy to remember description of this pattern.&lt;/p&gt;
+&lt;h2 id=&#34;context&#34;&gt;Context&lt;/h2&gt;
+&lt;p&gt;Sets the stage where the pattern takes place. 1-2 sentences.&lt;/p&gt;
+&lt;h2 id=&#34;problem&#34;&gt;Problem&lt;/h2&gt;
+&lt;p&gt;What happens before this pattern is used? How can it go wrong? 1-5 lines.&lt;/p&gt;
+&lt;h2 id=&#34;description&#34;&gt;Description&lt;/h2&gt;
+&lt;p&gt;In depth description on what this Pattern is all about&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;basic components&lt;/li&gt;
+&lt;li&gt;how the interact&lt;/li&gt;
+&lt;li&gt;steps to implement&lt;/li&gt;
+&lt;li&gt;considerations to take&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;usage&#34;&gt;Usage&lt;/h2&gt;
+&lt;p&gt;If applicable: where is it used in an app.  You can refer to any app, BaseApp, or a (public) ISV app.&lt;/p&gt;
+&lt;h2 id=&#34;benefits&#34;&gt;Benefits&lt;/h2&gt;
+&lt;p&gt;1-2 sentences: what did you just solve&lt;/p&gt;
+&lt;h2 id=&#34;when-not-to-use&#34;&gt;When not to use&lt;/h2&gt;
+&lt;p&gt;Usually, there are occasions where NOT to implement the pattern.  List the disadvantages of this pattern here.&lt;/p&gt;
+&lt;h2 id=&#34;list-of-references&#34;&gt;List of references&lt;/h2&gt;
+&lt;p&gt;Youtube-link? BaseApp? Tweet? &amp;hellip;&lt;/p&gt;
+&lt;h2 id=&#34;discussions&#34;&gt;Discussions&lt;/h2&gt;
+&lt;p&gt;Create a discussions-page of your pattern, and add the sentence &amp;ldquo;You can discuss this pattern &lt;a href=&#34;https://github.com/microsoft/alguidelines/discussions/42&#34;&gt;here&lt;/a&gt;&amp;rdquo; with the right link to that discussions-page.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>
