@@ -1,40 +1,5 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>alguidelines.dev – Archived Pattern</title>
-    <link>c:\Hugo\Sites\alguidelines-html/categories/archived-pattern/</link>
-    <description>Recent content in Archived Pattern on alguidelines.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	  <atom:link href="c:\\Hugo\\Sites\\alguidelines-html/categories/archived-pattern/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-      
-        
-      
-    
-    
-    <item>
-      <title>Docs: Patterns</title>
-      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/</guid>
-      <description>
-        
-        
-        
-
-&lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
-&lt;h4 class=&#34;alert-heading&#34;&gt;Warning&lt;/h4&gt;
-
-    Please note that these patterns may not be up-to-date with the patterns for AL and Business Central Development.
-
-&lt;/div&gt;
-
-
-      </description>
-    </item>
-    
-  </channel>
-</rss>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>alguidelines.dev - Business Central Design Patterns – Archived Pattern</title><link>https://alguidelines.dev/categories/archived-pattern/</link><description>Recent content in Archived Pattern on alguidelines.dev - Business Central Design Patterns</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://alguidelines.dev/categories/archived-pattern/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Patterns</title><link>https://alguidelines.dev/docs/navpatterns/patterns/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://alguidelines.dev/docs/navpatterns/patterns/</guid><description>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Warning&lt;/h4>
+Please note that these patterns may not be up-to-date with the patterns for AL and Business Central Development.
+&lt;/div></description></item></channel></rss>

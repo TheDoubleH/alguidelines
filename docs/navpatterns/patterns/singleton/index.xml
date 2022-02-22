@@ -1,164 +1,119 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>alguidelines.dev – Singleton</title>
-    <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/singleton/</link>
-    <description>Recent content in Singleton on alguidelines.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	  <atom:link href="c:\\Hugo\\Sites\\alguidelines-html/docs/navpatterns/patterns/singleton/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-      
-        
-      
-    
-    
-    <item>
-      <title>Docs: Singleton Codeunit</title>
-      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/singleton/singleton-codeunit/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/singleton/singleton-codeunit/</guid>
-      <description>
-        
-        
-        &lt;p&gt;&lt;em&gt;By Bogdana Botez at Microsoft Development Center Copenhagen&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;Singleton-Codeunit.png&#34;&gt;&lt;img src=&#34;Singleton-Codeunit.png&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Problem&lt;/strong&gt;: In some situations, global state needs to be preserved at runtime throughout a session.&lt;/p&gt;
-&lt;p&gt;There are functionality areas in NAV where centralized application management code is needed, like for example managing permissions, notifications, the debugger etc. State needs to be preserved across calls to the management codeunit.&lt;/p&gt;
-&lt;p&gt;For example:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The debugger needs to remember the session which is being debugged&lt;/li&gt;
-&lt;li&gt;The permission manager has a testability function, where it can be set to emulate that it&amp;rsquo;s running as a SaaS (Software As A Service &amp;ndash; the cloud) platform, even when the tests run in a &amp;ldquo;on-premise&amp;rdquo; local lab.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Take for example the following test of Azure ML (Azure Machine Learning) integration with NAV.&lt;/p&gt;
-&lt;p&gt;Context: Azure Machine Learning services are paid. However, Dynamics NAV includes a monthly pre-paid quota of Azure ML, which can be used for free by the users. There is an upper limit to this quota, and when it is reached, Azure ML services are turned off until the next month starts and a new quota becomes available for consumption.&lt;/p&gt;
-&lt;p&gt;The test below checks that, when the monthly quota is exceeded, then the function IsAzureMLLimitReached returns TRUE.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-al&#34; data-lang=&#34;al&#34;&gt;[Test]&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;PROCEDURE&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;AzureMLProcessingTimeExceedsLimit@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;11&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;()&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;VAR&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;AzureMachineLearningUsage@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1004&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Record&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;2002&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;ProcessingTime@&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1000&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;Decimal&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;BEGIN&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;// [SCENARIO] Azure Machine Learning Processing time exceeds AzureML limit  
-&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;// [GIVEN] AzureMachineLearningUsage &amp;gt; 0
-&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;Initialize&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;// calls PermissionManager.SetTestabilitySoftwareAsAService(TRUE);
-&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;ProcessingTime&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:=&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;LibraryRandom&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;RandDec&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1000&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;AzureMachineLearningUsage&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;IncrementTotalProcessingTime&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;ProcessingTime&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;// [WHEN] When IsAzureMLLimitReached is invoked with Limit more than Processing time
-&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;// [THEN] HasAzureLimitReached returns TRUE
-&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;Assert&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;IsTrue&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;AzureMachineLearningUsage&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;IsAzureMLLimitReached&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;ProcessingTime&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;-&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;HasAzureLimitReached returns wrong value when Processing time exceeds Limit.&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;PermissionManager&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;SetTestabilitySoftwareAsAService&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;FALSE&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;END&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The figure below explains what happens when the Permission Manager is not a singleton. When it is invoked from different places (first from the test, second from the production code), then different instances of the Permission Manager will fire up and answer. In detail:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;The test calls Initialize which sets SaaS=TRUE in codeunit Permission Manager&lt;/li&gt;
-&lt;li&gt;The test calls into production code to validate it works as expected. It calls AzureMachineLearningUsage codeunit to find out if the monthly quota has been reached. The function IsAzureMLLimitReached in AzureMachineLearningUsage codeunit is designed only for SaaS. If the code doesn&amp;rsquo;t run in SaaS, then it always returns FALSE.&lt;/li&gt;
-&lt;li&gt;Therefore, a call to PermissionManager is made, to find out if the environment is SaaS.&lt;/li&gt;
-&lt;li&gt;However, a different instance of Permission Manager is reached &amp;ndash; and instance where SaaS was never set to TRUE. This is a mistake &amp;ndash; the test intended to simulate SaaS, but the state it set in the beginning is not reachable from production code.&lt;/li&gt;
-&lt;li&gt;The production code will assess (wrongly) that it&amp;rsquo;s not running SaaS, and say that the Azure ML limit has not been reached (incorrect &amp;ndash; and the test fails).&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;a href=&#34;Singleton-Codeunit-_2D00_-example-_2D00_-bad.PNG&#34;&gt;&lt;img src=&#34;Singleton-Codeunit-_2D00_-example-_2D00_-bad.PNG&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Solution:&lt;/strong&gt; restrict the number of instantiations of a codeunit to only one, by setting the codeunit property &lt;strong&gt;SingleInstance&lt;/strong&gt; to &lt;strong&gt;Yes&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Returning to the previous example, let&amp;rsquo;s analyze the case when the codeunit Permission Manager is a singleton codeunit:&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;2313.Singleton-Codeunit-_2D00_-CSIDE-SingleInstance-property.PNG&#34;&gt;&lt;img src=&#34;2313.Singleton-Codeunit-_2D00_-CSIDE-SingleInstance-property.PNG&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;When the codeunit Permission Manager is a singleton, then no matter from where it is invoked, the same instance will be reached. Therefore, the status set by the test (SaaS = TRUE) will be reachable from the production code, and the test will pass, as seen in the figure below.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;Singleton-Codeunit-_2D00_-example-_2D00_-good.PNG&#34;&gt;&lt;img src=&#34;Singleton-Codeunit-_2D00_-example-_2D00_-good.PNG&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Consequences&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;1. Use Singleton Codeunit with care and only when there is no other solution. Preserving a global state could often enough be more harmful than useful. One risk is that tests might fail apparently non-deterministically.&lt;/p&gt;
-&lt;p&gt;For example, a problem we have met in the development team for Madeira release, was that the singleton codeunit function PermissionManager.SetSoftwareAsAService(TRUE) is often used to emulate and test SaaS conditions. However, if a test &amp;lsquo;forgets&amp;rsquo; to reset the state to default (FALSE), then another codeunit which is not supposed to emulate SaaS, will suddenly run as SaaS and will fail. Even if the test has code that resets the state to FALSE, this code might never be reached because of an earlier failure or other error in the test which would stop execution.&lt;/p&gt;
-&lt;p&gt;2. The singleton codeunit is only &amp;ldquo;alive&amp;rdquo; for the current session. If the user logs out, the old session is closed and the singleton cleared out so any values stored in the old session&amp;rsquo;s singleton will be lost when the session was closed. When the user logs in again, a new session (with a new fresh instance of the singleton) will be created.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;NAV Usages&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Most of the usages in NAV refer to the so-called &amp;ldquo;management codeunits&amp;rdquo;. The management codeunits are needed to run, in a centralized way, various modular parts of the application (features), like the CRM integration, Permissions, Workflows etc. Some of the &lt;strong&gt;Singleton Codeunits&lt;/strong&gt; in NAV are listed below:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Codeunit 423 Change Log Management&lt;/li&gt;
-&lt;li&gt;Codeunit 1503 Workflow Record Management&lt;/li&gt;
-&lt;li&gt;Codeunit 1511 Notification Lifecycle Mgt.&lt;/li&gt;
-&lt;li&gt;Codeunit 1629 Office Attachment Manager&lt;/li&gt;
-&lt;li&gt;Codeunit 1632 Office Error Engine&lt;/li&gt;
-&lt;li&gt;Codeunit 5150 Integration Management&lt;/li&gt;
-&lt;li&gt;Codeunit 9002 Permission Manager&lt;/li&gt;
-&lt;li&gt;Etc.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; while the object-oriented &lt;strong&gt;Singleton&lt;/strong&gt; pattern can restrict the number of instantiations of the singleton to an integer n &amp;gt; 0, in Dynamics NAV the &lt;strong&gt;Singleton Codeunit&lt;/strong&gt; can only have n=1.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Singleton Table</title>
-      <link>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/singleton/singleton-table/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>c:\Hugo\Sites\alguidelines-html/docs/navpatterns/patterns/singleton/singleton-table/</guid>
-      <description>
-        
-        
-        &lt;h2 id=&#34;singleton-table&#34;&gt;Singleton Table&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;By Elly Nkya at Microsoft Development Center Copenhagen&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;5554.Singleton-Table.png&#34;&gt;&lt;img src=&#34;5554.Singleton-Table.png&#34; alt=&#34; &#34;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Problem&lt;/strong&gt;: The developer needs to define a single record that can contain a set of rules and behavior (optional, mandatory, or defaulting mechanisms), that apply to a functionality, and can be configured by a user.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Forces&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;You want a central place to define the address and logo of your company (see Company Information table).&lt;/li&gt;
-&lt;li&gt;You want to define the no. series that should be used for your sales documents (see Sales &amp;amp; Receivables Setup table).&lt;/li&gt;
-&lt;li&gt;You want to know whether your sales documents should be archived (see Sales &amp;amp; Receivables Setup table).&lt;/li&gt;
-&lt;li&gt;You want to define the rounding accuracy your system should (see General Ledger Setup table).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Solution:&lt;/strong&gt; Define a single record that can contain a set of rules and behavior (optional, mandatory, or defaulting mechanisms), that apply to a functionality, and can be configured by a user.&lt;/p&gt;
-&lt;p&gt;In a functionality that is large enough (such as sales, inventory, fixed) you may want to define a global set of rules, that are configurable by the user.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Implementation&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;1. Define:&lt;/strong&gt; Create a Setup Table with Dummy a Primary Key. Typically with type Code=10. Then add fields to define the global rules.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2. Instantiate:&lt;/strong&gt; Place the instantiation code in a central place where it is guaranteed to be invoked before the functionality uses it. This is done in Codeunit 2.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;3. Enforce:&lt;/strong&gt; Give the user access to the record so that he can change the default setup, by creating a Card page. On the page, enforce the singleton to prevent deletion of the record or insertion of a new record&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;4. Use:&lt;/strong&gt; Access the rule in code and use it&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;NAV Usages&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Rounding rules for Unit-Amounts and Amounts are implemented using the Singleton pattern.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;1. Define:&lt;/strong&gt; The General Ledger Setup is used for this.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2. Instantiate:&lt;/strong&gt; In codeunit 2, the following code is invoked&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-al&#34; data-lang=&#34;al&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;WITH&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;GLSetup&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;DO&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;IF&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;NOT&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;FINDFIRST&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;THEN&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;BEGIN&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;INIT&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;INSERT&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;END&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;3. Enforce:&lt;/strong&gt; On the General Ledger Setup. The following properties are setup:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-al&#34; data-lang=&#34;al&#34;&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;DeleteAllowed=false&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;InsertAllowed=false&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;4. Use:&lt;/strong&gt; Access the rounding rules are used&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-al&#34; data-lang=&#34;al&#34;&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;...
-&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&lt;/span&gt;GLSetup&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;GET&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;UnitCostCurrency&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:=&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;ROUND&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(...&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;GLSetup&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;&amp;#34;Unit-Amount Rounding Precision&amp;#34;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; 
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;... 
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Or if accessing the rule multiple times and performance is a consideration, use lazy instantiation:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-al&#34; data-lang=&#34;al&#34;&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;...
-&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&lt;/span&gt;GetGLSetup&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;UnitCostCurrency&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:=&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;ROUND&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(...&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;GLSetup&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;&amp;#34;Unit-Amount Rounding Precision&amp;#34;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;...
-&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;LOCAL&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;GetGLSetup&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;()
-&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;IF&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;NOT&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;GLSetupRead&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;THEN&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;GLSetup&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;.&lt;/span&gt;GET&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;GLSetupRead&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:=&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;TRUE&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Related topics&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Singleton_pattern&#34;&gt;Singleton design pattern&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The &lt;strong&gt;Singleton Table&lt;/strong&gt; has two established applications in Dynamics NAV:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;c:\Hugo\Sites\alguidelines-html/navpatterns/1-patterns/singleton/singleton-table/setup-table/&#34;&gt;&lt;strong&gt;Setup Tables&lt;/strong&gt;&lt;/a&gt; &amp;ndash; which are commonly storing user setup data in NAV,&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Cue Tables&lt;/strong&gt; &amp;ndash; used to calculate values for the visual representation of Cues on the NAV role center pages.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;YouTube Video of NAV Singleton:&lt;/p&gt;
-
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;https://www.youtube.com/embed/aQPu-s9FkYI&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-
-      </description>
-    </item>
-    
-  </channel>
-</rss>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>alguidelines.dev - Business Central Design Patterns – Singleton</title><link>https://alguidelines.dev/docs/navpatterns/patterns/singleton/</link><description>Recent content in Singleton on alguidelines.dev - Business Central Design Patterns</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://alguidelines.dev/docs/navpatterns/patterns/singleton/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Singleton Codeunit</title><link>https://alguidelines.dev/docs/navpatterns/patterns/singleton/singleton-codeunit/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://alguidelines.dev/docs/navpatterns/patterns/singleton/singleton-codeunit/</guid><description>
+&lt;p>&lt;em>By Bogdana Botez at Microsoft Development Center Copenhagen&lt;/em>&lt;/p>
+&lt;p>&lt;a href="Singleton-Codeunit.png">&lt;img src="Singleton-Codeunit.png" alt=" ">&lt;/a>&lt;/p>
+&lt;p>&lt;strong>Problem&lt;/strong>: In some situations, global state needs to be preserved at runtime throughout a session.&lt;/p>
+&lt;p>There are functionality areas in NAV where centralized application management code is needed, like for example managing permissions, notifications, the debugger etc. State needs to be preserved across calls to the management codeunit.&lt;/p>
+&lt;p>For example:&lt;/p>
+&lt;ul>
+&lt;li>The debugger needs to remember the session which is being debugged&lt;/li>
+&lt;li>The permission manager has a testability function, where it can be set to emulate that it&amp;rsquo;s running as a SaaS (Software As A Service &amp;ndash; the cloud) platform, even when the tests run in a &amp;ldquo;on-premise&amp;rdquo; local lab.&lt;/li>
+&lt;/ul>
+&lt;p>Take for example the following test of Azure ML (Azure Machine Learning) integration with NAV.&lt;/p>
+&lt;p>Context: Azure Machine Learning services are paid. However, Dynamics NAV includes a monthly pre-paid quota of Azure ML, which can be used for free by the users. There is an upper limit to this quota, and when it is reached, Azure ML services are turned off until the next month starts and a new quota becomes available for consumption.&lt;/p>
+&lt;p>The test below checks that, when the monthly quota is exceeded, then the function IsAzureMLLimitReached returns TRUE.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-al" data-lang="al">[Test]&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">PROCEDURE&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>AzureMLProcessingTimeExceedsLimit@&lt;span style="color:#0000cf;font-weight:bold">11&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">()&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">VAR&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>AzureMachineLearningUsage@&lt;span style="color:#0000cf;font-weight:bold">1004&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">Record&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#0000cf;font-weight:bold">2002&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>ProcessingTime@&lt;span style="color:#0000cf;font-weight:bold">1000&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">Decimal&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">BEGIN&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic">// [SCENARIO] Azure Machine Learning Processing time exceeds AzureML limit
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic">// [GIVEN] AzureMachineLearningUsage &amp;gt; 0
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>Initialize&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic">// calls PermissionManager.SetTestabilitySoftwareAsAService(TRUE);
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>ProcessingTime&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:=&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>LibraryRandom&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>RandDec&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">1000&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">2&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>AzureMachineLearningUsage&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>IncrementTotalProcessingTime&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>ProcessingTime&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic">// [WHEN] When IsAzureMLLimitReached is invoked with Limit more than Processing time
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic">// [THEN] HasAzureLimitReached returns TRUE
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>Assert&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>IsTrue&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>AzureMachineLearningUsage&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>IsAzureMLLimitReached&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>ProcessingTime&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>-&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#39;HasAzureLimitReached returns wrong value when Processing time exceeds Limit.&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>PermissionManager&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>SetTestabilitySoftwareAsAService&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>FALSE&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">END&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The figure below explains what happens when the Permission Manager is not a singleton. When it is invoked from different places (first from the test, second from the production code), then different instances of the Permission Manager will fire up and answer. In detail:&lt;/p>
+&lt;ol>
+&lt;li>The test calls Initialize which sets SaaS=TRUE in codeunit Permission Manager&lt;/li>
+&lt;li>The test calls into production code to validate it works as expected. It calls AzureMachineLearningUsage codeunit to find out if the monthly quota has been reached. The function IsAzureMLLimitReached in AzureMachineLearningUsage codeunit is designed only for SaaS. If the code doesn&amp;rsquo;t run in SaaS, then it always returns FALSE.&lt;/li>
+&lt;li>Therefore, a call to PermissionManager is made, to find out if the environment is SaaS.&lt;/li>
+&lt;li>However, a different instance of Permission Manager is reached &amp;ndash; and instance where SaaS was never set to TRUE. This is a mistake &amp;ndash; the test intended to simulate SaaS, but the state it set in the beginning is not reachable from production code.&lt;/li>
+&lt;li>The production code will assess (wrongly) that it&amp;rsquo;s not running SaaS, and say that the Azure ML limit has not been reached (incorrect &amp;ndash; and the test fails).&lt;/li>
+&lt;/ol>
+&lt;p>&lt;a href="Singleton-Codeunit-_2D00_-example-_2D00_-bad.PNG">&lt;img src="Singleton-Codeunit-_2D00_-example-_2D00_-bad.PNG" alt=" ">&lt;/a>&lt;/p>
+&lt;p>&lt;strong>Solution:&lt;/strong> restrict the number of instantiations of a codeunit to only one, by setting the codeunit property &lt;strong>SingleInstance&lt;/strong> to &lt;strong>Yes&lt;/strong>.&lt;/p>
+&lt;p>Returning to the previous example, let&amp;rsquo;s analyze the case when the codeunit Permission Manager is a singleton codeunit:&lt;/p>
+&lt;p>&lt;a href="2313.Singleton-Codeunit-_2D00_-CSIDE-SingleInstance-property.PNG">&lt;img src="2313.Singleton-Codeunit-_2D00_-CSIDE-SingleInstance-property.PNG" alt=" ">&lt;/a>&lt;/p>
+&lt;p>When the codeunit Permission Manager is a singleton, then no matter from where it is invoked, the same instance will be reached. Therefore, the status set by the test (SaaS = TRUE) will be reachable from the production code, and the test will pass, as seen in the figure below.&lt;/p>
+&lt;p>&lt;a href="Singleton-Codeunit-_2D00_-example-_2D00_-good.PNG">&lt;img src="Singleton-Codeunit-_2D00_-example-_2D00_-good.PNG" alt=" ">&lt;/a>&lt;/p>
+&lt;p>&lt;strong>Consequences&lt;/strong>&lt;/p>
+&lt;p>1. Use Singleton Codeunit with care and only when there is no other solution. Preserving a global state could often enough be more harmful than useful. One risk is that tests might fail apparently non-deterministically.&lt;/p>
+&lt;p>For example, a problem we have met in the development team for Madeira release, was that the singleton codeunit function PermissionManager.SetSoftwareAsAService(TRUE) is often used to emulate and test SaaS conditions. However, if a test &amp;lsquo;forgets&amp;rsquo; to reset the state to default (FALSE), then another codeunit which is not supposed to emulate SaaS, will suddenly run as SaaS and will fail. Even if the test has code that resets the state to FALSE, this code might never be reached because of an earlier failure or other error in the test which would stop execution.&lt;/p>
+&lt;p>2. The singleton codeunit is only &amp;ldquo;alive&amp;rdquo; for the current session. If the user logs out, the old session is closed and the singleton cleared out so any values stored in the old session&amp;rsquo;s singleton will be lost when the session was closed. When the user logs in again, a new session (with a new fresh instance of the singleton) will be created.&lt;/p>
+&lt;p>&lt;strong>NAV Usages&lt;/strong>&lt;/p>
+&lt;p>Most of the usages in NAV refer to the so-called &amp;ldquo;management codeunits&amp;rdquo;. The management codeunits are needed to run, in a centralized way, various modular parts of the application (features), like the CRM integration, Permissions, Workflows etc. Some of the &lt;strong>Singleton Codeunits&lt;/strong> in NAV are listed below:&lt;/p>
+&lt;ul>
+&lt;li>Codeunit 423 Change Log Management&lt;/li>
+&lt;li>Codeunit 1503 Workflow Record Management&lt;/li>
+&lt;li>Codeunit 1511 Notification Lifecycle Mgt.&lt;/li>
+&lt;li>Codeunit 1629 Office Attachment Manager&lt;/li>
+&lt;li>Codeunit 1632 Office Error Engine&lt;/li>
+&lt;li>Codeunit 5150 Integration Management&lt;/li>
+&lt;li>Codeunit 9002 Permission Manager&lt;/li>
+&lt;li>Etc.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Note:&lt;/strong> while the object-oriented &lt;strong>Singleton&lt;/strong> pattern can restrict the number of instantiations of the singleton to an integer n &amp;gt; 0, in Dynamics NAV the &lt;strong>Singleton Codeunit&lt;/strong> can only have n=1.&lt;/p></description></item><item><title>Docs: Singleton Table</title><link>https://alguidelines.dev/docs/navpatterns/patterns/singleton/singleton-table/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://alguidelines.dev/docs/navpatterns/patterns/singleton/singleton-table/</guid><description>
+&lt;h2 id="singleton-table">Singleton Table&lt;/h2>
+&lt;p>&lt;em>By Elly Nkya at Microsoft Development Center Copenhagen&lt;/em>&lt;/p>
+&lt;p>&lt;a href="5554.Singleton-Table.png">&lt;img src="5554.Singleton-Table.png" alt=" ">&lt;/a>&lt;/p>
+&lt;p>&lt;strong>Problem&lt;/strong>: The developer needs to define a single record that can contain a set of rules and behavior (optional, mandatory, or defaulting mechanisms), that apply to a functionality, and can be configured by a user.&lt;/p>
+&lt;p>&lt;strong>Forces&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>You want a central place to define the address and logo of your company (see Company Information table).&lt;/li>
+&lt;li>You want to define the no. series that should be used for your sales documents (see Sales &amp;amp; Receivables Setup table).&lt;/li>
+&lt;li>You want to know whether your sales documents should be archived (see Sales &amp;amp; Receivables Setup table).&lt;/li>
+&lt;li>You want to define the rounding accuracy your system should (see General Ledger Setup table).&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Solution:&lt;/strong> Define a single record that can contain a set of rules and behavior (optional, mandatory, or defaulting mechanisms), that apply to a functionality, and can be configured by a user.&lt;/p>
+&lt;p>In a functionality that is large enough (such as sales, inventory, fixed) you may want to define a global set of rules, that are configurable by the user.&lt;/p>
+&lt;p>&lt;strong>Implementation&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>1. Define:&lt;/strong> Create a Setup Table with Dummy a Primary Key. Typically with type Code=10. Then add fields to define the global rules.&lt;/p>
+&lt;p>&lt;strong>2. Instantiate:&lt;/strong> Place the instantiation code in a central place where it is guaranteed to be invoked before the functionality uses it. This is done in Codeunit 2.&lt;/p>
+&lt;p>&lt;strong>3. Enforce:&lt;/strong> Give the user access to the record so that he can change the default setup, by creating a Card page. On the page, enforce the singleton to prevent deletion of the record or insertion of a new record&lt;/p>
+&lt;p>&lt;strong>4. Use:&lt;/strong> Access the rule in code and use it&lt;/p>
+&lt;p>&lt;strong>NAV Usages&lt;/strong>&lt;/p>
+&lt;p>Rounding rules for Unit-Amounts and Amounts are implemented using the Singleton pattern.&lt;/p>
+&lt;p>&lt;strong>1. Define:&lt;/strong> The General Ledger Setup is used for this.&lt;/p>
+&lt;p>&lt;strong>2. Instantiate:&lt;/strong> In codeunit 2, the following code is invoked&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-al" data-lang="al">&lt;span style="color:#204a87;font-weight:bold">WITH&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>GLSetup&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">DO&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">IF&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">NOT&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>FINDFIRST&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">THEN&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">BEGIN&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>INIT&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>INSERT&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">END&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>3. Enforce:&lt;/strong> On the General Ledger Setup. The following properties are setup:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-al" data-lang="al">&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>DeleteAllowed=false&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>InsertAllowed=false&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>4. Use:&lt;/strong> Access the rounding rules are used&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-al" data-lang="al">&lt;span style="color:#ce5c00;font-weight:bold">...
+&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">&lt;/span>GLSetup&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>GET&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>UnitCostCurrency&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:=&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>ROUND&lt;span style="color:#ce5c00;font-weight:bold">(...&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>GLSetup&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&amp;#34;Unit-Amount Rounding Precision&amp;#34;&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">...
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Or if accessing the rule multiple times and performance is a consideration, use lazy instantiation:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-al" data-lang="al">&lt;span style="color:#ce5c00;font-weight:bold">...
+&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">&lt;/span>GetGLSetup&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>UnitCostCurrency&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:=&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>ROUND&lt;span style="color:#ce5c00;font-weight:bold">(...&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>GLSetup&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&amp;#34;Unit-Amount Rounding Precision&amp;#34;&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">...
+&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">
+&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">LOCAL&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>GetGLSetup&lt;span style="color:#ce5c00;font-weight:bold">()
+&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">IF&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">NOT&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>GLSetupRead&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">THEN&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>GLSetup&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>GET&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>GLSetupRead&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:=&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>TRUE&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>Related topics&lt;/strong>&lt;/p>
+&lt;p>&lt;a href="https://en.wikipedia.org/wiki/Singleton_pattern">Singleton design pattern&lt;/a>.&lt;/p>
+&lt;p>The &lt;strong>Singleton Table&lt;/strong> has two established applications in Dynamics NAV:&lt;/p>
+&lt;ol>
+&lt;li>&lt;a href="https://alguidelines.dev/navpatterns/1-patterns/singleton/singleton-table/setup-table/">&lt;strong>Setup Tables&lt;/strong>&lt;/a> &amp;ndash; which are commonly storing user setup data in NAV,&lt;/li>
+&lt;li>&lt;strong>Cue Tables&lt;/strong> &amp;ndash; used to calculate values for the visual representation of Cues on the NAV role center pages.&lt;/li>
+&lt;/ol>
+&lt;p>YouTube Video of NAV Singleton:&lt;/p>
+&lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+&lt;iframe src="https://www.youtube.com/embed/aQPu-s9FkYI" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video">&lt;/iframe>
+&lt;/div></description></item></channel></rss>
