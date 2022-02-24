@@ -27,23 +27,23 @@ Bad code ifAtom='\>'thenHasLogicalOperator:=trueelsebegin... end;Good code ifAto
 If you don&rsquo;t find the discussion of this guideline, please feel free to create a new one with the same title as this article.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://alguidelines.dev/docs/bestpractices/separate-if-and-else/"><meta property="og:image" content="https://alguidelines.dev/images/og-image-fission.png"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-02-20T13:18:49+01:00"><meta property="og:site_name" content="alguidelines.dev - Business Central Design Patterns">
+<meta property="article:modified_time" content="2022-02-24T14:45:35+01:00"><meta property="og:site_name" content="alguidelines.dev - Business Central Design Patterns">
 <meta itemprop=name content="Seperate if and else">
 <meta itemprop=description content="Created by Microsoft, Described by waldo
 Description if and else statements should be on separate lines.
 Bad code ifAtom='\>'thenHasLogicalOperator:=trueelsebegin... end;Good code ifAtom='\>'thenHasLogicalOperator:=trueelsebegin... end;Discussions You can find discussions on all &ldquo;Best Practices&rdquo; here.
 If you don&rsquo;t find the discussion of this guideline, please feel free to create a new one with the same title as this article.">
-<meta itemprop=dateModified content="2022-02-20T13:18:49+01:00">
+<meta itemprop=dateModified content="2022-02-24T14:45:35+01:00">
 <meta itemprop=wordCount content="56"><meta itemprop=image content="https://alguidelines.dev/images/og-image-fission.png">
-<meta itemprop=keywords content="Readability,"><meta name=twitter:card content="summary_large_image">
+<meta itemprop=keywords content="AL,Readability,"><meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://alguidelines.dev/images/og-image-fission.png">
 <meta name=twitter:title content="Seperate if and else">
 <meta name=twitter:description content="Created by Microsoft, Described by waldo
 Description if and else statements should be on separate lines.
 Bad code ifAtom='\>'thenHasLogicalOperator:=trueelsebegin... end;Good code ifAtom='\>'thenHasLogicalOperator:=trueelsebegin... end;Discussions You can find discussions on all &ldquo;Best Practices&rdquo; here.
 If you don&rsquo;t find the discussion of this guideline, please feel free to create a new one with the same title as this article.">
-<link rel=preload href=/scss/main.min.c1ea95e542999dd0d5de472122a143b80206066f481554662ffc3a788ef24b2c.css as=style>
-<link href=/scss/main.min.c1ea95e542999dd0d5de472122a143b80206066f481554662ffc3a788ef24b2c.css rel=stylesheet integrity>
+<link rel=preload href=/scss/main.min.84a617ff0c0265eb62b5cd2929c572f4ed37dc4907d0cf068be4eb2974f6d60f.css as=style>
+<link href=/scss/main.min.84a617ff0c0265eb62b5cd2929c572f4ed37dc4907d0cf068be4eb2974f6d60f.css rel=stylesheet integrity>
 <script src=https://code.jquery.com/jquery-3.6.0.min.js integrity=sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK crossorigin=anonymous></script>
 <script src=https://unpkg.com/lunr@2.3.9/lunr.min.js integrity=sha384-203J0SNzyqHby3iU6hzvzltrWi/M41wOP5Gu+BiJMz5nwKykbkUx8Kp7iti0Lpli crossorigin=anonymous></script>
 </head>
@@ -51,7 +51,7 @@ If you don&rsquo;t find the discussion of this guideline, please feel free to cr
 <header>
 <nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar">
 <a class=navbar-brand href=/>
-<img src=/images/alguidelines-bclogo-pattern-white.png height=32px>
+<img src=/images/SiteLogo.png height=32px>
 <span class="font-weight-bold show-desktop">alguidelines.dev - Business Central Design Patterns</span>
 <span class="font-weight-bold show-mobile-inline">alguidelines.dev</span>
 </a>
@@ -71,7 +71,7 @@ If you don&rsquo;t find the discussion of this guideline, please feel free to cr
 </li>
 </ul>
 </div>
-<div class="navbar-nav d-none d-lg-block"><input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/offline-search-index.bbc3a9154766faeeb480467f1c279b44.json data-offline-search-base-href=/ data-offline-search-max-results=10>
+<div class="navbar-nav d-none d-lg-block"><input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/offline-search-index.2b0c36478a8660f3dec37e0c539508bc.json data-offline-search-base-href=/ data-offline-search-max-results=10>
 </div>
 </nav>
 </header>
@@ -82,7 +82,7 @@ If you don&rsquo;t find the discussion of this guideline, please feel free to cr
 <div id=td-sidebar-menu class=td-sidebar__inner>
 <div id=content-mobile>
 <form class="td-sidebar__search d-flex align-items-center">
-<input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/offline-search-index.bbc3a9154766faeeb480467f1c279b44.json data-offline-search-base-href=/ data-offline-search-max-results=10>
+<input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/offline-search-index.2b0c36478a8660f3dec37e0c539508bc.json data-offline-search-base-href=/ data-offline-search-max-results=10>
 <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type=button data-toggle=collapse data-target=#td-section-nav aria-controls=td-docs-nav aria-expanded=false aria-label="Toggle section navigation">
 </button>
 </form>
@@ -153,7 +153,7 @@ If you don&rsquo;t find the discussion of this guideline, please feel free to cr
 <a href=/docs/navpatterns/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-docsnavpatterns><span>NAV Patterns Archive</span></a>
 <ul class="ul-2 foldable">
 <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child collapse" id=m-docsnavpatternspatterns-li>
-<a href=/docs/navpatterns/patterns/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-docsnavpatternspatterns><span>Patterns</span></a>
+<a href=/docs/navpatterns/patterns/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-docsnavpatternspatterns><span>1. Patterns</span></a>
 <ul class="ul-3 foldable">
 <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id=m-docsnavpatternspatternsactivity-log-li>
 <a href=/docs/navpatterns/patterns/activity-log/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-docsnavpatternspatternsactivity-log><span>Activity Logs</span></a>
@@ -504,7 +504,8 @@ If you don&rsquo;t find the discussion of this guideline, please feel free to cr
 <a href=https://github.com/microsoft/alguidelines/tree/main/content/docs/BestPractices/separate-if-and-else/index.md class=td-page-meta--view target=_blank rel=noopener><i class="fa fa-file-alt fa-fw"></i> View page source</a>
 <a href=https://github.com/microsoft/alguidelines/edit/main/content/docs/BestPractices/separate-if-and-else/index.md class=td-page-meta--edit target=_blank rel=noopener><i class="fa fa-edit fa-fw"></i> Edit this page</a>
 <a href="https://github.com/microsoft/alguidelines/new/main/content/docs/BestPractices/separate-if-and-else/index.md?filename=change-me.md&value=---%0Atitle%3A+%22Long+Page+Title%22%0AlinkTitle%3A+%22Short+Nav+Title%22%0Aweight%3A+100%0Adescription%3A+%3E-%0A+++++Page+description+for+heading+and+indexes.%0A---%0A%0A%23%23+Heading%0A%0AEdit+this+template+to+create+your+new+page.%0A%0A%2A+Give+it+a+good+name%2C+ending+in+%60.md%60+-+e.g.+%60getting-started.md%60%0A%2A+Edit+the+%22front+matter%22+section+at+the+top+of+the+page+%28weight+controls+how+its+ordered+amongst+other+pages+in+the+same+directory%3B+lowest+number+first%29.%0A%2A+Add+a+good+commit+message+at+the+bottom+of+the+page+%28%3C80+characters%3B+use+the+extended+description+field+for+more+detail%29.%0A%2A+Create+a+new+branch+so+you+can+preview+your+new+file+and+request+a+review+via+Pull+Request.%0A" class=td-page-meta--child target=_blank rel=noopener><i class="fa fa-edit fa-fw"></i> Create child page</a>
-<a href="https://github.com/microsoft/alguidelines/issues/new?title=Seperate%20if%20and%20else" class=td-page-meta--issue target=_blank rel=noopener><i class="fab fa-github fa-fw"></i> Create documentation issue</a>
+<a href="https://github.com/microsoft/alguidelines/issues/new?title=Seperate%20if%20and%20else" class=td-page-meta--issue target=_blank rel=noopener><i class="fab fa-github fa-fw"></i> Create Issue</a>
+<a href="https://github.com/microsoft/alguidelines/discussions?discussions_q=Seperate%20if%20and%20else" class=td-page-meta--issue target=_blank rel=noopener><i class="fab fa-github fa-fw"></i> Discussions</a>
 <a href=https://github.com/microsoft/alguidelines/issues/new class=td-page-meta--project-issue target=_blank rel=noopener><i class="fas fa-tasks fa-fw"></i> Create project issue</a>
 </div>
 <div class=td-toc><nav id=TableOfContents>
@@ -518,19 +519,21 @@ If you don&rsquo;t find the discussion of this guideline, please feel free to cr
 <div class="taxonomy taxonomy-terms-cloud taxo-tags">
 <h5 class=taxonomy-title>Tag Cloud</h5>
 <ul class=taxonomy-terms>
-<li><a class=taxonomy-term href=https://alguidelines.dev/tags/c/al/ data-taxonomy-term=c/al><span class=taxonomy-label>C/AL</span><span class=taxonomy-count>1</span></a></li>
+<li><a class=taxonomy-term href=https://alguidelines.dev/tags/al/ data-taxonomy-term=al><span class=taxonomy-label>AL</span><span class=taxonomy-count>25</span></a></li>
+<li><a class=taxonomy-term href=https://alguidelines.dev/tags/c/al/ data-taxonomy-term=c/al><span class=taxonomy-label>C/AL</span><span class=taxonomy-count>136</span></a></li>
+<li><a class=taxonomy-term href=https://alguidelines.dev/tags/decoupling/ data-taxonomy-term=decoupling><span class=taxonomy-label>Decoupling</span><span class=taxonomy-count>2</span></a></li>
+<li><a class=taxonomy-term href=https://alguidelines.dev/tags/extendability/ data-taxonomy-term=extendability><span class=taxonomy-label>Extendability</span><span class=taxonomy-count>3</span></a></li>
 <li><a class=taxonomy-term href=https://alguidelines.dev/tags/interface/ data-taxonomy-term=interface><span class=taxonomy-label>Interface</span><span class=taxonomy-count>1</span></a></li>
-<li><a class=taxonomy-term href=https://alguidelines.dev/tags/nav/ data-taxonomy-term=nav><span class=taxonomy-label>NAV</span><span class=taxonomy-count>1</span></a></li>
 <li><a class=taxonomy-term href=https://alguidelines.dev/tags/performance/ data-taxonomy-term=performance><span class=taxonomy-label>Performance</span><span class=taxonomy-count>2</span></a></li>
-<li><a class=taxonomy-term href=https://alguidelines.dev/tags/readability/ data-taxonomy-term=readability><span class=taxonomy-label>Readability</span><span class=taxonomy-count>18</span></a></li>
+<li><a class=taxonomy-term href=https://alguidelines.dev/tags/readability/ data-taxonomy-term=readability><span class=taxonomy-label>Readability</span><span class=taxonomy-count>53</span></a></li>
+<li><a class=taxonomy-term href=https://alguidelines.dev/tags/testability/ data-taxonomy-term=testability><span class=taxonomy-label>Testability</span><span class=taxonomy-count>2</span></a></li>
 </ul>
 </div>
 <div class="taxonomy taxonomy-terms-cloud taxo-categories">
 <h5 class=taxonomy-title>Categories</h5>
 <ul class=taxonomy-terms>
-<li><a class=taxonomy-term href=https://alguidelines.dev/categories/archived-pattern/ data-taxonomy-term=archived-pattern><span class=taxonomy-label>Archived Pattern</span><span class=taxonomy-count>1</span></a></li>
-<li><a class=taxonomy-term href=https://alguidelines.dev/categories/best-practice/ data-taxonomy-term=best-practice><span class=taxonomy-label>Best Practice</span><span class=taxonomy-count>21</span></a></li>
-<li><a class=taxonomy-term href=https://alguidelines.dev/categories/pattern/ data-taxonomy-term=pattern><span class=taxonomy-label>Pattern</span><span class=taxonomy-count>4</span></a></li>
+<li><a class=taxonomy-term href=https://alguidelines.dev/categories/best-practice/ data-taxonomy-term=best-practice><span class=taxonomy-label>Best Practice</span><span class=taxonomy-count>84</span></a></li>
+<li><a class=taxonomy-term href=https://alguidelines.dev/categories/pattern/ data-taxonomy-term=pattern><span class=taxonomy-label>Pattern</span><span class=taxonomy-count>68</span></a></li>
 </ul>
 </div>
 </aside>
@@ -554,6 +557,7 @@ If you don&rsquo;t find the discussion of this guideline, please feel free to cr
 <div class="taxonomy taxonomy-terms-article taxo-tags">
 <h5 class=taxonomy-title>Tags:</h5>
 <ul class=taxonomy-terms>
+<li><a class=taxonomy-term href=https://alguidelines.dev/tags/al/ data-taxonomy-term=al><span class=taxonomy-label>AL</span></a></li>
 <li><a class=taxonomy-term href=https://alguidelines.dev/tags/readability/ data-taxonomy-term=readability><span class=taxonomy-label>Readability</span></a></li>
 </ul>
 </div>
@@ -581,7 +585,7 @@ If you don&rsquo;t find the discussion of this guideline, please feel free to cr
 <p>You can find discussions on all &ldquo;Best Practices&rdquo; <a href=https://github.com/microsoft/alguidelines/discussions/categories/bc-best-practices>here</a>.</p>
 <p>If you don&rsquo;t find the discussion of this guideline, please feel free to create a new one with the same title as this article.</p>
 <div class="text-muted mt-5 pt-3 border-top">
-Last modified February 20, 2022: <a href=https://github.com/microsoft/alguidelines/commit/cceb0c945e0383599f497350ca254d5755edda65>Restructure for Docsy theme (cceb0c9)</a>
+Last modified February 24, 2022: <a href=https://github.com/microsoft/alguidelines/commit/5ee0436639455a35835c5ce88241d3fad662ee06>Added tags & categories + cleanup (5ee0436)</a>
 </div>
 </div>
 </main>
