@@ -9,25 +9,25 @@ procedure ALGuidelinesRock()
 var
 Customer: Record Customer;
 begin
-Customer.Get('10000');
-Customer.Name := 'waldo';
+Customer.Get(&amp;#39;10000&amp;#39;);
+Customer.Name := &amp;#39;waldo&amp;#39;;
 Customer.Modify(true);
 end;
 ```
 &lt;/code>&lt;/pre>&lt;p>Results in:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-AL" data-lang="AL">&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">procedure&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>ALGuidelinesRock&lt;span style="color:#ce5c00;font-weight:bold">()
-&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">var&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>Customer&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">Record&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>Customer&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">begin&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>Customer&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>Get&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;10000&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>Customer&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>Name&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:=&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#39;waldo&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>Customer&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#204a87;font-weight:bold">Modify&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>true&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">end&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="hugo-shortcodes">Hugo Shortcodes&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-AL" data-lang="AL">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">procedure&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>ALGuidelinesRock&lt;span style="color:#ce5c00;font-weight:bold">()
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">var&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>Customer&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">Record&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>Customer&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">begin&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>Customer&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>Get&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;10000&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>Customer&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>Name&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:=&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#39;waldo&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>Customer&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#204a87;font-weight:bold">Modify&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>true&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">end&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="hugo-shortcodes">Hugo Shortcodes&lt;/h2>
 &lt;p>Since we&amp;rsquo;re using &amp;ldquo;Hugo&amp;rdquo;, we can use it&amp;rsquo;s shortcode. Here is a reference: &lt;a href="https://gohugo.io/content-management/shortcodes/">https://gohugo.io/content-management/shortcodes/&lt;/a>&lt;/p>
 &lt;p>It basically means we are able to use easy notations to do cool things. Let&amp;rsquo;s point out some useful shortcodes:&lt;/p>
 &lt;h3 id="twitter">Twitter&lt;/h3>
-&lt;pre tabindex="0">&lt;code>{{&amp;lt; tweet user=&amp;quot;waldo1001&amp;quot; id=&amp;quot;1458787011024805892&amp;quot; &amp;gt;}}
+&lt;pre tabindex="0">&lt;code>{{&amp;lt; tweet user=&amp;#34;waldo1001&amp;#34; id=&amp;#34;1458787011024805892&amp;#34; &amp;gt;}}
 &lt;/code>&lt;/pre>&lt;p>makes:
 &lt;blockquote class="twitter-tweet">&lt;p lang="en" dir="ltr">&amp;quot;Code is Poetry!&amp;quot;&lt;a href="https://twitter.com/hashtag/msdyn365bc?src=hash&amp;amp;ref_src=twsrc%5Etfw">#msdyn365bc&lt;/a>&lt;/p>&amp;mdash; waldo (@waldo1001) &lt;a href="https://twitter.com/waldo1001/status/1458787011024805892?ref_src=twsrc%5Etfw">November 11, 2021&lt;/a>&lt;/blockquote>
 &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
@@ -40,7 +40,7 @@ end;
 &lt;/div>
 &lt;/p>
 &lt;h3 id="figure">Figure&lt;/h3>
-&lt;pre tabindex="0">&lt;code>{{&amp;lt; figure src=&amp;quot;http://www.waldo.be/wp-content/uploads/2021/11/business-central-logo.png&amp;quot; title=&amp;quot;Business Central&amp;quot; &amp;gt;}}
+&lt;pre tabindex="0">&lt;code>{{&amp;lt; figure src=&amp;#34;http://www.waldo.be/wp-content/uploads/2021/11/business-central-logo.png&amp;#34; title=&amp;#34;Business Central&amp;#34; &amp;gt;}}
 &lt;/code>&lt;/pre>&lt;p>makes:
 &lt;figure>
 &lt;img src="http://www.waldo.be/wp-content/uploads/2021/11/business-central-logo.png"/> &lt;figcaption>
@@ -88,7 +88,12 @@ If You haven&amp;rsquo;t worked in collaboration with &amp;ldquo;external&amp;rd
 &lt;p>To do so, head on over to the repository on GitHub where your project lives. For this example, it would be at &lt;code>https://www.github.com/&amp;lt;your_username&amp;gt;/alguidelines&lt;/code>. You&amp;rsquo;ll see a banner indicating that your branch is one commit ahead of microsoft:main. Click &lt;strong>Contribute&lt;/strong> and then &lt;strong>Open a pull request.&lt;/strong>&lt;/p>
 &lt;p>GitHub will bring you to a page that shows the differences between your fork and the microsoft/alguidelines repository. Click &lt;strong>Create pull request.&lt;/strong>&lt;/p>
 &lt;p>GitHub will bring you to a page where you can enter a title and a description of your changes. &lt;em>It&amp;rsquo;s important to provide as much useful information and a rationale for why you&amp;rsquo;re making this pull request in the first place.&lt;/em> The project owners needs to be able to determine whether your change is as useful to everyone as you think it is. Finally, click &lt;strong>Create pull request.&lt;/strong>&lt;/p></description></item><item><title>Docs: Understanding the Approval Process</title><link>https://alguidelines.dev/docs/contributing/theapprovalprocess/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://alguidelines.dev/docs/contributing/theapprovalprocess/</guid><description>
-&lt;p>(coming soon)&lt;/p></description></item><item><title>Docs: Templates</title><link>https://alguidelines.dev/docs/contributing/templates/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://alguidelines.dev/docs/contributing/templates/</guid><description>
+&lt;p>(coming soon)&lt;/p></description></item><item><title>Docs: Install Hugo</title><link>https://alguidelines.dev/docs/contributing/installhugo/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://alguidelines.dev/docs/contributing/installhugo/</guid><description>
+&lt;p>There are multiple ways to install Hugo for you to properly preview your contributions. Please select the scenario that matches your setup.&lt;/p>
+&lt;p>For the official install guide, you can visit &lt;a href="https://gohugo.io/getting-started/installing/">https://gohugo.io/getting-started/installing/&lt;/a>&lt;/p>
+&lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+&lt;iframe src="https://www.youtube.com/embed/G7umPCU-8xc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video">&lt;/iframe>
+&lt;/div></description></item><item><title>Docs: Templates</title><link>https://alguidelines.dev/docs/contributing/templates/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://alguidelines.dev/docs/contributing/templates/</guid><description>
 &lt;p>We have created some template-files that you can simply copy and use. Look at them as &amp;ldquo;Patterns for describing patterns&amp;rdquo;&lt;/p>
 &lt;p>We currently offer the following templates:&lt;/p>
 &lt;ul>
